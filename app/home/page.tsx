@@ -3,11 +3,15 @@ import { fetchHelper } from "../helpers/fetch-helper";
 import "./page.module.css";
 import "../globals.css";
 import Loader from "../components/loader";
-const home = async () => {
-  const games: { name: string }[] = await fetchHelper("/games");
-  console.log(games);
 
-  return <div className="text-9xl">HOMEEE</div>;
+const home = async () => {
+  const res = await fetchHelper("/games");
+
+  return (
+    <div className="text-9xl">
+      {res.status_code === 1 ? "HOMEEEEE" : <Loader />}
+    </div>
+  );
 };
 
 export default home;
