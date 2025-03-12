@@ -4,18 +4,10 @@ import "./page.module.css";
 import "../globals.css";
 import Loader from "../components/loader";
 const home = async () => {
-  const games: { name: string }[] = await fetchHelper(
-    "https://www.giantbomb.com/api/games/"
-  );
-  const handleLoaderChange = (loaderState: boolean) => {
-    console.log("loaderState: ", loaderState);
-  };
-  return (
-    <div className="text-9xl">
-      HOMEEE
-      <Loader data={games} onLoaderChange={handleLoaderChange} />
-    </div>
-  );
+  const games: { name: string }[] = await fetchHelper("/games");
+  console.log(games);
+
+  return <div className="text-9xl">HOMEEE</div>;
 };
 
 export default home;
