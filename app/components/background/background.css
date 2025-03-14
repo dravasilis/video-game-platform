@@ -1,0 +1,13 @@
+.background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.backgroundGradient {
+    background: linear-gradient(0deg, #060d17 1%, #060d1794 54%, #060d17e6 90%);
+    z-index: 1;
+}

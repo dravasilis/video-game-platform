@@ -1,17 +1,17 @@
-import React from "react";
-import { fetchHelper } from "../helpers/fetch-helper";
-import "./page.module.css";
+import Background from "../components/background/background";
+import Sidenav from "../components/sidenav";
 import "../globals.css";
-import Loader from "../components/loader";
+import "./page.module.css";
 
 const home = async () => {
-  const res = await fetchHelper("/games");
-  console.log(res);
+  // const res = await fetchHelper("/releases");
+  // console.log(res);
 
   return (
-    <div className="text-9xl">
-      {res.status_code === 1 ? "Home" : <Loader />}
-    </div>
+    <>
+      <Background />
+      <Sidenav />
+    </>
   );
 };
 
