@@ -3,12 +3,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <>
-      {" "}
-      <Head>
-        <title>My page title</title>
-      </Head>
+    <div>
       <Link href="/home">Home</Link>
-    </>
+    </div>
   );
 }
