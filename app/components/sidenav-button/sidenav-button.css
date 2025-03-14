@@ -1,0 +1,23 @@
+.button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    transition-duration: 75ms;
+}
+
+.button:hover {
+    background: #ffffff12;
+    cursor: pointer;
+
+    img {
+        transition-duration: 700ms;
+        transform: scale(1.1);
+    }
+}
+
+img {
+    will-change: transform;
+    transition-duration: 700ms;
+
+}
