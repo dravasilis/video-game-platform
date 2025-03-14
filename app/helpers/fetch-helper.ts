@@ -3,7 +3,7 @@ import { HttpResponse } from "../models/httpResponse";
 
 export const fetchHelper = async (endpoint: string): Promise<HttpResponse> => {
     const res = await fetch(
-        'https://www.giantbomb.com/api' + endpoint + '?' + new URLSearchParams({ format: 'json', api_key: environment.apiKey })
+        'https://www.giantbomb.com/api' + endpoint + '?' + new URLSearchParams({ format: 'json', api_key: environment.apiKey, limit: '20' })
 
     );
     const data = await res.json();

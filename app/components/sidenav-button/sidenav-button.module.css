@@ -20,8 +20,8 @@
     transform: scale(.98);
 }
 
-img {
+/* img {
     will-change: transform;
     transition-duration: 700ms;
 
-}
+} */

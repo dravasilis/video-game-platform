@@ -1,6 +1,6 @@
 .banner {
     width: 100%;
-    height: 20rem;
+    height: 25rem;
     position: absolute;
     top: 0;
     left: 0;
@@ -8,6 +8,6 @@
 }
 
 .bannerGradient {
-    background: linear-gradient(0deg, #060d17 1%, #060d1794 54%, #060d17e6 90%);
+    background: linear-gradient(0deg, #000914 1%, #00091494 54%, #000914e6 90%);
     z-index: 1;
 }

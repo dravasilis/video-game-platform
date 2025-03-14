@@ -1,6 +1,6 @@
 import React from "react";
 import { Menu } from "../../models/menu";
-import "./sidenav-button.css";
+import "./sidenav-button.module.css";
 
 const SidenavButton = ({ title, redirectUrl, imagePath }: Menu) => {
   return (
