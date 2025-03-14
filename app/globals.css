@@ -41,6 +41,7 @@ body {
     bottom: 0;
     height: 1px;
     width: 0;
+    box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
     background-color: rgb(255, 255, 255);
     transition: width 300ms ease-in-out;
     /* Smooth expand effect */
@@ -48,4 +49,18 @@ body {
 
 .underlineEffect:hover::after {
     width: 100%;
+}
+
+.text-shadow {
+    text-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
+}
+
+.glass {
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.24);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4.7px);
+    -webkit-backdrop-filter: blur(9.7px);
+    border: 1px solid rgba(255, 255, 255, 0.54);
 }

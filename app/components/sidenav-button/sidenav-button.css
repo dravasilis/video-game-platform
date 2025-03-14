@@ -16,6 +16,10 @@
     }
 }
 
+.button:active {
+    transform: scale(.98);
+}
+
 img {
     will-change: transform;
     transition-duration: 700ms;

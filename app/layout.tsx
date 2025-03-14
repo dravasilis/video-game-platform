@@ -3,7 +3,7 @@ import "./globals.css";
 import { Play } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Video Game Platform", // Base Title,
+  title: "Gamepedia", // Base Title,
 };
 
 const roboto = Play({

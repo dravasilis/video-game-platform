@@ -9,7 +9,7 @@ const Sidenav = () => {
       className="w-[15rem] flex flex-col gap-6 py-8 px-4 z-20 relative h-full"
       style={{
         background:
-          "linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #060d17eb 8%)",
+          "linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #060d17fa 8%)",
       }}
     >
       <span className="text-[#c6c6c6]">Browse</span>
