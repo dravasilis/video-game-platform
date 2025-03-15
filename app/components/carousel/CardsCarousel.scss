@@ -1,0 +1,28 @@
+.box {
+	&:hover {
+		.box-inner {
+			padding: 0.75rem;
+			border-color: #2c3644;
+		}
+		.card-overlay {
+			transition-duration: 200ms;
+			background: rgba(0, 0, 0, 0.24);
+			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+			backdrop-filter: blur(6px);
+			-webkit-backdrop-filter: blur(9.7px);
+			transition-duration: 200ms;
+			border-radius: 1rem;
+			span {
+				transition-duration: 200ms;
+				color: var(--primary-100);
+			}
+		}
+	}
+}
+.box-inner {
+  transition-duration: 200ms;
+  border-radius: 15px;
+  position: relative;
+  border: 2px solid #151d29;
+  padding: 10px;
+}

@@ -7,28 +7,45 @@ import {
 	CarouselNext,
 	CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import "./CardsCarousel.scss";
 export function CarouselUI({ games }: any) {
 	return (
 		<Carousel
 			opts={{ slidesToScroll: 5 }}
-			className="w-full max-w-[70rem]  py-4"
+			className="w-full max-w-[100%]  py-4"
 		>
-			<CarouselContent>
+			<CarouselContent className="">
 				{Array.from(games).map((game: any, index: number) => (
-					<CarouselItem key={index} className="  md:basis-1/2 lg:basis-1/5">
-						<Card className=" p-0 border-0 bg-transparent py-1">
-							<CardContent className="flex aspect-square items-center justify-center p-0 w-full h-[300px] relative">
+					<CarouselItem key={index} className="  md:basis-1/3 lg:basis-1/5">
+						<Card className=" p-0 border-0 bg-transparent py-1 hover:cursor-pointer box">
+							<CardContent className=" box-inner flex aspect-square items-center justify-center p-0 w-full h-[30rem] relative heading-frame">
+								<div className="card-overlay duration-200 w-full h-full  absolute top-0 left-0    flex flex-col gap-2 items-center justify-center px-2 text-lg text-center">
+									<span className="text-transparent">
+										{game.alias ?? game.name}
+									</span>
+									<span className="text-transparent">
+										{game.expected_release_year ??
+											(game.original_release_date ?? 'N/A').substring(0, 4) }
+									</span>
+								</div>
 								<img
-									style={{ boxShadow: "0px 0px 8px 1px #1d7ca787;" }}
-									src={game.image.thumb_url}
+									style={{ boxShadow: "#41606f87 0px 0px 1px 2px" }}
+									src={game.image.super_url}
 									className="w-full object-fill h-full rounded-md"
 								/>
-								{/* <span className="absolute bottom-0 left-0 glass font-bold px-2 py-1 w-full text-primary-100 h-[5rem] text-center">{game.alias??game.name}</span> */}
 							</CardContent>
 						</Card>
 					</CarouselItem>
 				))}
+				<CarouselItem   className="  md:basis-1/3 lg:basis-1/5">
+						<Card className=" p-0 border-0 bg-transparent py-1 hover:cursor-pointer box">
+							<CardContent className=" box-inner flex gap-4 aspect-square items-center justify-center p-0 w-full h-[30rem] relative heading-frame">
+								<span>See All</span>
+						<img src="/svg/next.svg" width={20} alt="" />
+							 
+							</CardContent>
+						</Card>
+					</CarouselItem>
 			</CarouselContent>
 			<CarouselPrevious className="bg-white ml-7 w-10 h-10  text-black hover:bg-gray-300 hover:cursor-pointer" />
 			<CarouselNext className="bg-white text-black mr-7 w-10 h-10 hover:bg-gray-300 hover:cursor-pointer" />

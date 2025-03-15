@@ -4,9 +4,15 @@ import Link from "next/link";
 import "../../globals.css"; 
 import { CarouselUI } from "../carousel/CardsCarousel";
 import { fetchHelper } from "@/app/helpers/fetch-helper";
+import FeatureShowcase from "../feature-showcase/feature-showcase";
 const LandingPage =  async () => {
-  const res = await  fetchHelper('/games') 
-  console.log(res.results[0]);
+	const currentDate = new Date().toISOString().split("T")[0]
+  const [upcomingGamesRes, vintageGamesRes,mostRatedGamesRes] = await Promise.all([
+    fetchHelper('/games',{limit:20,sort:'original_release_date:desc'}),
+    fetchHelper('/games',{limit:20,filter:'expected_release_year:1990-01-01|'}),
+    fetchHelper('/games',{limit:20,filter:`expected_release_year:2025-01-01|${currentDate}`}),
+  ]);
+  console.log(mostRatedGamesRes);
   
 	return (
 		<div>
@@ -41,10 +47,9 @@ const LandingPage =  async () => {
 						personal collection and much more.
 					</span>
 				</div>
-				<div className="flex flex-col justify-center items-center gap-8 py-24">
-					<span className="text-5xl font-bold">Explore new games</span>
-						<CarouselUI games={res.results}/>
-				</div>
+				<FeatureShowcase games={upcomingGamesRes.results} title="EXPLORE UPCOMING GAMES"/>
+				<FeatureShowcase games={vintageGamesRes.results} title="EXPLORE OLD GEMS"/>
+				<FeatureShowcase games={mostRatedGamesRes.results} title="MOST RATED GAMES"/>
 			</div>
 		</div>
 	);
