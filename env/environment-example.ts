@@ -1,3 +1,4 @@
 export const environment = {
-    apiKey: '' //api key goes here
+    giantBombApiKey: '', //api key goes here
+    RAWGApiKey: '' //api key goes here
 };

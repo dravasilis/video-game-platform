@@ -11,12 +11,12 @@ import "./CardsCarousel.scss";
 export function CarouselUI({ games }: any) {
 	return (
 		<Carousel
-			opts={{ slidesToScroll: 5 }}
+			opts={{ slidesToScroll: 4 }}
 			className="w-full max-w-[100%]  py-4"
 		>
 			<CarouselContent className="">
 				{Array.from(games).map((game: any, index: number) => (
-					<CarouselItem key={index} className="  md:basis-1/3 lg:basis-1/5">
+					<CarouselItem key={index} className="  md:basis-1/3 lg:basis-1/4">
 						<Card className=" p-0 border-0 bg-transparent py-1 hover:cursor-pointer box">
 							<CardContent className=" box-inner flex aspect-square items-center justify-center p-0 w-full h-[30rem] relative heading-frame">
 								<div className="card-overlay duration-200 w-full h-full  absolute top-0 left-0    flex flex-col gap-2 items-center justify-center px-2 text-lg text-center">

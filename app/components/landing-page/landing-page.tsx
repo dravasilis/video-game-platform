@@ -1,22 +1,26 @@
 import React from "react";
 import Banner from "../banner/banner";
 import Link from "next/link";
-import "../../globals.css"; 
+import "../../globals.css";
 import { CarouselUI } from "../carousel/CardsCarousel";
 import { fetchHelper } from "@/app/helpers/fetch-helper";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
-const LandingPage =  async () => {
-	const currentDate = new Date().toISOString().split("T")[0]
-  const [upcomingGamesRes, vintageGamesRes,mostRatedGamesRes] = await Promise.all([
-    fetchHelper('/games',{limit:20,sort:'original_release_date:desc'}),
-    fetchHelper('/games',{limit:20,filter:'expected_release_year:1990-01-01|'}),
-    fetchHelper('/games',{limit:20,filter:`expected_release_year:2025-01-01|${currentDate}`}),
-  ]);
-  console.log(mostRatedGamesRes);
-  
+import { HttpResponse } from "@/app/models/httpResponse";
+import { Game } from "@/app/models/game";
+const LandingPage = async () => {
+	const currentDate = new Date().toISOString().split("T")[0];
+	const [upcomingGamesRes, vintageGamesRes, mostRatedGamesRes]: [
+		HttpResponse<Game[]>,
+		HttpResponse<Game[]>,
+		HttpResponse<Game[]>
+	] = await Promise.all([
+		fetchHelper("/games"),
+		fetchHelper("/games"),
+		fetchHelper("/games"),
+	]);
+	console.dir(mostRatedGamesRes);
 	return (
 		<div>
-      
 			<Banner />
 			<div className="z-10 relative top-[15rem] px-32 flex flex-col gap-4">
 				{/* TITLE  */}
@@ -47,9 +51,18 @@ const LandingPage =  async () => {
 						personal collection and much more.
 					</span>
 				</div>
-				<FeatureShowcase games={upcomingGamesRes.results} title="EXPLORE UPCOMING GAMES"/>
-				<FeatureShowcase games={vintageGamesRes.results} title="EXPLORE OLD GEMS"/>
-				<FeatureShowcase games={mostRatedGamesRes.results} title="MOST RATED GAMES"/>
+				<FeatureShowcase
+					games={upcomingGamesRes.results}
+					title="EXPLORE UPCOMING GAMES"
+				/>
+				<FeatureShowcase
+					games={vintageGamesRes.results}
+					title="EXPLORE OLD GEMS"
+				/>
+				<FeatureShowcase
+					games={mostRatedGamesRes.results}
+					title="MOST RATED GAMES"
+				/>
 			</div>
 		</div>
 	);
