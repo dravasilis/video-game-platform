@@ -76,15 +76,15 @@ const LandingPage = async () => {
 				</div>
 				<FeatureShowcase
 					games={upcomingGamesRes.results}
-					title="EXPLORE GAMES RELEASING SOON"
+					title="GAMES RELEASING SOON"
 				/>
 				<FeatureShowcase
 					games={vintageGamesRes.results}
-					title="EXPLORE OLD GEMS"
+					title="OLD GEMS"
 				/>
 				<FeatureShowcase
 					games={mostRatedGamesRes.results}
-					title="EXPLORE TOP RATED GAMES"
+					title="TOP RATED GAMES"
 				/>
 			</div>
 		</div>

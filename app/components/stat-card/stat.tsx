@@ -13,7 +13,7 @@ const StatCard = ({ title, count, svg }: props) => {
 			<div className="stat-card">
 				<div className="tracking-wide flex gap-4 items-center">
 					<img src={`/svg/${svg}.svg`} alt="stat-svg" width={30} />
-					<span className="text-2xl ">{title}</span>
+					<span className="text-2xl text-shadow">{title}</span>
 				</div>
 				<span className="text-4xl font-bold text-primary-150">{count}</span>
 			</div>
