@@ -1,13 +1,13 @@
 .banner {
     width: 100%;
-    height: 25rem;
+    height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
-}
-
-.bannerGradient {
-    background: linear-gradient(0deg, #0a0c0f 1%, #0a0c0f94 54%, #0a0c0fe6 90%);
-    z-index: 1;
-}
+    background: 
+    linear-gradient(0deg, #0a0c0f 25%, #0a0c0f94 54%, #0a0c0fe6 90%),
+    url('/images/bg1.jpg');
+    background-size: contain;
+    background-repeat: no-repeat; 
+} 

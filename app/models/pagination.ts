@@ -1,6 +1,6 @@
 export interface BasicPagination {
-    limit:number,
-    offset?:number,
-    filter?:string,
-    sort?:string
+	page?: number,
+	page_size?: number,
+	search?: string,
+    ordering?:string
 }

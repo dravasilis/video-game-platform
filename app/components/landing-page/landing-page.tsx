@@ -9,16 +9,24 @@ import { HttpResponse } from "@/app/models/httpResponse";
 import { Game } from "@/app/models/game";
 const LandingPage = async () => {
 	const currentDate = new Date().toISOString().split("T")[0];
+	console.log(currentDate);
+
 	const [upcomingGamesRes, vintageGamesRes, mostRatedGamesRes]: [
-		HttpResponse<Game[]>,
-		HttpResponse<Game[]>,
-		HttpResponse<Game[]>
+		HttpResponse<Game>,
+		HttpResponse<Game>,
+		HttpResponse<Game>
 	] = await Promise.all([
-		fetchHelper("/games"),
-		fetchHelper("/games"),
-		fetchHelper("/games"),
+		fetchHelper("/games", {
+			ordering: "released",
+			dates: `${currentDate},${currentDate.substring(0, 4)}-12-31`,
+		}),
+		fetchHelper("/games", {
+			ordering: "ratings_count",
+			dates: "1995-01-01,2005-01-01",
+		}),
+		fetchHelper("/games", { ordering: "-metacritic" }),
 	]);
-	console.dir(mostRatedGamesRes);
+	console.log([mostRatedGamesRes]);
 	return (
 		<div>
 			<Banner />
@@ -39,8 +47,18 @@ const LandingPage = async () => {
 						<img src="/svg/next.svg" width={20} alt="" />
 					</Link>
 				</div>
+				{/* STATS */}
+				<div className="flex items-center gap-4 pt-10 pb-36">
+					<div className="flex flex-col items-center gap-4">
+					<div className="text-3xl tracking-wide flex gap-2 items-center">
+							{/* <span className="h-3 w-3 rounded-full bg-primary-100"></span> */}
+							<span>Games</span>
+						</div>
+					<span className="text-4xl font-bold">{mostRatedGamesRes.count}</span>
+					</div>
+				</div>
 				{/* DESCRIPTION  */}
-				<div className="flex flex-col gap-4">
+				<div className="flex flex-col gap-4 py-12">
 					<div className="flex items-center gap-2 text-3xl">
 						<span>What is </span>
 						<span className="text-shadow tracking-wide">Gamepedia</span>?
@@ -53,7 +71,7 @@ const LandingPage = async () => {
 				</div>
 				<FeatureShowcase
 					games={upcomingGamesRes.results}
-					title="EXPLORE UPCOMING GAMES"
+					title="EXPLORE GAMES RELEASING SOON"
 				/>
 				<FeatureShowcase
 					games={vintageGamesRes.results}
@@ -61,7 +79,7 @@ const LandingPage = async () => {
 				/>
 				<FeatureShowcase
 					games={mostRatedGamesRes.results}
-					title="MOST RATED GAMES"
+					title="EXPLORE TOP RATED GAMES"
 				/>
 			</div>
 		</div>

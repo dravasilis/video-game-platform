@@ -8,41 +8,46 @@ import {
 	CarouselPrevious,
 } from "@/components/ui/carousel";
 import "./CardsCarousel.scss";
-export function CarouselUI({ games }: any) {
+import { Game } from "@/app/models/game";
+
+interface props{
+	games:Game[]
+}
+export function CarouselUI({games}:props) {
 	return (
 		<Carousel
 			opts={{ slidesToScroll: 4 }}
 			className="w-full max-w-[100%]  py-4"
 		>
 			<CarouselContent className="">
-				{Array.from(games).map((game: any, index: number) => (
+				{games.map((game: Game, index: number) => (
 					<CarouselItem key={index} className="  md:basis-1/3 lg:basis-1/4">
-						<Card className=" p-0 border-0 bg-transparent py-1 hover:cursor-pointer box">
-							<CardContent className=" box-inner flex aspect-square items-center justify-center p-0 w-full h-[30rem] relative heading-frame">
-								<div className="card-overlay duration-200 w-full h-full  absolute top-0 left-0    flex flex-col gap-2 items-center justify-center px-2 text-lg text-center">
+						<Card className="card">
+							<CardContent className="cardContent">
+								<div className="card-overlay ">
 									<span className="text-transparent">
-										{game.alias ?? game.name}
+										{game.name}
 									</span>
 									<span className="text-transparent">
-										{game.expected_release_year ??
-											(game.original_release_date ?? 'N/A').substring(0, 4) }
+										{game.released }
 									</span>
 								</div>
 								<img
 									style={{ boxShadow: "#41606f87 0px 0px 1px 2px" }}
-									src={game.image.super_url}
-									className="w-full object-fill h-full rounded-md"
+									src={game.background_image}
+									className="w-full object-cover h-full rounded-md"
 								/>
 							</CardContent>
 						</Card>
 					</CarouselItem>
 				))}
-				<CarouselItem   className="  md:basis-1/3 lg:basis-1/5">
-						<Card className=" p-0 border-0 bg-transparent py-1 hover:cursor-pointer box">
-							<CardContent className=" box-inner flex gap-4 aspect-square items-center justify-center p-0 w-full h-[30rem] relative heading-frame">
+				<CarouselItem   className="smd:basis-1/3 lg:basis-1/5">
+						<Card className="card flex-1">
+							<CardContent className="cardContent ">
+							<div className="flex gap-2 items-center">
 								<span>See All</span>
-						<img src="/svg/next.svg" width={20} alt="" />
-							 
+							<img src="/svg/next.svg" width={20} alt="" />
+							</div>
 							</CardContent>
 						</Card>
 					</CarouselItem>

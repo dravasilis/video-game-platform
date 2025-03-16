@@ -1,12 +1,11 @@
 import React from "react";
-import  "./banner.css";
+import "./banner.css";
 const Banner = () => {
-  return (
-    <div>
-      <div className="bannerGradient banner"></div>
-      <img className="banner" src="/images/banner.jpg"></img>
-    </div>
-  );
+	return (
+		<>
+			<div className="banner"></div>
+		</>
+	);
 };
 
 export default Banner;

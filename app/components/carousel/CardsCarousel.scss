@@ -1,6 +1,12 @@
-.box {
+.card {
+	//  p-0 border-0 bg-transparent py-1 hover:cursor-pointer
+	padding: 0;
+	border: 0;
+	background: transparent;
+	padding: 0.25rem 0;
 	&:hover {
-		.box-inner {
+		cursor: pointer;
+		.cardContent {
 			padding: 1rem;
 			border-color: #2c3644;
 		}
@@ -19,10 +25,33 @@
 		}
 	}
 }
-.box-inner {
+.cardContent {
   transition-duration: 200ms;
   border-radius: 15px;
   position: relative;
   border: 2px solid #151d29;
   padding: 10px;
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30rem;
+  position: relative;
 }
+.card-overlay{
+	transition-duration: 200ms;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: center;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	font-size: 1.125rem; /* 18px */
+	text-align: center; 
+} 

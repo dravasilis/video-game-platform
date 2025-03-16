@@ -1,8 +1,9 @@
 import React from 'react'
 import { CarouselUI } from '../carousel/CardsCarousel'
+import { Game } from '@/app/models/game'
 
 interface Props{
-    games:any,
+    games:Game[],
     title:string
 }
 
