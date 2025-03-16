@@ -5,6 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 @theme {
     --color-primary-100: #eeeeee;
+    --color-primary-150: #abb2be;
     --color-primary-200: #7d8593;
   }
 html,

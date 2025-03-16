@@ -7,6 +7,7 @@ import { fetchHelper } from "@/app/helpers/fetch-helper";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
 import { HttpResponse } from "@/app/models/httpResponse";
 import { Game } from "@/app/models/game";
+import StatCard from "../stat-card/stat";
 const LandingPage = async () => {
 	const currentDate = new Date().toISOString().split("T")[0];
 	console.log(currentDate);
@@ -32,30 +33,34 @@ const LandingPage = async () => {
 			<Banner />
 			<div className="z-10 relative top-[15rem] px-32 flex flex-col gap-4">
 				{/* TITLE  */}
-				<div className="flex gap-2 items-center">
-					<img src="favicon.ico" width={50} alt="" />
-					<span className="text-5xl text-shadow tracking-wide">Gamepedia</span>
+				<div className="flex gap-4 items-center">
+					<img src="/images/logo.png" width={50} alt="favicon" />
+					<span className="text-5xl font-bold flex  tracking-wide">
+						<span className="underlineEffect">Game</span>
+						pedia
+					</span>
 				</div>
 				{/* SUBTITLE  */}
 				<span className="text-2xl text-primary-200">
 					Explore, discover, save your favourite games{" "}
 				</span>
+
+				{/* STATS */}
+				<div className="flex items-center gap-4">
+					<StatCard
+						svg="game"
+						title="Games"
+						count={mostRatedGamesRes.count.toString().substring(0, 3) + "K"}
+					/>
+					<StatCard svg="star" title="Reviews" count="500K" />
+					<StatCard svg="rating" title="Ratings" count="1.1M" />
+				</div>
 				{/* START BROWSING  */}
 				<div className="flex w-full justify-end">
 					<Link href={"/home"} className="underlineEffect flex gap-2">
 						<span className="text-shadow">Start browsing</span>
 						<img src="/svg/next.svg" width={20} alt="" />
 					</Link>
-				</div>
-				{/* STATS */}
-				<div className="flex items-center gap-4 pt-10 pb-36">
-					<div className="flex flex-col items-center gap-4">
-					<div className="text-3xl tracking-wide flex gap-2 items-center">
-							{/* <span className="h-3 w-3 rounded-full bg-primary-100"></span> */}
-							<span>Games</span>
-						</div>
-					<span className="text-4xl font-bold">{mostRatedGamesRes.count}</span>
-					</div>
 				</div>
 				{/* DESCRIPTION  */}
 				<div className="flex flex-col gap-4 py-12">
