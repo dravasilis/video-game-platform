@@ -76,8 +76,8 @@ const LandingPage = async () => {
           </div>
           <span className="text-xl max-lg:text-lg !w-3/4 max-xl:!w-full text-primary-150 leading-[30px] tracking-wide">
             Explore the ultimate game platform where you can discover, track,
-            and experience thousands of games. Whether you're looking for the
-            latest releases or timeless classics,{" "}
+            and experience thousands of games. Whether you`&apos;`re looking for
+            the latest releases or timeless classics,{" "}
             <b className="text-primary-100">Gamepedia</b> brings everything
             together in one seamless experience. Save your favorites, dive into
             new adventures, and connect with the worlds you love—all in one

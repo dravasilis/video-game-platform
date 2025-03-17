@@ -1,5 +1,3 @@
-type StatusCode = 1 | 100 | 101 | 102 | 103 | 104 | 105;
-
 export interface HttpResponse<T> {
     count: number,
     description: string,
