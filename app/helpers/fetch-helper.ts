@@ -3,10 +3,11 @@ import { environment } from "../../env/environment";
 import { HttpResponse } from "../models/httpResponse";
 import { BasicPagination } from "../models/pagination";
 
-export const fetchHelper = async <T extends BasicPagination> (endpoint: string,pagination:T={page_size:100} as T) => {
+export const fetchHelper = async <T extends BasicPagination>(endpoint: string, pagination: T = { page_size: 100 } as T) => {
+    const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
     const params = new URLSearchParams({
         // format: 'json', //for giantBomb api
-        key: environment.RAWGApiKey,
+        key: API_KEY ?? '',
         ...Object.fromEntries(Object.entries(pagination).map(([key, value]) => [key, String(value)])) // Ensure values are strings
     });
     const res = await fetch(
