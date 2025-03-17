@@ -3,7 +3,7 @@ import { Menu } from "../../models/menu";
 import "./sidenav-button.css";
 import Image from "next/image";
 
-const SidenavButton = ({ title, redirectUrl, imagePath }: Menu) => {
+const SidenavButton = ({ title, imagePath }: Menu) => {
   return (
     <button className="button">
       <div className="w-[42px] h-[42px] overflow-hidden rounded-lg">

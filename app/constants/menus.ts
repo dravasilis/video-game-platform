@@ -4,21 +4,21 @@ export const Menus: Menu[] = [
     {
         title: 'Games',
         imagePath: '/images/games.jpg',
-        redirectUrl: ''
+        // redirectUrl: ''
     },
     {
         title: 'Platforms',
         imagePath: '/images/platforms.jpg',
-        redirectUrl: ''
+        // redirectUrl: ''
     },
     {
         title: 'Companies',
         imagePath: '/images/companies.jpg',
-        redirectUrl: ''
+        // redirectUrl: ''
     },
     {
         title: 'Reviews',
         imagePath: '/images/reviews.jpg',
-        redirectUrl: ''
+        // redirectUrl: ''
     },
 ];

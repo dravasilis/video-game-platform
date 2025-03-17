@@ -12,7 +12,7 @@ import FeatureShowcase from "../feature-showcase/feature-showcase";
 import Image from "next/image";
 const LandingPage = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
-  console.log(currentDate);
+  //   console.log(currentDate);
 
   const [upcomingGamesRes, vintageGamesRes, mostRatedGamesRes]: [
     HttpResponse<Game>,
@@ -29,7 +29,7 @@ const LandingPage = async () => {
     }),
     fetchHelper("/games", { ordering: "-metacritic" }),
   ]);
-  console.log([mostRatedGamesRes]);
+  //   console.log([mostRatedGamesRes]);
   return (
     <div>
       <Banner />
