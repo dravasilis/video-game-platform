@@ -63,7 +63,7 @@ const LandingPage = async () => {
         </div>
         {/* START BROWSING  */}
         <div className="flex w-full justify-end">
-          <Link href={"/home"} className="underlineEffect flex gap-2">
+          <Link href={"/"} className="underlineEffect flex gap-2">
             <span className="text-shadow">Start browsing</span>
             <img src="/svg/next.svg" width={20} alt="" />
           </Link>
@@ -125,7 +125,7 @@ const LandingPage = async () => {
           title="Top Rated Games"
         />
         <div className="flex w-full justify-end pb-24 pt-12">
-          <Link href={"/home"} className="underlineEffect flex gap-2">
+          <Link href={"/"} className="underlineEffect flex gap-2">
             <span className=" text-3xl font-bold">Start browsing</span>
             <img src="/svg/next.svg" width={20} alt="" />
           </Link>
