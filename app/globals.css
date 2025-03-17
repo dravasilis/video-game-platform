@@ -3,11 +3,14 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+
 @theme {
     --color-primary-100: #eeeeee;
     --color-primary-150: #abb2be;
     --color-primary-200: #7d8593;
-  }
+    --color-primary-250: #c1d1ed;
+}
+
 html,
 body {
     width: 100%;
@@ -16,7 +19,8 @@ body {
     color: var(--color-primary-100);
     font-weight: 400;
     font-style: normal;
-} 
+}
+
 .underlineEffect {
     position: relative;
     /* Ensures the pseudo-element is positioned relative to this element */
@@ -48,9 +52,11 @@ body {
 .text-shadow {
     text-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
 }
-.box-shadow{
+
+.box-shadow {
     box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
 }
+
 .glass {
     /* From https://css.glass */
     background: rgba(0, 0, 0, 0.24);
@@ -60,4 +66,3 @@ body {
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
 }
-  

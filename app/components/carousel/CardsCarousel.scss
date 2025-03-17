@@ -1,23 +1,24 @@
 .card {
-	//  p-0 border-0 bg-transparent py-1 hover:cursor-pointer
 	padding: 0;
 	border: 0;
 	background: transparent;
 	padding: 0.25rem 0;
+
 	&:hover {
 		cursor: pointer;
-		.cardContent {
-			padding: 1rem;
-			border-color: #2c3644;
+
+		img {
+			transition-duration: 100ms;
+			box-shadow: #7da7bb5b 0px 0px 1px 2px !important
 		}
+
 		.card-overlay {
 			transition-duration: 200ms;
-			background: rgba(0, 0, 0, 0.24);
-			box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-			backdrop-filter: blur(6px);
+			background: rgba(0, 0, 0, 0.356);
+			backdrop-filter: blur(1px);
 			-webkit-backdrop-filter: blur(9.7px);
 			transition-duration: 200ms;
-			border-radius: 1rem;
+
 			span {
 				transition-duration: 200ms;
 				color: var(--primary-100);
@@ -25,33 +26,47 @@
 		}
 	}
 }
+
 .cardContent {
-  transition-duration: 200ms;
-  border-radius: 15px;
-  position: relative;
-  border: 2px solid #151d29;
-  padding: 10px;
-   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 30rem;
-  position: relative;
+	padding: 2px;
+	transition-duration: 200ms;
+	position: relative;
+	padding: 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 20rem;
+	position: relative;
 }
-.card-overlay{
+
+.card-overlay {
+	border: 1px solid transparent;
 	transition-duration: 200ms;
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	top: 0;
 	left: 0;
+	border-radius: 7px;
 	display: flex;
 	flex-direction: column;
 	gap: 0.5rem;
 	align-items: center;
 	justify-content: center;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
-	font-size: 1.125rem; /* 18px */
-	text-align: center; 
-} 
+	font-size: 1.125rem;
+	text-align: center;
+}
+
+.seeAll {
+	box-shadow: #41606f73 0px 0px 1px 2px;
+	margin: 0.25rem;
+
+	&:hover {
+		img {
+			box-shadow: unset !important
+		}
+
+		box-shadow: #7da7bb5b 0px 0px 1px 2px !important
+	}
+}
