@@ -6,15 +6,26 @@
 	padding: 1rem 3rem;
 	backdrop-filter: blur(3px);
 	border-radius: 0.75rem;
-	background: linear-gradient(
-		90deg,
-		rgb(7 7 7 / 27%) 0%,
-		rgb(26 26 28 / 9%) 100%
-	);
+	background: linear-gradient(90deg,
+			rgb(7 7 7 / 27%) 0%,
+			rgb(26 26 28 / 9%) 100%);
 	box-shadow: 0 0 1px #383f4d, 0 0 2px #162239, 0 0 7px #0e1523;
 	transition-duration: 200ms;
+
 	&:hover {
 		transition-duration: 200ms;
 		box-shadow: 0 0 1px #454d5e, 0 0 2px #1d2c49, 0 0 7px #152035;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.stat-card {
+		padding: 0.75rem 2.25rem;
+	}
+}
+
+@media screen and (max-width: 560px) {
+	.stat-card {
+		padding: 0.5rem 1.5rem;
 	}
 }

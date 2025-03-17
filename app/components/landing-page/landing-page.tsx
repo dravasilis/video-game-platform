@@ -32,17 +32,22 @@ const LandingPage = async () => {
   return (
     <div>
       <Banner />
-      <div className="z-10 relative top-[15rem] px-32 flex flex-col gap-4">
+      <div className="z-10 relative top-[15rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-6 flex flex-col gap-4">
         {/* TITLE  */}
         <div className="flex gap-4 items-center">
-          <img src="/images/logo.png" width={50} alt="favicon" />
-          <span className="text-5xl font-bold flex  tracking-wide">
+          <img
+            src="/images/logo.png"
+            width={50}
+            alt="favicon"
+            className="w-[50px] max-sm:w-[40px]"
+          />
+          <span className="text-5xl max-sm:text-4xl font-bold flex  tracking-wide">
             <span className="underlineEffect">Game</span>
             pedia
           </span>
         </div>
         {/* SUBTITLE  */}
-        <span className="text-2xl text-primary-200">
+        <span className="text-2xl max-sm:text-xl text-primary-200">
           Explore, discover, save your favourite games{" "}
         </span>
 
@@ -64,11 +69,13 @@ const LandingPage = async () => {
           </Link>
         </div>
         {/* DESCRIPTION  */}
-        <div className="flex flex-col gap-4 py-20">
-          <div className="flex items-center gap-2 text-3xl">
-            <span>All Your Favorite Games in One Place</span>
+        <div className="flex flex-col gap-4 py-20 max-md:pt-12">
+          <div className="flex items-center gap-2 text-3xl max-lg:text-2xl">
+            <span className="font-bold">
+              All Your Favorite Games in One Place
+            </span>
           </div>
-          <span className="text-xl w-[70%] text-primary-150 leading-[30px] tracking-wide">
+          <span className="text-xl max-lg:text-lg !w-3/4 max-xl:!w-full text-primary-150 leading-[30px] tracking-wide">
             Explore the ultimate game platform where you can discover, track,
             and experience thousands of games. Whether you're looking for the
             latest releases or timeless classics,{" "}

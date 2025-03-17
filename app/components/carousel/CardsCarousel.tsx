@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -14,11 +15,32 @@ interface props {
   games: Game[];
 }
 export function CarouselUI({ games }: props) {
+  const [slidesToScroll, setSlidesToScroll] = React.useState(1);
+
+  React.useEffect(() => {
+    const updateSlides = () => {
+      const width = window.innerWidth;
+      if (width >= 1536) setSlidesToScroll(6); // 2xl:basis-1/6
+      else if (width >= 1280) setSlidesToScroll(5); // xl:basis-1/5
+      else if (width >= 1024) setSlidesToScroll(4); // lg:basis-1/4
+      else if (width >= 768) setSlidesToScroll(3); // md:basis-1/3
+      else if (width >= 640) setSlidesToScroll(2); // sm:basis-1/2
+      else setSlidesToScroll(1); // Default for smaller screens
+    };
+
+    updateSlides();
+    window.addEventListener("resize", updateSlides);
+    return () => window.removeEventListener("resize", updateSlides);
+  }, []);
+
   return (
-    <Carousel opts={{ slidesToScroll: 6 }} className="w-full max-w-[100%] py-4">
+    <Carousel opts={{ slidesToScroll }} className="w-full max-w-[100%] py-4">
       <CarouselContent className="px-1">
         {games.map((game: Game, index: number) => (
-          <CarouselItem key={index} className="  md:basis-1/3 lg:basis-1/6">
+          <CarouselItem
+            key={index}
+            className="sm:basis-1/2  md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
+          >
             <Card className="card">
               <CardContent className="cardContent">
                 <div className="card-overlay ">

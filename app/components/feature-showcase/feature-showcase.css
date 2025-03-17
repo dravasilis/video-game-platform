@@ -1,0 +1,53 @@
+.description {
+    color: var(--color-primary-250);
+    background: #fff0;
+    backdrop-filter: blur(1px) !important;
+    font-size: 1.5rem;
+    width: 70%;
+    line-height: 40px;
+    letter-spacing: -1px;
+    padding-left: 2.5rem;
+    position: relative;
+    bottom: 10rem;
+}
+
+@media screen and (max-width: 1300px) {
+    .description {
+        bottom: 7.5rem;
+        line-height: 35px;
+        font-size: 1.25rem;
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    .description {
+        bottom: 5.5rem;
+        line-height: 30px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .description {
+        bottom: 3rem;
+        font-size: 1.15rem;
+        padding: 0 3rem;
+        line-height: 25px;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    .description {
+        bottom: 1rem;
+        font-size: 1rem;
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .description {
+        font-size: 0.875rem;
+        letter-spacing: 0.25px;
+        line-height: 20px;
+    }
+}
