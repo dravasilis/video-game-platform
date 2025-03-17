@@ -55,7 +55,9 @@ const LandingPage = async () => {
           <StatCard
             svg="game"
             title="Games"
-            count={mostRatedGamesRes.count.toString().substring(0, 3) + "K"}
+            count={
+              (mostRatedGamesRes.count ?? 0).toString().substring(0, 3) + "K"
+            }
           />
           <StatCard svg="star" title="Reviews" count="500K" />
           <StatCard svg="rating" title="Ratings" count="1.1M" />
