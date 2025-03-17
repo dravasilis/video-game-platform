@@ -1,15 +1,13 @@
-import React from "react";
-import Banner from "../banner/banner";
+import { fetchHelper } from "@/app/helpers/fetch-helper";
+import { Game } from "@/app/models/game";
+import { HttpResponse } from "@/app/models/httpResponse";
+import Image from "next/image";
 import Link from "next/link";
 import "../../globals.css";
-import { CarouselUI } from "../carousel/CardsCarousel";
-import { fetchHelper } from "@/app/helpers/fetch-helper";
+import Banner from "../banner/banner";
 import FeatureShowcaseCarousel from "../feature-showcase-carousel/feature-showcase-carousel";
-import { HttpResponse } from "@/app/models/httpResponse";
-import { Game } from "@/app/models/game";
-import StatCard from "../stat-card/stat";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
-import Image from "next/image";
+import StatCard from "../stat-card/stat";
 const LandingPage = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
   //   console.log(currentDate);
