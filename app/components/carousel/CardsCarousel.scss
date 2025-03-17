@@ -7,7 +7,7 @@
 	&:hover {
 		cursor: pointer;
 
-		img {
+		Image {
 			transition-duration: 100ms;
 			box-shadow: #7da7bb5b 0px 0px 1px 2px !important
 		}
@@ -63,7 +63,7 @@
 	margin: 0.25rem;
 
 	&:hover {
-		img {
+		Image {
 			box-shadow: unset !important
 		}
 

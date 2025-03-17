@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import "./CardsCarousel.scss";
 import { Game } from "@/app/models/game";
+import Image from "next/image";
 
 interface props {
   games: Game[];
@@ -47,9 +48,10 @@ export function CarouselUI({ games }: props) {
                   <span className="text-transparent">{game.name}</span>
                   <span className="text-transparent">{game.released}</span>
                 </div>
-                <img
+                <Image
                   style={{ boxShadow: "#41606f73 0px 0px 1px 2px" }}
                   src={game.background_image}
+                  alt="carouselImage"
                   className="w-full object-cover duration-100 h-full rounded-md"
                 />
               </CardContent>
@@ -61,7 +63,7 @@ export function CarouselUI({ games }: props) {
             <CardContent className="cardContent ">
               <div className="flex gap-2 items-center">
                 <span>See All</span>
-                <img src="/svg/next.svg" width={20} alt="" />
+                <Image src="/svg/next.svg" width={20} alt="next" />
               </div>
             </CardContent>
           </Card>

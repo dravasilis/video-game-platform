@@ -10,7 +10,7 @@
     background: #ffffff12;
     cursor: pointer;
 
-    img {
+    Image {
         transition-duration: 700ms;
         transform: scale(1.1);
     }
@@ -19,9 +19,3 @@
 .button:active {
     transform: scale(.98);
 }
-
-/* img {
-    will-change: transform;
-    transition-duration: 700ms;
-
-} */

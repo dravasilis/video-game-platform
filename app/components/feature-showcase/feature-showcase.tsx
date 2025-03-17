@@ -1,3 +1,4 @@
+import Image from "next/image";
 import "./feature-showcase.css";
 
 import React from "react";
@@ -17,9 +18,9 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
         </span>
         <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
       </div>
-      <img
+      <Image
         src={`/images/${image}`}
-        alt="dssd"
+        alt="featureImage"
         className="object-contain justify-self-center col-span-2 rounded-2xl"
       />
       <div

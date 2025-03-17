@@ -1,3 +1,4 @@
+import Image from "next/image";
 import "./stat.scss";
 
 import React from "react";
@@ -12,7 +13,7 @@ const StatCard = ({ title, count, svg }: props) => {
     <div className="flex items-center gap-4 pt-10 pb-24  max-xl:pb-16 max-lg:pb-10 max-md:pb-4">
       <div className="stat-card">
         <div className="tracking-wide flex gap-4 max-sm:gap-1 items-center">
-          <img
+          <Image
             src={`/svg/${svg}.svg`}
             alt="stat-svg"
             className="w-[30px] max-lg:w-[20px] max-sm:w-[17px]"

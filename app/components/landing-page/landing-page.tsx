@@ -9,6 +9,7 @@ import { HttpResponse } from "@/app/models/httpResponse";
 import { Game } from "@/app/models/game";
 import StatCard from "../stat-card/stat";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
+import Image from "next/image";
 const LandingPage = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
   console.log(currentDate);
@@ -35,7 +36,7 @@ const LandingPage = async () => {
       <div className="z-10 relative top-[15rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-6 flex flex-col gap-4">
         {/* TITLE  */}
         <div className="flex gap-4 items-center">
-          <img
+          <Image
             src="/images/logo.png"
             width={50}
             alt="favicon"
@@ -65,7 +66,7 @@ const LandingPage = async () => {
         <div className="flex w-full justify-end">
           <Link href={"/"} className="underlineEffect flex gap-2">
             <span className="text-shadow">Start browsing</span>
-            <img src="/svg/next.svg" width={20} alt="" />
+            <Image src="/svg/next.svg" width={20} alt="next" />
           </Link>
         </div>
         {/* DESCRIPTION  */}
@@ -127,7 +128,7 @@ const LandingPage = async () => {
         <div className="flex w-full justify-end pb-24 pt-12">
           <Link href={"/"} className="underlineEffect flex gap-2">
             <span className=" text-3xl font-bold">Start browsing</span>
-            <img src="/svg/next.svg" width={20} alt="" />
+            <Image src="/svg/next.svg" width={20} alt="browse" />
           </Link>
         </div>
       </div>
