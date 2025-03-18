@@ -13,7 +13,7 @@ const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
     <div
       style={{
         background: "linear-gradient(0deg, #50474714 30%, #0f121600 100%)",
-        boxShadow: "0px 3px 3px -1px #212338",
+        boxShadow: "0px 3px 3px -1px #212222",
       }}
       className="flex flex-col justify-center items-center gap-4 p-4 pb-8 pt-0 rounded-xl "
     >
