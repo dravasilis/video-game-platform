@@ -8,6 +8,12 @@
     bottom: 10rem;
     text-align: start;
     border-radius: 0.75rem;
+    background: linear-gradient(0deg, rgb(21 20 20 / 24%) 9%, rgba(15, 18, 22, 0) 35%) !important
+}
+
+.container-bg {
+    background:
+        linear-gradient(#0f1216 7%, #0f121600 45%, #0f1216 72%), linear-gradient(90deg, #0f1216 0%, #0f121600 50%, #0f1216 100%)
 }
 
 @media screen and (max-width: 1300px) {

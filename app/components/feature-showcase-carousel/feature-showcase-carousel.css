@@ -1,0 +1,4 @@
+.cardEffect {
+    background: linear-gradient(0deg, rgb(7 9 15 / 26%) 30%, rgba(15, 18, 22, 0) 100%);
+    box-shadow: rgb(3 3 7 / 48%) 0px 0px 6px 4px;
+}

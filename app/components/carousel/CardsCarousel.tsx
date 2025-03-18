@@ -51,10 +51,9 @@ export function CarouselUI({ games }: props) {
                 <Image
                   width={500}
                   height={200}
-                  style={{ boxShadow: "#41606f73 0px 0px 1px 2px" }}
                   src={game.background_image ?? null}
                   alt="carouselImage"
-                  className="w-full object-cover duration-100 h-full rounded-md"
+                  className="w-full object-cover duration-100 h-full rounded-md shadow-[0px_0px_1px_2px_#41606f73]"
                 />
               </CardContent>
             </Card>
