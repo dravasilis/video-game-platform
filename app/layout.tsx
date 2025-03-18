@@ -3,13 +3,13 @@ import "./globals.css";
 import { Play } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Gamepedia", // Base Title,
+  title: "Gamepedia: The IMDb Of Video Games", // Base Title,
   description:
-    "Explore, discover and save all your favourite games in this expanded video game platform.",
+    "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
   openGraph: {
-    title: "Gamepedia",
+    title: "Gamepedia: The IMDb Of Video Games",
     description:
-      "Explore, discover and save all your favourite games in this expanded video game platform.",
+      "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
     images: [
       {
         url: "/images/logo.png",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     url: "https://video-game-platform.vercel.app/",
   },
   twitter: {
-    title: "Gamepedia",
+    title: "Gamepedia: The IMDb Of Video Games",
     description:
-      "Explore, discover and save all your favourite games in this expanded video game platform.",
+      "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
     site: "https://video-game-platform.vercel.app/",
     card: "summary_large_image",
   },
