@@ -1,7 +1,5 @@
-import React from "react";
 import { Menu } from "../../models/menu";
 import "./sidenav-button.css";
-import Image from "next/image";
 
 const SidenavButton = ({ title, imagePath }: Menu) => {
   return (
