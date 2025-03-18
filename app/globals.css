@@ -51,7 +51,7 @@ body {
 }
 
 .text-shadow {
-    text-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
+    text-shadow: 0 0 1px #ffffff70, 0 0 2px #ffffff99, 0 0 7px #ffffffa6;
 }
 
 .box-shadow {
@@ -61,7 +61,7 @@ body {
 .glass {
     background: #50474714;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(4.7px);
+    backdrop-filter: blur(1.7px);
     -webkit-backdrop-filter: blur(9.7px);
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
