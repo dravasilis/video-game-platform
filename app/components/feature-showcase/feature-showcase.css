@@ -30,7 +30,7 @@
     .description {
         /* bottom: 3rem; */
         font-size: 1.35rem;
-        padding: 0 3rem;
+        /* padding: 0 3rem; */
         line-height: 25px;
     }
 }
@@ -39,15 +39,16 @@
     .description {
         bottom: 5rem;
         font-size: 1.15rem;
-        padding: 0;
+        padding: 2rem 1.5rem;
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 640px) {
     .description {
         /* font-size: 0.9rem; */
         letter-spacing: 0px;
         line-height: 18px;
+        padding: 2rem 1.25rem;
         font-size: 1.05rem;
     }
 }
@@ -55,6 +56,6 @@
 @media screen and (max-width: 500px) {
     .description {
         bottom: 3rem;
-
+        padding: 2rem 1rem;
     }
 }
