@@ -36,9 +36,8 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
         <span
           className="description glass"
           style={{
-            boxShadow: "rgb(28, 30, 43) 0px 3px 3px -1px",
             background:
-              "linear-gradient(0deg, rgba(80, 71, 71, 0.08) 86%, #0f121600 98%)",
+              "linear-gradient(0deg, rgb(21 20 20 / 24%) 9%, rgba(15, 18, 22, 0) 35%)",
           }}
         >
           {description}
