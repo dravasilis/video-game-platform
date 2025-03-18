@@ -19,8 +19,8 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
         <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
       </div>
       <Image
-        width={500}
-        height={200}
+        width={1920}
+        height={1080}
         src={`/images/${image}`}
         alt="featureImage"
         className="object-contain w-full justify-self-center col-span-2 rounded-2xl"
@@ -28,7 +28,7 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
       <div
         style={{
           background:
-            "linear-gradient(rgb(10, 12, 15) 7%, rgba(10, 12, 15, 0) 45%, rgb(10, 12, 15) 72%), linear-gradient(90deg, rgb(10, 12, 15) 0%, rgba(10, 12, 15, 0) 50%, rgb(10, 12, 15) 100%)",
+            "linear-gradient(#0f1216 7%, #0f121600 45%, #0f1216 72%), linear-gradient(90deg, #0f1216 0%, #0f121600 50%, #0f1216 100%)",
         }}
         className="w-full h-full absolute top-0 left-0"
       ></div>

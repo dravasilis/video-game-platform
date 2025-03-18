@@ -35,7 +35,7 @@ export function CarouselUI({ games }: props) {
   }, []);
 
   return (
-    <Carousel opts={{ slidesToScroll }} className="w-full max-w-[100%] py-4">
+    <Carousel opts={{ slidesToScroll }} className="w-full max-w-[100%] pt-4">
       <CarouselContent className="px-1">
         {games.map((game: Game, index: number) => (
           <CarouselItem
