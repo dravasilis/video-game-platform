@@ -67,7 +67,7 @@ const LandingPage = async () => {
         <div className="flex w-full justify-end">
           <Link href={"/"} className="underlineEffect flex gap-2">
             <span className="text-shadow">Start browsing</span>
-            <Image src={nextSvg} alt="next" />
+            <Image src={nextSvg} width={30} height={30} alt="next" />
           </Link>
         </div>
         {/* DESCRIPTION  */}
