@@ -19,9 +19,9 @@ const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
         style={{
           background:
             "linear-gradient(0deg, rgb(7 9 15 / 26%) 30%, rgba(15, 18, 22, 0) 100%)",
-          boxShadow: "rgb(3 3 7 / 48%) 0px 1px 6px 1px",
+          boxShadow: "rgb(3 3 7 / 48%) 0px 0px 6px 4px",
         }}
-        className="flex flex-col gap-4 px-4 pb-6 rounded-lg"
+        className="flex flex-col px-4 pb-6 rounded-lg"
       >
         <CarouselUI games={games} />
         <div className="flex items-center  z-10">
