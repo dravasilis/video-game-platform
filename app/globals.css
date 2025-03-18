@@ -9,6 +9,7 @@
     --color-primary-150: #abb2be;
     --color-primary-200: #7d8593;
     --color-primary-250: #c1d1ed;
+    --color-primary-300: #d8dee9;
 }
 
 html,
@@ -58,8 +59,7 @@ body {
 }
 
 .glass {
-    /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.24);
+    background: #50474714;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4.7px);
     -webkit-backdrop-filter: blur(9.7px);

@@ -1,15 +1,13 @@
 .description {
-    color: #c1d1ed;
-    background: #fff0;
-    backdrop-filter: blur(1px) !important;
+    color: #d8dee9;
     font-size: 1.75rem;
-    width: 80%;
-    line-height: 40px;
+    line-height: 35px;
     letter-spacing: -1px;
-    padding-left: 2.5rem;
+    padding: 2rem 2.5rem;
     position: relative;
     bottom: 10rem;
     text-align: start;
+    border-radius: 0.75rem;
 }
 
 @media screen and (max-width: 1300px) {
