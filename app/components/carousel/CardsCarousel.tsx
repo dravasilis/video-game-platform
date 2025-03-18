@@ -49,8 +49,10 @@ export function CarouselUI({ games }: props) {
                   <span className="text-transparent">{game.released}</span>
                 </div>
                 <Image
+                  width={500}
+                  height={200}
                   style={{ boxShadow: "#41606f73 0px 0px 1px 2px" }}
-                  src={game.background_image}
+                  src={game.background_image ?? null}
                   alt="carouselImage"
                   className="w-full object-cover duration-100 h-full rounded-md"
                 />
@@ -63,7 +65,7 @@ export function CarouselUI({ games }: props) {
             <CardContent className="cardContent ">
               <div className="flex gap-2 items-center">
                 <span>See All</span>
-                <Image src="/svg/next.svg" width={20} alt="next" />
+                <Image src="/svg/next.svg" width={20} height={20} alt="next" />
               </div>
             </CardContent>
           </Card>

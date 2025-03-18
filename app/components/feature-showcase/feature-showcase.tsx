@@ -13,15 +13,17 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
   return (
     <div className="relative flex flex-col w-full h-max">
       <div className="flex flex-col gap-4 col-span-2 z-20">
-        <span className="text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl text-primary-100 font-bold">
+        <span className="text-5xl max-lg:text-4xl max-md:text-3xl   text-primary-100 font-bold">
           {title}
         </span>
         <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
       </div>
       <Image
+        width={500}
+        height={200}
         src={`/images/${image}`}
         alt="featureImage"
-        className="object-contain justify-self-center col-span-2 rounded-2xl"
+        className="object-contain w-full justify-self-center col-span-2 rounded-2xl"
       />
       <div
         style={{

@@ -1,5 +1,5 @@
 .description {
-    color: var(--color-primary-250);
+    color: #c1d1ed;
     background: #fff0;
     backdrop-filter: blur(1px) !important;
     font-size: 1.5rem;
@@ -9,6 +9,7 @@
     padding-left: 2.5rem;
     position: relative;
     bottom: 10rem;
+    text-align: justify;
 }
 
 @media screen and (max-width: 1300px) {
@@ -29,7 +30,7 @@
 
 @media screen and (max-width: 930px) {
     .description {
-        bottom: 3rem;
+        /* bottom: 3rem; */
         font-size: 1.15rem;
         padding: 0 3rem;
         line-height: 25px;
@@ -38,7 +39,7 @@
 
 @media screen and (max-width: 780px) {
     .description {
-        bottom: 1rem;
+        bottom: 5rem;
         font-size: 1rem;
         padding: 0;
     }
@@ -46,8 +47,15 @@
 
 @media screen and (max-width: 600px) {
     .description {
-        font-size: 0.875rem;
+        font-size: 0.9rem;
         letter-spacing: 0.25px;
-        line-height: 20px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .description {
+        bottom: 3rem;
+
     }
 }

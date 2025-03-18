@@ -10,10 +10,12 @@ interface props {
 
 const StatCard = ({ title, count, svg }: props) => {
   return (
-    <div className="flex items-center gap-4 pt-10 pb-24  max-xl:pb-16 max-lg:pb-10 max-md:pb-4">
+    <div className="flex items-center gap-4 pt-10 max-sm:pt-4 pb-24  max-xl:pb-16 max-lg:pb-10 max-md:pb-4">
       <div className="stat-card">
         <div className="tracking-wide flex gap-4 max-sm:gap-1 items-center">
           <Image
+            width={50}
+            height={20}
             src={`/svg/${svg}.svg`}
             alt="stat-svg"
             className="w-[30px] max-lg:w-[20px] max-sm:w-[17px]"

@@ -10,24 +10,28 @@
 .bannerGradient {
     background: linear-gradient(0deg, #0a0c0f 1%, #0a0c0fb6 54%, #0a0c0fe6 90%);
     z-index: 1;
-} 
+}
+
 @media screen and (max-width: 1350px) {
-    .banner{
+    .banner {
         height: 45rem;
     }
 }
+
 @media screen and (max-width: 1050px) {
-    .banner{
-        height: 35rem;
+    .banner {
+        height: 30rem;
     }
 }
+
 @media screen and (max-width: 750px) {
-    .banner{
+    .banner {
         height: 25rem;
     }
 }
-@media screen and (max-width: 500px) {
-    .banner{
+
+@media screen and (max-width: 600px) {
+    .banner {
         height: 20rem;
     }
 }
