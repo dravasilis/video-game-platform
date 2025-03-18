@@ -1,17 +1,12 @@
 import React from "react";
 import "./banner.css";
 import Image from "next/image";
+import bannerImage from "../../../public/images/bg1.jpg";
 const Banner = () => {
   return (
     <div>
       <div className="bannerGradient banner"></div>
-      <Image
-        className="banner object-fill"
-        width={1920}
-        height={200}
-        src="/images/bg1.jpg"
-        alt="banner"
-      />
+      <Image className="banner object-fill" src={bannerImage} alt="banner" />
     </div>
   );
 };

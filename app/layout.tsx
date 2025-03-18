@@ -3,26 +3,28 @@ import "./globals.css";
 import { Play } from "next/font/google";
 
 export const metadata: Metadata = {
-  title: "Gamepedia: The IMDb Of Video Games", // Base Title,
+  title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
   description:
-    "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
+    "Discover, explore, and track your favorite video games with Gamepedia – the ultimate gaming platform.", // SEO-friendly and under 160 chars
   openGraph: {
-    title: "Gamepedia: The IMDb Of Video Games",
+    title: "Gamepedia: Explore Now The Largest Video Game Platform",
     description:
-      "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
+      "Discover, explore, and track your favorite video games with Gamepedia – the ultimate gaming platform.",
+    url: "https://video-game-platform.vercel.app/",
+    type: "website", // Added Open Graph type
     images: [
       {
-        url: "/images/logo.png",
+        url: "https://video-game-platform.vercel.app/images/logo.png", // Changed to absolute URL
       },
     ],
-    url: "https://video-game-platform.vercel.app/",
   },
   twitter: {
-    title: "Gamepedia: The IMDb Of Video Games",
+    title: "Gamepedia: Explore Now The Largest Video Game Platform",
     description:
-      "Gamepedia | Explore, discover and save all your favourite games in this expanded video game platform.",
-    site: "https://video-game-platform.vercel.app/",
+      "Discover, explore, and track your favorite video games with Gamepedia – the ultimate gaming platform.",
+    site: "@yourtwitterhandle", // Replace with your actual Twitter handle
     card: "summary_large_image",
+    images: ["https://video-game-platform.vercel.app/images/logo.png"], // Added Twitter image
   },
 };
 

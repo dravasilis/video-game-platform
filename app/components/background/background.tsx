@@ -1,17 +1,12 @@
 import React from "react";
 import "./background.css";
 import Image from "next/image";
+import backgroundImage from "../../../public/images/background.jpg";
 const Background = () => {
   return (
     <div>
       <div className="backgroundGradient background"></div>
-      <Image
-        width={500}
-        height={200}
-        className="background"
-        src="/images/background.jpg"
-        alt="background"
-      />
+      <Image className="background" src={backgroundImage} alt="background" />
     </div>
   );
 };

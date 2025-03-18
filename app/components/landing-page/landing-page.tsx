@@ -8,6 +8,9 @@ import Banner from "../banner/banner";
 import FeatureShowcaseCarousel from "../feature-showcase-carousel/feature-showcase-carousel";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
 import StatCard from "../stat-card/stat";
+import logo from "../../../public/images/logo.png";
+import nextSvg from "../../../public/svg/next.svg";
+
 const LandingPage = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
   //   console.log(currentDate);
@@ -35,14 +38,12 @@ const LandingPage = async () => {
         {/* TITLE  */}
         <div className="flex gap-4 items-center">
           <Image
-            src="/images/logo.png"
-            width={200}
-            height={20}
+            src={logo}
             alt="favicon"
             className="w-[50px] max-sm:w-[40px]"
           />
           <h1 className="text-5xl max-sm:text-4xl font-bold flex tracking-[-2px]">
-            Game pedia
+            Gamepedia
           </h1>
         </div>
         {/* SUBTITLE  */}
@@ -66,7 +67,7 @@ const LandingPage = async () => {
         <div className="flex w-full justify-end">
           <Link href={"/"} className="underlineEffect flex gap-2">
             <span className="text-shadow">Start browsing</span>
-            <Image width={25} height={20} src="/svg/next.svg" alt="next" />
+            <Image src={nextSvg} alt="next" />
           </Link>
         </div>
         {/* DESCRIPTION  */}
