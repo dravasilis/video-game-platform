@@ -7,7 +7,7 @@ const Banner = () => {
       <div className="bannerGradient banner"></div>
       <Image
         className="banner object-fill"
-        width={500}
+        width={1920}
         height={200}
         src="/images/bg1.jpg"
         alt="banner"

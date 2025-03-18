@@ -13,6 +13,7 @@ const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
     <div
       style={{
         background: "linear-gradient(0deg, #181e2678 30%, rgb(15, 18, 22) 54%)",
+        boxShadow: "0px 3px 3px -1px #212338",
       }}
       className="flex flex-col justify-center items-center gap-4 p-4 pb-8 pt-0 rounded-xl "
     >
@@ -22,7 +23,7 @@ const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
       <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
       <CarouselUI games={games} />
       <div className="flex items-center  z-10">
-        <span className="description !bottom-0 !pl-0 !w-full">
+        <span className="description !bottom-0 !p-4 max-sm:!p-0 !w-full">
           {description}
         </span>
       </div>

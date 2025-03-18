@@ -7,10 +7,16 @@ export const fetchHelper = async <T extends BasicPagination>(endpoint: string, p
         // key: environment.RAWGApiKey,
         ...Object.fromEntries(Object.entries(pagination).map(([key, value]) => [key, String(value)])) // Ensure values are strings
     });
-    const res = await fetch(
-        `https://api.rawg.io/api${endpoint}?${params}`
 
-    );
-    const data = await res.json();
-    return data;
+    try {
+        const res = await fetch(
+            `https://api.rawg.io/api${endpoint}?${params}`
+
+        );
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+
+    }
 };
