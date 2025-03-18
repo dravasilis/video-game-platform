@@ -2,8 +2,8 @@
     color: #c1d1ed;
     background: #fff0;
     backdrop-filter: blur(1px) !important;
-    font-size: 1.5rem;
-    width: 70%;
+    font-size: 1.75rem;
+    width: 80%;
     line-height: 40px;
     letter-spacing: -1px;
     padding-left: 2.5rem;
@@ -16,7 +16,7 @@
     .description {
         bottom: 7.5rem;
         line-height: 35px;
-        font-size: 1.25rem;
+        font-size: 1.55rem;
     }
 }
 
@@ -31,7 +31,7 @@
 @media screen and (max-width: 930px) {
     .description {
         /* bottom: 3rem; */
-        font-size: 1.15rem;
+        font-size: 1.35rem;
         padding: 0 3rem;
         line-height: 25px;
     }
@@ -40,7 +40,7 @@
 @media screen and (max-width: 780px) {
     .description {
         bottom: 5rem;
-        font-size: 1rem;
+        font-size: 1.15rem;
         padding: 0;
     }
 }
@@ -50,6 +50,7 @@
         /* font-size: 0.9rem; */
         letter-spacing: 0px;
         line-height: 18px;
+        font-size: 1.05rem;
     }
 }
 

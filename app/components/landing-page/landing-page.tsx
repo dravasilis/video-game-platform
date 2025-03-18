@@ -97,7 +97,7 @@ const LandingPage = async () => {
               game with ease."
         />
         <FeatureShowcase
-          title="Discover A New Game Experience"
+          title="Discover New Gaming Adventures"
           image="bg3.png"
           description=" Uncover new worlds, connect with unforgettable characters, and
               dive into fresh gaming experiences like never before. Whether
@@ -105,7 +105,7 @@ const LandingPage = async () => {
               game brings a unique adventure waiting to be discovered."
         />
         <FeatureShowcase
-          title="Explore Games Through Player Perspectives"
+          title="Discover Games Through Player Perspectives"
           image="bg7.png"
           description="Make informed gaming choices with real user reviews and ratings. Explore what players love (or don’t) about each game, share your own experiences, and connect with a community that values honest opinions. Whether you're searching for a hidden gem or the next big hit, let reviews guide your next adventure! "
         />
@@ -114,18 +114,24 @@ const LandingPage = async () => {
           image="bg5.png"
           description="Easily save and organize your favorite games in one place! Build your personalized game list, keep track of the titles you love, and revisit them anytime. Whether you're curating a must-play backlog or showcasing your top picks, your collection is always just a click away. "
         />
-        <FeatureShowcaseCarousel
-          games={upcomingGamesRes.results}
-          title="Games Releasing Soon"
-        />
-        <FeatureShowcaseCarousel
-          games={vintageGamesRes.results}
-          title="Old Gems"
-        />
-        <FeatureShowcaseCarousel
-          games={mostRatedGamesRes.results}
-          title="Top Rated Games"
-        />
+        <div className="flex flex-col gap-12">
+          <FeatureShowcaseCarousel
+            description="Stay ahead of the game with our upcoming releases! Explore highly anticipated titles, get early insights,
+           and be the first to experience the next big adventures."
+            games={upcomingGamesRes.results}
+            title="Games Releasing Soon"
+          />
+          <FeatureShowcaseCarousel
+            description="Rediscover the classics that defined gaming! From timeless adventures to legendary titles, explore the best games that continue to captivate players across generations."
+            games={vintageGamesRes.results}
+            title="Old Gems"
+          />
+          <FeatureShowcaseCarousel
+            description="Explore the highest-rated games loved by players and critics alike! From groundbreaking adventures to must-play masterpieces, discover the best of the best in gaming."
+            games={mostRatedGamesRes.results}
+            title="Top Rated Games"
+          />
+        </div>
         <div className="flex w-full justify-end pb-24 pt-12">
           <Link href={"/"} className="underlineEffect flex gap-2">
             <span className=" text-2xl font-bold">Start browsing</span>
