@@ -9,7 +9,7 @@
     padding-left: 2.5rem;
     position: relative;
     bottom: 10rem;
-    text-align: justify;
+    text-align: start;
 }
 
 @media screen and (max-width: 1300px) {
@@ -47,8 +47,8 @@
 
 @media screen and (max-width: 600px) {
     .description {
-        font-size: 0.9rem;
-        letter-spacing: 0.25px;
+        /* font-size: 0.9rem; */
+        letter-spacing: 0px;
         line-height: 18px;
     }
 }
