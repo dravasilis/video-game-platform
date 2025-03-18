@@ -10,23 +10,25 @@ interface Props {
 
 const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient(0deg, rgb(7 9 15 / 26%) 30%, rgba(15, 18, 22, 0) 100%)",
-        boxShadow: "0px 3px 6px -1px #0000007a",
-      }}
-      className="flex flex-col justify-center items-center gap-4 p-4 pb-8 pt-0 rounded-xl "
-    >
+    <div className="flex flex-col gap-4">
       <span className="text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl text-shadow w-full ">
         {title}
       </span>
       <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
-      <CarouselUI games={games} />
-      <div className="flex items-center  z-10">
-        <span className="description !bottom-0 !p-4 max-sm:!p-0 !w-full">
-          {description}
-        </span>
+      <div
+        style={{
+          background:
+            "linear-gradient(0deg, rgb(7 9 15 / 26%) 30%, rgba(15, 18, 22, 0) 100%)",
+          boxShadow: "rgb(3 3 7 / 48%) 0px 1px 6px 1px",
+        }}
+        className="flex flex-col gap-4 px-4 pb-6 rounded-lg"
+      >
+        <CarouselUI games={games} />
+        <div className="flex items-center  z-10">
+          <span className="description !text-primary-100 !bottom-0 !p-4 max-sm:!p-0 !w-full">
+            {description}
+          </span>
+        </div>
       </div>
     </div>
   );
