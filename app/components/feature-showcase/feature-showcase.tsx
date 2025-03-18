@@ -25,23 +25,9 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
         alt="featureImage"
         className="object-contain w-full justify-self-center col-span-2 rounded-2xl"
       />
-      <div
-        style={{
-          background:
-            "linear-gradient(#0f1216 7%, #0f121600 45%, #0f1216 72%), linear-gradient(90deg, #0f1216 0%, #0f121600 50%, #0f1216 100%)",
-        }}
-        className="w-full h-full absolute top-0 left-0"
-      ></div>
+      <div className="w-full h-full absolute top-0 left-0 container-bg"></div>
       <div className="flex items-center  z-10 ">
-        <span
-          className="description glass"
-          style={{
-            background:
-              "linear-gradient(0deg, rgb(21 20 20 / 24%) 9%, rgba(15, 18, 22, 0) 35%)",
-          }}
-        >
-          {description}
-        </span>
+        <span className="description glass">{description}</span>
       </div>
     </div>
   );

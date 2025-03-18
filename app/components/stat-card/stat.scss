@@ -1,3 +1,30 @@
+.stat-card-container {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	padding-top: 2.5rem;
+	padding-bottom: 6rem;
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+	.stat-card-container {
+		padding-top: 1rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.stat-card-container {
+		padding-bottom: 2.5rem;
+	}
+}
+
+@media (max-width: 640px) {
+	.stat-card-container {
+		padding-bottom: 1rem;
+	}
+}
+
 .stat-card {
 	display: flex;
 	flex-direction: column;
@@ -19,6 +46,10 @@
 }
 
 @media screen and (max-width: 1024px) {
+	.stat-card-container {
+		padding-bottom: 4rem;
+	}
+
 	.stat-card {
 		padding: 0.75rem 2.25rem;
 	}

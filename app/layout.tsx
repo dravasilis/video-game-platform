@@ -6,6 +6,24 @@ export const metadata: Metadata = {
   title: "Gamepedia", // Base Title,
   description:
     "Explore, discover and save all your favourite games in this expanded video game platform.",
+  openGraph: {
+    title: "Gamepedia",
+    description:
+      "Explore, discover and save all your favourite games in this expanded video game platform.",
+    images: [
+      {
+        url: "/images/logo.png",
+      },
+    ],
+    url: "https://video-game-platform.vercel.app/",
+  },
+  twitter: {
+    title: "Gamepedia",
+    description:
+      "Explore, discover and save all your favourite games in this expanded video game platform.",
+    site: "https://video-game-platform.vercel.app/",
+    card: "summary_large_image",
+  },
 };
 
 const roboto = Play({
