@@ -62,7 +62,7 @@ body {
     background: #50474714;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(1.7px);
-    -webkit-backdrop-filter: blur(9.7px);
+    -webkit-backdrop-filter: blur(1.7px);
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
 }
