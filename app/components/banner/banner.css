@@ -8,7 +8,7 @@
 }
 
 .bannerGradient {
-    background: linear-gradient(0deg, #0f1216 1%, #0a0c0fb6 54%, #0a0c0fe6 90%);
+    background: linear-gradient(0deg, #0f1216 1%, #0a0c0fb6 54%, #0f1216f2 90%);
     z-index: 1;
 }
 

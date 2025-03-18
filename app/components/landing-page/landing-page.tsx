@@ -36,7 +36,7 @@ const LandingPage = async () => {
         <div className="flex gap-4 items-center">
           <Image
             src="/images/logo.png"
-            width={20}
+            width={200}
             height={20}
             alt="favicon"
             className="w-[50px] max-sm:w-[40px]"
