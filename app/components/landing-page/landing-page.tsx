@@ -41,15 +41,14 @@ const LandingPage = async () => {
             alt="favicon"
             className="w-[50px] max-sm:w-[40px]"
           />
-          <span className="text-5xl max-sm:text-4xl font-bold flex tracking-[-2px]">
-            <span className="underlineEffect">Game</span>
-            pedia
-          </span>
+          <h1 className="text-5xl max-sm:text-4xl font-bold flex tracking-[-2px]">
+            Game pedia
+          </h1>
         </div>
         {/* SUBTITLE  */}
-        <span className="text-2xl max-sm:text-lg text-primary-200">
+        <h2 className="text-2xl max-sm:text-lg text-primary-200">
           Explore, discover, save your favourite games{" "}
-        </span>
+        </h2>
 
         {/* STATS */}
         <div className="flex items-center gap-4">
@@ -131,12 +130,6 @@ const LandingPage = async () => {
             games={mostRatedGamesRes.results}
             title="Top Rated Games"
           />
-        </div>
-        <div className="flex w-full justify-end pb-24 pt-12">
-          <Link href={"/"} className="underlineEffect flex gap-2">
-            <span className=" text-2xl font-bold">Start browsing</span>
-            <Image src="/svg/next.svg" width={30} height={20} alt="browse" />
-          </Link>
         </div>
       </div>
     </div>
