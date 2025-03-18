@@ -17,7 +17,7 @@ const FeatureShowcaseCarousel = ({ games, title, description }: Props) => {
       }}
       className="flex flex-col justify-center items-center gap-4 p-4 pb-8 pt-0 rounded-xl "
     >
-      <span className="text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl  w-full ">
+      <span className="text-5xl max-lg:text-4xl max-md:text-3xl max-sm:text-2xl text-shadow w-full ">
         {title}
       </span>
       <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
