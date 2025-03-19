@@ -95,7 +95,7 @@ body {
     height: 0px;
     width: 0;
     /* box-shadow: 0 0 1px #383232a6, 0 0 2px #383232a6, 0 0 7px #383232a6; */
-    background-color: #c0c0c02d;
+    background-color: #40506e2d;
     border-radius: 0.25rem;
     transition: width 300ms ease-in-out;
     /* Smooth expand effect */

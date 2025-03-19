@@ -4,12 +4,12 @@ export const FeatureShowcases: FeatureShowcase[] = [
     {
         title: 'Explore A Vast Library Of Games',
         description: "Dive into an <b class='text-primary-300'>extensive collection</b> of games spanning all genres,  from action-packed adventures to immersive RPGs. Whether you're  searching for the <b class='text-primary-300'>latest releases</b> or <b class='text-primary-300'>nostalgic classics</b>, our   platform lets you <b class='text-primary-300'>explore</b>, <b class='text-primary-300'>discover</b>, and find your next <b class='text-primary-300'>favorite  game</b> with ease.",
-        image: 'bg6.png'
+        image: 'bg50.jpg'
     },
     {
         title: 'Discover New Gaming Adventures',
         description: "Uncover <b class='text-primary-300'>new worlds</b>, connect with <b class='text-primary-300'>unforgettable characters</b>, and dive into fresh <b class='text-primary-300'>gaming experiences</b> like never before.Whether you're exploring <b class='text-primary-300'>hidden gems</b> or the <b class='text-primary-300'>latest blockbusters</b>, every  game brings a unique adventure waiting to be discovered.",
-        image: 'bg3.png'
+        image: 'bg20.jpg'
     },
     {
         title: 'Discover Games Through Player Perspectives',
