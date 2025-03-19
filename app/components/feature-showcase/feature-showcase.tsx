@@ -13,7 +13,7 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
   return (
     <div className="relative flex flex-col w-full h-max">
       <div className="flex flex-col gap-4 col-span-2 z-20">
-        <h3 className="text-5xl max-lg:text-4xl max-md:text-3xl  text-shadow text-primary-100  ">
+        <h3 className="text-5xl max-lg:text-4xl max-md:text-2xl  font-bold text-primary-100  ">
           {title}
         </h3>
         <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
@@ -27,7 +27,10 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
       />
       <div className="w-full h-full absolute top-0 left-0 container-bg"></div>
       <div className="flex items-center  z-10 ">
-        <span className="description glass">{description}</span>
+        <span
+          dangerouslySetInnerHTML={{ __html: description }}
+          className="description glass"
+        ></span>
       </div>
     </div>
   );
