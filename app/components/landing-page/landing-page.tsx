@@ -33,24 +33,33 @@ const LandingPage = async () => {
       dates: "2012-01-01,2025-01-01",
     }),
   ]);
-  //   console.log([mostRatedGamesRes]);
   return (
-    <div className="">
+    <div>
+      {/* START BROWSING  */}
+      <div className="flex w-full justify-end fixed top-4 right-4 z-50">
+        <Link
+          href={"/"}
+          className="underlineEffect backdrop-blur-[2px] flex gap-2 browse animate-fade-in"
+        >
+          <span className=" text-primary-150">Start browsing</span>
+          <Image src={nextSvg} width={15} height={30} alt="next" />
+        </Link>
+      </div>
       <Banner />
-      <div className="z-10 animate-fade-in relative top-[12rem] max-lg:top-[7rem] max-[600px]:!top-[5rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-5 flex flex-col gap-4">
+      <div className="z-10 animate-fade-in relative top-[12rem] max-xl:top-[12rem] max-lg:top-[8rem] max-[600px]:!top-[5rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-5 flex flex-col gap-4">
         {/* TITLE  */}
-        <div className="flex gap-4 items-center animate-slide-in-left">
+        <div className="flex gap-4 items-center ">
           <Image
             src={logo}
             alt="favicon"
             className="w-[70px] max-sm:w-[40px]"
           />
-          <h1 className=" text-[4rem] max-sm:text-4xl font-bold flex tracking-[-2px]">
+          <h1 className=" text-[4rem] text-gradient max-lg:text-5xl max-sm:text-4xl font-bold flex tracking-[-2px]">
             Gamepedia
           </h1>
         </div>
         {/* SUBTITLE  */}
-        <h2 className="text-3xl max-sm:text-lg text-primary-200 animate-slide-in-left">
+        <h2 className="text-3xl max-lg:text-2xl max-sm:text-lg text-primary-200">
           Explore, discover, save your favourite games{" "}
         </h2>
 
@@ -66,17 +75,10 @@ const LandingPage = async () => {
           <StatCard svg="star" title="Reviews" count="500K" />
           <StatCard svg="rating" title="Ratings" count="1.1M" />
         </div>
-        {/* START BROWSING  */}
-        <div className="flex w-full justify-end">
-          <Link href={"/"} className="underlineEffect flex gap-2">
-            <span className="text-shadow">Start browsing</span>
-            <Image src={nextSvg} width={20} height={30} alt="next" />
-          </Link>
-        </div>
         {/* DESCRIPTION  */}
         <div className="flex flex-col gap-4 py-20 max-md:pt-12 max-sm:pt-4">
           <div className="flex items-center gap-2 text-3xl ">
-            <h3 className="text-5xl max-lg:text-4xl max-md:text-3xl text-primary-100  ">
+            <h3 className="text-5xl max-lg:text-4xl max-md:text-2xl font-bold text-primary-100  ">
               All Your Favorite Games in One Place
             </h3>
           </div>

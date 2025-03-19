@@ -3,15 +3,15 @@ import { FeatureCarousel } from "../models/feature-showcase";
 export const CarouselFeatures: FeatureCarousel[] = [
     {
         title: 'Games Releasing Soon',
-        description: "Stay ahead of the game with our upcoming releases! Explore highly anticipated titles, get early insights and be the first to experience the next big adventures.",
+        description: "Stay ahead of the game with our <b class='text-primary-300'>upcoming releases</b> ! Explore highly <b class='text-primary-300'>anticipated titles</b>, get early insights and <b class='text-primary-300'>be the first</b> to experience the next big adventures.",
     },
     {
         title: 'Old Gems',
-        description: "Rediscover the classics that defined gaming! From timeless adventures to legendary titles, explore the best games that continue to captivate players across generations.",
+        description: "Rediscover the <b class='text-primary-300'>classics</b> that defined gaming! From timeless adventures to <b class='text-primary-300'>legendary titles</b>, explore the <b class='text-primary-300'>best games</b> that continue to captivate players <b class='text-primary-300'>across generations</b>.",
     },
     {
         title: 'Top Rated Games',
-        description: "Explore the highest-rated games loved by players and critics alike! From groundbreaking adventures to must-play masterpieces, discover the best of the best in gaming.",
+        description: "Explore the <b class='text-primary-300'>highest-rated games</b> loved by players and critics alike! From groundbreaking adventures to must-play masterpieces, discover the best of the best in gaming.",
     },
 
 
