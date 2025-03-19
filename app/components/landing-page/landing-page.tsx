@@ -40,25 +40,25 @@ const LandingPage = async () => {
   return (
     <div className="">
       <Banner />
-      <div className="z-10 animate-fade-in relative top-[15rem] max-lg:top-[7rem] max-[600px]:!top-[5rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-5 flex flex-col gap-4">
+      <div className="z-10 animate-fade-in relative top-[12rem] max-lg:top-[7rem] max-[600px]:!top-[5rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-5 flex flex-col gap-4">
         {/* TITLE  */}
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center animate-slide-in-left">
           <Image
             src={logo}
             alt="favicon"
-            className="w-[50px] max-sm:w-[40px]"
+            className="w-[70px] max-sm:w-[40px]"
           />
-          <h1 className=" text-5xl max-sm:text-4xl font-bold flex tracking-[-2px]">
+          <h1 className=" text-[4rem] max-sm:text-4xl font-bold flex tracking-[-2px]">
             Gamepedia
           </h1>
         </div>
         {/* SUBTITLE  */}
-        <h2 className="text-2xl max-sm:text-lg text-primary-200">
+        <h2 className="text-3xl max-sm:text-lg text-primary-200 animate-slide-in-left">
           Explore, discover, save your favourite games{" "}
         </h2>
 
         {/* STATS */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 animate-slide-in-right">
           <StatCard
             svg="game"
             title="Games"
@@ -79,7 +79,9 @@ const LandingPage = async () => {
         {/* DESCRIPTION  */}
         <div className="flex flex-col gap-4 py-20 max-md:pt-12 max-sm:pt-4">
           <div className="flex items-center gap-2 text-3xl ">
-            <h3 className="font-bold">All Your Favorite Games in One Place</h3>
+            <h3 className="text-5xl max-lg:text-4xl max-md:text-3xl text-primary-100  ">
+              All Your Favorite Games in One Place
+            </h3>
           </div>
           <span className="text-xl text-start max-lg:text-lg !w-3/4 max-xl:!w-full text-primary-150 leading-[30px]  max-sm:leading-6">
             Explore the ultimate game platform where you can discover, track,
