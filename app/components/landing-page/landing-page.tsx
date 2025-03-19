@@ -1,23 +1,20 @@
+import { CarouselFeatures } from "@/app/constants/feature-carousel";
+import { FeatureShowcases } from "@/app/constants/feature-showcases";
 import { fetchHelper } from "@/app/helpers/fetch-helper";
 import { Game } from "@/app/models/game";
 import { HttpResponse } from "@/app/models/httpResponse";
 import Image from "next/image";
 import Link from "next/link";
+import logo from "../../../public/images/logo.png";
+import nextSvg from "../../../public/svg/next.svg";
 import "../../globals.css";
 import Banner from "../banner/banner";
 import FeatureShowcaseCarousel from "../feature-showcase-carousel/feature-showcase-carousel";
 import FeatureShowcase from "../feature-showcase/feature-showcase";
 import StatCard from "../stat-card/stat";
-import logo from "../../../public/images/logo.png";
-import nextSvg from "../../../public/svg/next.svg";
-import { FeatureShowcases } from "@/app/constants/feature-showcases";
-import { CarouselFeatures } from "@/app/constants/feature-carousel";
 
 const LandingPage = async () => {
   const currentDate = new Date().toISOString().split("T")[0];
-  //   console.log(currentDate);
-  const featureShowcases = FeatureShowcases;
-  const carouselFeatures = CarouselFeatures;
   const [upcomingGamesRes, vintageGamesRes, topRatedGamesRes]: [
     HttpResponse<Game>,
     HttpResponse<Game>,
@@ -93,7 +90,7 @@ const LandingPage = async () => {
             place.
           </span>
         </div>
-        {featureShowcases.map((feature, index) => (
+        {FeatureShowcases.map((feature, index) => (
           <FeatureShowcase
             key={index}
             title={feature.title}
