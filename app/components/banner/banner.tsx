@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div>
       <div className="bannerGradient banner"></div>
-      <Image className="banner object-fill" src={bannerImage} alt="banner" />
+      <Image className="banner object-cover" src={bannerImage} alt="banner" />
     </div>
   );
 };
