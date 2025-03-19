@@ -20,11 +20,11 @@ const StatCard = ({ title, count, svg }: props) => {
             alt="stat-svg"
             className="w-[30px] max-lg:w-[20px] max-sm:w-[17px]"
           />
-          <span className="text-2xl  max-lg:text-lg  max-sm:text-base">
+          <span className="text-2xl text-primary-100 max-lg:text-lg  max-sm:text-base">
             {title}
           </span>
         </div>
-        <span className="text-4xl max-lg:text-2xl  max-sm:text-xl font-bold text-primary-100">
+        <span className="text-4xl text-gradient max-lg:text-2xl  max-sm:text-xl font-bold text-primary-100">
           {count}
         </span>
       </div>

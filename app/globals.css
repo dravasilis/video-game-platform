@@ -38,7 +38,7 @@
 
 @keyframes slideInRight {
     0% {
-        transform: translateX(3rem);
+        transform: translateX(2rem);
         opacity: 0;
     }
 
@@ -62,7 +62,7 @@
 
 @layer utilities {
     .animate-slide-in-right {
-        animation: slideInRight 0.75s ease-in-out;
+        animation: slideInRight 1s ease-in-out;
     }
 }
 
@@ -92,16 +92,18 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 1px;
+    height: 0px;
     width: 0;
-    box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
-    background-color: rgb(255, 255, 255);
+    /* box-shadow: 0 0 1px #383232a6, 0 0 2px #383232a6, 0 0 7px #383232a6; */
+    background-color: #c0c0c02d;
+    border-radius: 0.25rem;
     transition: width 300ms ease-in-out;
     /* Smooth expand effect */
 }
 
 .underlineEffect:hover::after {
     width: 100%;
+    height: 100%;
 }
 
 .text-shadow {
@@ -119,4 +121,27 @@ body {
     -webkit-backdrop-filter: blur(1.7px);
     border-bottom-right-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
+}
+
+.text-gradient {
+    background: -webkit-linear-gradient(0deg, #eee, #333);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.browse {
+    background: linear-gradient(90deg, #1a1c2600 0%, #a2a2cf17 100%);
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+}
+
+@media screen and (max-width: 600px) {
+    .browse {
+        padding: 0.35rem 0.75rem;
+        font-size: 0.675rem;
+
+        img {
+            width: 10px;
+        }
+    }
 }

@@ -39,18 +39,18 @@ const LandingPage = async () => {
       <Banner />
       <div className="z-10 animate-fade-in relative top-[12rem] max-lg:top-[7rem] max-[600px]:!top-[5rem] px-32 max-xl:px-24 max-lg:px-20 max-md:px-12 max-sm:px-5 flex flex-col gap-4">
         {/* TITLE  */}
-        <div className="flex gap-4 items-center animate-slide-in-left">
+        <div className="flex gap-4 items-center ">
           <Image
             src={logo}
             alt="favicon"
             className="w-[70px] max-sm:w-[40px]"
           />
-          <h1 className=" text-[4rem] max-sm:text-4xl font-bold flex tracking-[-2px]">
+          <h1 className=" text-[4rem] text-gradient max-sm:text-4xl font-bold flex tracking-[-2px]">
             Gamepedia
           </h1>
         </div>
         {/* SUBTITLE  */}
-        <h2 className="text-3xl max-sm:text-lg text-primary-200 animate-slide-in-left">
+        <h2 className="text-3xl max-sm:text-lg text-primary-200">
           Explore, discover, save your favourite games{" "}
         </h2>
 
@@ -67,10 +67,13 @@ const LandingPage = async () => {
           <StatCard svg="rating" title="Ratings" count="1.1M" />
         </div>
         {/* START BROWSING  */}
-        <div className="flex w-full justify-end">
-          <Link href={"/"} className="underlineEffect flex gap-2">
-            <span className="text-shadow">Start browsing</span>
-            <Image src={nextSvg} width={20} height={30} alt="next" />
+        <div className="flex w-full justify-end fixed top-4 right-4 z-50">
+          <Link
+            href={"/"}
+            className="underlineEffect backdrop-blur-[2px] flex gap-2 browse"
+          >
+            <span className=" text-primary-150">Start browsing</span>
+            <Image src={nextSvg} width={15} height={30} alt="next" />
           </Link>
         </div>
         {/* DESCRIPTION  */}
