@@ -4,7 +4,7 @@ export const FeatureShowcases: FeatureShowcase[] = [
     {
         title: 'Explore A Vast Library Of Games',
         description: "Dive into an <b class='text-primary-300'>extensive collection</b> of games spanning all genres,  from action-packed adventures to immersive RPGs. Whether you're  searching for the <b class='text-primary-300'>latest releases</b> or <b class='text-primary-300'>nostalgic classics</b>, our   platform lets you <b class='text-primary-300'>explore</b>, <b class='text-primary-300'>discover</b>, and find your next <b class='text-primary-300'>favorite  game</b> with ease.",
-        image: 'bg50.jpg'
+        image: 'bg3.jpg'
     },
     {
         title: 'Discover New Gaming Adventures',

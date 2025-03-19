@@ -117,7 +117,7 @@ const LandingPage = async () => {
         <div className="flex items-center gap-1 py-8 justify-end">
           Credit to
           <Link
-            className="text-shadow underlineEffect text-[#3bffff]"
+            className="text-shadow underlineEffectLine text-[#3bffff]"
             href="https://api.rawg.io/docs/"
             target="_blank"
           >

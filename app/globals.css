@@ -106,6 +106,34 @@ body {
     height: 100%;
 }
 
+.underlineEffectLine {
+    position: relative;
+    /* Ensures the pseudo-element is positioned relative to this element */
+    display: flex;
+    /* Needed if you want the underline effect to work on inline elements */
+    border-bottom: none;
+    /* Removes any existing bottom border */
+    cursor: pointer;
+}
+
+.underlineEffectLine::after {
+    content: '';
+    /* Required for ::after to work */
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    box-shadow: 0 0 1px #FFF, 0 0 2px #FFF, 0 0 7px #FFF;
+    background-color: rgb(255, 255, 255);
+    border-radius: 0.25rem;
+    transition: width 300ms ease-in-out;
+}
+
+.underlineEffectLine:hover::after {
+    width: 100%;
+}
+
 .text-shadow {
     text-shadow: 0 0 1px #ffffff70, 0 0 2px #ffffff99, 0 0 7px #ffffffa6;
 }
