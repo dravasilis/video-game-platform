@@ -1,6 +1,8 @@
 import { Metadata } from "next/types";
 import "./globals.css";
-import { Play } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import RawgReferral from "./components/rawgReferral/rawgReferral";
+import Banner from "./components/landing-page/banner/banner";
 
 export const metadata: Metadata = {
   title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
   },
 };
 
-const roboto = Play({
+const roboto = Montserrat({
   subsets: ["latin"],
   weight: "400",
 });
@@ -41,7 +43,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html className={roboto.className} lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <RawgReferral />
+      </body>
     </html>
   );
 }

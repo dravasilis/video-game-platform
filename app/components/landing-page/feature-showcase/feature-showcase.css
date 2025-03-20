@@ -1,12 +1,12 @@
 .description {
     color: #d8dee9;
-    font-size: 1.75rem;
-    line-height: 35px;
+    font-size: 2.25rem;
+    line-height: 50px;
     letter-spacing: 0px;
     padding: 2rem 2.5rem;
     position: relative;
     bottom: 10rem;
-    text-align: start;
+    text-align: center;
     border-radius: 0.75rem;
     background: linear-gradient(0deg, #2422221a 9%, #ffffff00 35%) !important
 }
@@ -19,49 +19,49 @@
 @media screen and (max-width: 1300px) {
     .description {
         bottom: 7.5rem;
-        line-height: 35px;
-        font-size: 1.55rem;
+        line-height: 45px;
+        font-size: 2rem;
     }
 }
 
 @media screen and (max-width: 1130px) {
     .description {
         bottom: 5.5rem;
-        line-height: 30px;
+        line-height: 40px;
+        font-size: 1.85rem;
         width: 100%;
     }
 }
 
 @media screen and (max-width: 930px) {
     .description {
-        /* bottom: 3rem; */
-        font-size: 1.35rem;
-        /* padding: 0 3rem; */
-        line-height: 25px;
+        font-size: 1.65rem;
+        line-height: 35px;
     }
 }
 
 @media screen and (max-width: 780px) {
     .description {
         bottom: 5rem;
-        font-size: 1.15rem;
+        font-size: 1.5rem;
+        line-height: 33px;
         padding: 2rem 1.5rem;
     }
 }
 
 @media screen and (max-width: 640px) {
     .description {
-        /* font-size: 0.9rem; */
-
-        line-height: 23px;
         padding: 2rem 1.25rem;
-        font-size: 1.05rem;
+        font-size: 1.4rem;
+        line-height: 31px;
     }
 }
 
 @media screen and (max-width: 500px) {
     .description {
-        bottom: 3rem;
+        bottom: 2rem;
         padding: 2rem 1rem;
+        font-size: 1.35rem;
+        line-height: 29px;
     }
 }

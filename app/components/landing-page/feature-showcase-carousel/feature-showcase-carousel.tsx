@@ -1,7 +1,7 @@
 import React from "react";
-import { CarouselUI } from "../carousel/CardsCarousel";
 import { Game } from "@/app/models/game";
 import "./feature-showcase-carousel.css";
+import { CarouselUI } from "../../shared/carousel/CardsCarousel";
 interface Props {
   games: Game[];
   title: string;

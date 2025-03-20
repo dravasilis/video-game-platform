@@ -11,7 +11,7 @@ import {
 import "./CardsCarousel.scss";
 import { Game } from "@/app/models/game";
 import Image from "next/image";
-import nextSvg from "../../../public/svg/next.svg";
+import nextSvg from "../../../../public/svg/next.svg";
 interface props {
   games: Game[];
 }

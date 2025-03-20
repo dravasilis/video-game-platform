@@ -63,7 +63,8 @@
 	margin: 0.25rem;
 
 	&:hover {
-		Image {
+		img {
+			padding: 0 !important;
 			box-shadow: unset !important
 		}
 
