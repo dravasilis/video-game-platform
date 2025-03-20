@@ -13,7 +13,7 @@ const FeatureShowcase = ({ title, description, image }: Props) => {
   return (
     <div className="relative flex flex-col w-full h-max">
       <div className="flex flex-col gap-4 col-span-2 z-20">
-        <h3 className="text-5xl max-lg:text-4xl max-md:text-2xl  font-bold text-primary-100  ">
+        <h3 className="text-6xl max-lg:text-5xl max-md:text-4xl  font-bold text-primary-100  ">
           {title}
         </h3>
         <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>

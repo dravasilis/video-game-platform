@@ -1,6 +1,6 @@
 import React from "react";
-import { Menus } from "../constants/menus";
-import SidenavButton from "./sidenav-button/sidenav-button";
+import { Menus } from "../../constants/menus";
+import SidenavButton from "../shared/sidenav-button/sidenav-button";
 
 const Sidenav = () => {
   const menus = Menus;

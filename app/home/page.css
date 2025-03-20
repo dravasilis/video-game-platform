@@ -1,0 +1,21 @@
+.category {
+    display: flex;
+    align-items: start;
+    width: 30rem;
+    height: 15rem;
+    border: 2px solid #ffffff2e;
+    backdrop-filter: blur(2px);
+    border-radius: 0.75rem;
+    background: linear-gradient(90deg, #20244100 0%, #a2a2cf17 100%);
+    box-shadow: 0 0 1px #383f4d, 0 0 2px #162239, 0 0 7px #0e1523;
+    transition-duration: 200ms;
+    position: relative;
+    justify-content: space-between;
+
+    &:hover {
+        transition-duration: 200ms;
+        box-shadow: 0 1px 1px #454d5e, 0 0 2px #1d2c49, 0 0 7px #152035;
+        cursor: pointer;
+    }
+
+}
