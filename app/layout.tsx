@@ -1,8 +1,7 @@
-import { Metadata } from "next/types";
-import "./globals.css";
 import { Montserrat } from "next/font/google";
+import { Metadata } from "next/types";
 import RawgReferral from "./components/rawgReferral/rawgReferral";
-import Banner from "./components/landing-page/banner/banner";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
