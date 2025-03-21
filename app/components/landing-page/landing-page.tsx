@@ -1,8 +1,7 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
-import Banner from "./banner/banner";
-import StartBrowsing from "./browse-button/browse-button";
-import Title from "./title/title";
+import { CarouselFeatures } from "@/app/constants/feature-carousel";
+import { FeatureShowcases } from "@/app/constants/feature-showcases";
+import { Stats } from "@/app/constants/stats";
 import {
   fetchTopRatedGames,
   fetchUpcomingGames,
@@ -11,15 +10,16 @@ import {
   selectUpcomingGames,
   selectVintageGames,
 } from "@/redux/features/games/gamesSlice";
-import { Stats } from "@/app/constants/stats";
-import StatCard from "../shared/stat-card/stat";
-import Description from "./description/description";
-import { FeatureShowcases } from "@/app/constants/feature-showcases";
-import FeatureShowcase from "./feature-showcase/feature-showcase";
-import { CarouselFeatures } from "@/app/constants/feature-carousel";
-import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
 import { AppDispatch } from "@/redux/store";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import StatCard from "../shared/stat-card/stat";
+import Banner from "./banner/banner";
+import StartBrowsing from "./browse-button/browse-button";
+import Description from "./description/description";
+import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
+import FeatureShowcase from "./feature-showcase/feature-showcase";
+import Title from "./title/title";
 
 const LandingPage = () => {
   const dispatch = useDispatch<AppDispatch>();
