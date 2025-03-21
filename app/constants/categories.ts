@@ -1,37 +1,44 @@
 export interface Category {
     title: string,
     subTitle: string,
-    img: string;
+    img: string,
+    redirectTo: string;
 }
 export const Categories: Category[] = [
     {
         title: 'Browse Games',
-        subTitle: '813K Games',
-        img: '/images/bg50.jpg'
+        subTitle: 'Over 800K Games',
+        img: '/images/bg5.png',
+        redirectTo: 'games'
     },
     {
         title: 'Browse Genres',
-        subTitle: '25 Genres',
-        img: '/images/bg3.jpg'
+        subTitle: '19 Genres',
+        img: '/images/bg3.jpg',
+        redirectTo: ''
     },
     {
         title: 'Browse Reviews',
-        subTitle: '500K Reviews',
-        img: '/images/bg8.jpg'
+        subTitle: 'Over 500K Reviews',
+        img: '/images/bg8.jpg',
+        redirectTo: ''
     },
     {
         title: 'Browse Trailers',
-        subTitle: '200K Trailers',
-        img: '/images/bg100.jpg'
+        subTitle: 'Over 500K Trailers',
+        img: '/images/bg100.jpg',
+        redirectTo: ''
     },
     {
         title: 'Browse Publishers',
-        subTitle: 'Over 20 Publishers',
-        img: '/images/bg1.jpg'
+        subTitle: 'Over 81K Publishers',
+        img: '/images/bg1.jpg',
+        redirectTo: ''
     },
     {
         title: 'Browse Platforms',
-        subTitle: 'Over 15 Platforms',
-        img: '/images/consoles.jpg'
+        subTitle: 'Over 50 Platforms',
+        img: '/images/consoles.jpg',
+        redirectTo: ''
     },
 ];

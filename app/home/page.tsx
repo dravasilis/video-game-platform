@@ -4,7 +4,7 @@ import GameCategory from "../components/shared/category/category";
 import { Categories } from "../constants/categories";
 import "../globals.css";
 import "./page.css";
-const home = async () => {
+const home = () => {
   return (
     <div className="animate-fade-in">
       <MainNav>

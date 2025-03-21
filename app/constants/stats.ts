@@ -1,12 +1,13 @@
 interface Stat {
     svg: string,
     title: string,
-    count?: string;
+    count: string;
 }
 export const Stats: Stat[] = [
     {
         svg: 'game',
         title: 'Games',
+        count: '813K'
     },
     {
         svg: 'star',

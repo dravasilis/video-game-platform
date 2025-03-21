@@ -2,6 +2,7 @@ import { Montserrat } from "next/font/google";
 import { Metadata } from "next/types";
 import RawgReferral from "./components/rawgReferral/rawgReferral";
 import "./globals.css";
+import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
   title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
@@ -43,7 +44,7 @@ export default function RootLayout({
   return (
     <html className={roboto.className} lang="en">
       <body>
-        {children}
+        <StoreProvider>{children}</StoreProvider>
         <RawgReferral />
       </body>
     </html>
