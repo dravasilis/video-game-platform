@@ -6,7 +6,7 @@ interface Props {
 }
 const Banner = ({ banner }: Props) => {
   return (
-    <div>
+    <div className="z-0">
       <div className="bannerGradient banner"></div>
       <Image
         className="banner object-cover"

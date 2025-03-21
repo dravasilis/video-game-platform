@@ -1,14 +1,7 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { Provider, useDispatch } from "react-redux";
-import type { AppDispatch } from "../redux/store";
-import { makeStore, AppStore } from "../redux/store";
-import {
-  fetchPopularGames,
-  fetchTopRatedGames,
-  fetchUpcomingGames,
-  fetchVintageGames,
-} from "@/redux/features/games/gamesSlice";
+import { useRef } from "react";
+import { Provider } from "react-redux";
+import { AppStore, makeStore } from "../redux/store";
 
 export default function StoreProvider({
   children,

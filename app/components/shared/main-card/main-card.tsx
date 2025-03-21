@@ -1,42 +1,31 @@
 import { Game } from "@/app/models/game";
-import React from "react";
-import "./main-card.scss";
 import Image from "next/image";
+import "./main-card.scss";
 interface Props {
   game: Game;
 }
 const MainCard = ({ game }: Props) => {
   return (
-    <div>
-      <div className="card">
+    <div className="w-max">
+      <div className="main-card">
         <div className="content">
-          <div className="back">
-            <Image
-              className="object-cover h-full rounded-lg !shadow-none w-full "
-              src={game.background_image}
-              alt="gameImage"
-              width={1920}
-              height={1080}
-            />
-            <div className="flex items-start justify-start gap-2 absolute bottom-1 w-full px-4 py-2">
-              {game.genres.map((genre, index) => (
-                <span className="pill text-primary-100 rounded-sm px-3 py-1  text-sm">
-                  {genre.name}
-                </span>
-              ))}
-            </div>
-          </div>
           <div className="front">
             <Image
-              className="object-cover h-full rounded-lg !shadow-none"
+              className="object-cover h-full  rounded-t-lg rounded-b-sm !shadow-none   "
               src={game.background_image}
               alt="gameImage"
               width={1920}
               height={1080}
             />
-            <span className="p-4 max-lg:p-2 max-lg:text-sm font-bold text-primary-100">
-              {game.name}
-            </span>
+            <div className="flex flex-col gap-2 px-4 py-4   justify-center h-[5rem] max-[640px]:h-[6rem] max-[640px]:py-0 max-[640px]:px-2">
+              <span className="max-xl:text-xs text-sm font-bold   text-primary-100">
+                {game.name}
+              </span>
+              <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">
+                {new Date(game.released).toDateString().substring(4,)}
+              </span>
+
+            </div>
           </div>
         </div>
       </div>

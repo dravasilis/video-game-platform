@@ -1,5 +1,5 @@
 .category-button {
-    background: linear-gradient(90deg, #20244100 0%, #a2a2cf17 100%);
+    background: linear-gradient(90deg, #6060607a 0%, #c1c1cc26 100%);
     display: flex;
     gap: 0.5rem;
     padding: .65rem 1.25rem;
@@ -9,10 +9,17 @@
     border-radius: .5rem;
     box-shadow: 0px 0px 2px 0px #474d58;
     width: max-content;
+    border:1px solid transparent;
+    transition-duration: 150ms;
 
     &:hover {
+        transition-duration: 150ms;
         cursor: pointer;
-        box-shadow: 0px 0px 2px 0px #909aac96;
+   border-color: rgba(95, 95, 95, 0.664);
+    box-shadow: 0px 0px 2px 0px #909aac96;
+    }
+    &:active{
+        transform: scale(.9);
     }
 }
 
@@ -30,6 +37,6 @@
 
     &:hover {
         border-color: #4444449f;
-        transform: translateY(-5px);
+        transform: translateX(-2px);
     }
 }
