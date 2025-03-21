@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import MainNav from "../components/main-nav/main-nav";
 import Loader from "../components/shared/loader/loader";
 import MainCard from "../components/shared/main-card/main-card";
-import Banner from "../components/landing-page/banner/banner";
 
 const Games = () => {
   const dispatch = useDispatch<AppDispatch>();
