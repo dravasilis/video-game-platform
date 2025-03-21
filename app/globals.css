@@ -76,6 +76,23 @@ body {
     font-style: normal;
 }
 
+::-webkit-scrollbar {
+    border-radius: 0.25rem;
+    -webkit-appearance: none;
+    width: 15px;
+    background-color: rgb(56, 54, 54);
+
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: rgb(90, 84, 84);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    cursor: grab;
+}
+
 .underlineEffect {
     position: relative;
     /* Ensures the pseudo-element is positioned relative to this element */

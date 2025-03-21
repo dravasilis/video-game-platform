@@ -1,38 +1,41 @@
-import { CarouselFeatures } from "@/app/constants/feature-carousel";
-import { FeatureShowcases } from "@/app/constants/feature-showcases";
-import { fetchHelper } from "@/app/helpers/fetch-helper";
-import { Game } from "@/app/models/game";
-import { HttpResponse } from "@/app/models/httpResponse";
-import { Stats } from "@/app/constants/stats";
+"use client";
+import { useDispatch, useSelector } from "react-redux";
 import Banner from "./banner/banner";
-import StatCard from "../shared/stat-card/stat";
-import Title from "./title/title";
 import StartBrowsing from "./browse-button/browse-button";
+import Title from "./title/title";
+import {
+  fetchTopRatedGames,
+  fetchUpcomingGames,
+  fetchVintageGames,
+  selectTopRatedGames,
+  selectUpcomingGames,
+  selectVintageGames,
+} from "@/redux/features/games/gamesSlice";
+import { Stats } from "@/app/constants/stats";
+import StatCard from "../shared/stat-card/stat";
 import Description from "./description/description";
-import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
+import { FeatureShowcases } from "@/app/constants/feature-showcases";
 import FeatureShowcase from "./feature-showcase/feature-showcase";
+import { CarouselFeatures } from "@/app/constants/feature-carousel";
+import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
+import { AppDispatch } from "@/redux/store";
+import { useEffect, useState } from "react";
 
-const LandingPage = async () => {
-  const currentDate = new Date().toISOString().split("T")[0];
-  const [upcomingGamesRes, vintageGamesRes, topRatedGamesRes]: [
-    HttpResponse<Game>,
-    HttpResponse<Game>,
-    HttpResponse<Game>
-  ] = await Promise.all([
-    fetchHelper("/games", {
-      ordering: "released",
-      dates: `${currentDate},${currentDate.substring(0, 4)}-12-31`,
-    }),
-    fetchHelper("/games", {
-      ordering: "ratings_count",
-      dates: "1995-01-01,2005-01-01",
-    }),
-    fetchHelper("/games", {
-      ordering: "-metacritic",
-      dates: "2012-01-01,2025-01-01",
-    }),
-  ]);
+const LandingPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
 
+  // Dispatch the actions only once on component mount
+  useEffect(() => {
+    dispatch(fetchUpcomingGames());
+    dispatch(fetchVintageGames());
+    dispatch(fetchTopRatedGames());
+  }, []); // Empty dependency array means this will only run once when the component mounts
+
+  const [upcoming, vintage, topRated] = [
+    useSelector(selectUpcomingGames),
+    useSelector(selectVintageGames),
+    useSelector(selectTopRatedGames),
+  ];
   return (
     <div className="px-24 max-xl:px-20 max-lg:px-16 max-md:px-12 max-sm:px-5">
       {/* START BROWSING BUTTON  */}
@@ -47,10 +50,7 @@ const LandingPage = async () => {
               key={index}
               svg={stat.svg}
               title={stat.title}
-              count={
-                stat.count ??
-                (topRatedGamesRes.count ?? 0).toString().substring(0, 3) + "K"
-              }
+              count={stat.count}
             />
           ))}
         </div>
@@ -69,10 +69,10 @@ const LandingPage = async () => {
             description={feature.description}
             games={
               index === 0
-                ? upcomingGamesRes.results
+                ? upcoming?.results ?? []
                 : index === 1
-                ? vintageGamesRes.results
-                : topRatedGamesRes.results
+                ? vintage?.results ?? []
+                : topRated?.results ?? []
             }
             title={feature.title}
           />

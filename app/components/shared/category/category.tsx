@@ -6,6 +6,7 @@ interface Props {
   category: Category;
 }
 import nextSvg from "../../../../public/svg/next.svg";
+import Link from "next/link";
 const GameCategory = ({ category }: Props) => {
   return (
     <>
@@ -26,10 +27,14 @@ const GameCategory = ({ category }: Props) => {
           </p>
         </div>
         <div className="p-6 pt-0">
-          <button type="button" className="category-button ">
+          <Link
+            href={category.redirectTo}
+            type="button"
+            className="category-button "
+          >
             Dive in
             <Image src={nextSvg} alt="next" width={15} />
-          </button>
+          </Link>
         </div>
       </div>
     </>
