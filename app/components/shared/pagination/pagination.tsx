@@ -16,8 +16,6 @@ interface Props {
 const Pagination = ({
 	count,
 	length,
-	next,
-	previous,
 	dispatch,
 	fetchAction,
 }: Props) => {
