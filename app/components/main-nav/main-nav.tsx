@@ -4,7 +4,7 @@ import logo from "../../../public/images/logo.png";
 const MainNav = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <div className="flex flex-col gap-4 py-4 ">
+      <div className="flex flex-col gap-4 py-4 animate-fade-in">
         {/* <Sidenav /> */}
         <div className="flex gap-1 items-center z-10">
           <Image

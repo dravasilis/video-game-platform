@@ -15,30 +15,32 @@ export const Categories: Category[] = [
         title: 'Browse Genres',
         subTitle: '19 Genres',
         img: '/images/bg3.jpg',
-        redirectTo: ''
-    },
-    {
-        title: 'Browse Reviews',
-        subTitle: 'Over 500K Reviews',
-        img: '/images/bg8.jpg',
-        redirectTo: ''
-    },
-    {
-        title: 'Browse Trailers',
-        subTitle: 'Over 500K Trailers',
-        img: '/images/bg100.jpg',
-        redirectTo: ''
+        redirectTo: 'genres'
     },
     {
         title: 'Browse Publishers',
         subTitle: 'Over 81K Publishers',
         img: '/images/bg1.jpg',
-        redirectTo: ''
+        redirectTo: 'publishers'
     },
     {
         title: 'Browse Platforms',
         subTitle: 'Over 50 Platforms',
         img: '/images/consoles.jpg',
-        redirectTo: ''
+        redirectTo: 'platforms'
     },
+      {
+        title: 'Browse Reviews',
+        subTitle: 'Over 500K Reviews',
+        img: '/images/bg8.jpg',
+        redirectTo: 'reviews'
+    },
+    {
+        title: 'Browse Trailers',
+        subTitle: 'Over 500K Trailers',
+        img: '/images/bg100.jpg',
+        redirectTo: 'trailers'
+    },
+   
+  
 ];

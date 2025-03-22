@@ -5,10 +5,12 @@
 	transition-duration: 200ms;
 	border: 1px solid transparent;
 	border-radius: 6px;
+	img{
+		max-height: 75%;
+	}
 	&:hover {
         img{
             box-shadow: none !important;
-            border: 0 !important;
         }
         .front{
 	    background: linear-gradient(45deg, #333232 0%, #0c0c0c 100%);
@@ -21,7 +23,6 @@
 	&:active {
         img{
             box-shadow: none !important;
-            border: 0 !important;
         }
         transform: scale(0.98);
 	}
@@ -46,9 +47,6 @@
 	flex-direction: column;
 	justify-content: space-between;
 	border-radius: 4px;
-	img {
-		background: linear-gradient(45deg, #17171a 0%, #000000 100%);
-	}
 }
 @media screen and (max-width: 1700px) {
 	.main-card {
