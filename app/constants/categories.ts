@@ -23,7 +23,13 @@ export const Categories: Category[] = [
         img: '/images/bg1.jpg',
         redirectTo: 'publishers'
     },
-     {
+    {
+        title: 'Browse Platforms',
+        subTitle: 'Over 50 Platforms',
+        img: '/images/consoles.jpg',
+        redirectTo: 'platforms'
+    },
+      {
         title: 'Browse Reviews',
         subTitle: 'Over 500K Reviews',
         img: '/images/bg8.jpg',
@@ -36,10 +42,5 @@ export const Categories: Category[] = [
         redirectTo: 'trailers'
     },
    
-    {
-        title: 'Browse Platforms',
-        subTitle: 'Over 50 Platforms',
-        img: '/images/consoles.jpg',
-        redirectTo: 'platforms'
-    },
+  
 ];
