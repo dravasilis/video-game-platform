@@ -10,7 +10,8 @@ interface Props {
 	next: string;
 	previous: string;
 	dispatch: AppDispatch;
-	fetchAction: (params: BasicPagination) => any; // Fetch action for different entities
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fetchAction: (params: BasicPagination) => any; // Fetch action for different entities
 }
 
 const Pagination = ({

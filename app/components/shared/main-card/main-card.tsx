@@ -1,4 +1,3 @@
-import { Game } from "@/app/models/game";
 import Image from "next/image";
 import "./main-card.scss";
 
