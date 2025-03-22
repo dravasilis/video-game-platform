@@ -46,6 +46,8 @@ const Pagination = ({
             pages.push(i);
           }
         } else {
+          console.log(totalPages, currentPage);
+          
           if (screenWidth > 768) {
             // For wider screens, we keep the logic as before
             if (currentPage <= 3) {
@@ -59,7 +61,8 @@ const Pagination = ({
                 totalPages - 1,
                 totalPages
               );
-            } else {
+            }
+             else {
               pages.push(
                 1,
                 "...",

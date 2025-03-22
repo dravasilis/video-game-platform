@@ -33,8 +33,6 @@ const MainCard =<T extends {id:number,name:string,background_image?:string,relea
                 { data.games_count.toLocaleString() +' Games'}
               </span>
               }
-             
-
             </div>
           </div>
         </div>
