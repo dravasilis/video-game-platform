@@ -8,7 +8,6 @@
 	&:hover {
         img{
             box-shadow: none !important;
-            border: 0 !important;
         }
         .front{
 	    background: linear-gradient(45deg, #333232 0%, #0c0c0c 100%);
@@ -21,7 +20,6 @@
 	&:active {
         img{
             box-shadow: none !important;
-            border: 0 !important;
         }
         transform: scale(0.98);
 	}

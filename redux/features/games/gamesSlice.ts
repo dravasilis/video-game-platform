@@ -1,6 +1,7 @@
 import { fetchHelper } from "@/app/helpers/fetch-helper";
 import { Game } from "@/app/models/game";
 import { HttpResponse } from "@/app/models/httpResponse";
+import { BasicPagination } from "@/app/models/pagination";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -55,9 +56,10 @@ export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async 
     }
     return response;
 });
-export const fetchPopularGames = createAsyncThunk("games/fetchPopular", async () => {
+export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?:BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
         ordering: "-ratings_count",
+        ...pg
     });
     if (!response) {
         throw new Error("Failed to fetch games");
@@ -110,15 +112,15 @@ const gamesSlice = createSlice({
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
             })
-            .addCase(fetchPopularGames.pending, (state) => {
+            .addCase(fetchAllGames.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchPopularGames.fulfilled, (state, action) => {
+            .addCase(fetchAllGames.fulfilled, (state, action) => {
                 state.loading = false;
                 state.popularGames = action.payload;
             })
-            .addCase(fetchPopularGames.rejected, (state, action) => {
+            .addCase(fetchAllGames.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
             });
@@ -129,7 +131,7 @@ const gamesSlice = createSlice({
 export const selectUpcomingGames = (state: RootState) => state.games.upcomingGames;
 export const selectVintageGames = (state: RootState) => state.games.vintageGames;
 export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
-export const selectPopularGames = (state: RootState) => state.games.popularGames;
+export const selectAllGames = (state: RootState) => state.games.popularGames;
 
 // Export the reducer to be added to the store
 export default gamesSlice.reducer;

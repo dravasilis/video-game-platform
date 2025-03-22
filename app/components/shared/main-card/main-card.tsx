@@ -11,11 +11,12 @@ const MainCard = ({ game }: Props) => {
         <div className="content">
           <div className="front">
             <Image
-              className="object-cover h-full  rounded-t-lg rounded-b-sm !shadow-none   "
+              className="object-cover h-full  rounded-t-lg rounded-b-sm !shadow-none  !border-b border-[#3d3d3d] hover:!border-[#3d3d3d]"
               src={game.background_image}
               alt="gameImage"
-              width={1920}
-              height={1080}
+              width={1020}
+              height={620}
+              unoptimized
             />
             <div className="flex flex-col gap-2 px-4 py-4   justify-center h-[5rem] max-[640px]:h-[6rem] max-[640px]:py-0 max-[640px]:px-2">
               <span className="max-xl:text-xs text-sm font-bold   text-primary-100">
