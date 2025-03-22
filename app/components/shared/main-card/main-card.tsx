@@ -1,35 +1,43 @@
 import { Game } from "@/app/models/game";
 import Image from "next/image";
 import "./main-card.scss";
-interface Props {
-  game: Game;
+
+
+interface Props<T extends {id:number,name:string,background_image?:string,released?:string,games_count?:number,image_background?:string}> {
+  data: T;
 }
-const MainCard = ({ game }: Props) => {
+const MainCard =<T extends {id:number,name:string,background_image?:string,released?:string,games_count?:number,image_background?:string}> ({data} : Props<T>) => {
   return (
-    <div className="w-max">
       <div className="main-card">
         <div className="content">
           <div className="front">
             <Image
               className="object-cover h-full  rounded-t-lg rounded-b-sm !shadow-none  !border-b border-[#3d3d3d] hover:!border-[#3d3d3d]"
-              src={game.background_image}
-              alt="gameImage"
+              src={data.background_image ?? data.image_background ?? ""}
+              alt="dataImage"
               width={1020}
               height={620}
               unoptimized
             />
             <div className="flex flex-col gap-2 px-4 py-4   justify-center h-[5rem] max-[640px]:h-[6rem] max-[640px]:py-0 max-[640px]:px-2">
               <span className="max-xl:text-xs text-sm font-bold   text-primary-100">
-                {game.name}
+                {data.name}
               </span>
-              <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">
-                {new Date(game.released).toDateString().substring(4,)}
+              {
+                data.released &&  <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">
+                {new Date(data.released).toDateString().substring(4,)}
               </span>
+              }
+              {
+                data.games_count &&  <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">
+                { data.games_count.toLocaleString() +' Games'}
+              </span>
+              }
+             
 
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

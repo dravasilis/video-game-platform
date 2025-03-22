@@ -15,7 +15,7 @@ export const Categories: Category[] = [
         title: 'Browse Genres',
         subTitle: '19 Genres',
         img: '/images/bg3.jpg',
-        redirectTo: ''
+        redirectTo: 'genres'
     },
     {
         title: 'Browse Reviews',

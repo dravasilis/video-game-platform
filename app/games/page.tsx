@@ -37,7 +37,7 @@ const Games = () => {
 					{popularGames?.results ? (
 						<div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
 							{popularGames.results.map((game) => (
-								<MainCard key={game.id} game={game} />
+								<MainCard key={game.id} data={game} />
 							))}
 						</div>
 					) : (

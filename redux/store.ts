@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import gamesReducer from "./features/games/gamesSlice"; // Adjust the import path as needed
+import genresReducer from "./features/genres/genresSlice"; // Adjust the import path as needed
 
 export const makeStore = () => {
     return configureStore({
         reducer: {
-            games: gamesReducer
+            games: gamesReducer,
+            genres:genresReducer
         }
     });
 };
