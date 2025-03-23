@@ -49,6 +49,7 @@ export function CarouselUI({ games }: props) {
                   <span className="text-transparent">{game.released}</span>
                 </div>
                 <Image
+                unoptimized
                   src={game.background_image ?? "/svg/game.svg"}
                   width={1920}
                   height={600}

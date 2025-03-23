@@ -7,8 +7,6 @@ import { useState } from "react";
 interface Props {
 	count: number;
 	length: number;
-	next: string;
-	previous: string;
 	dispatch: AppDispatch;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchAction: (params: BasicPagination) => any; // Fetch action for different entities
@@ -45,8 +43,6 @@ const Pagination = ({
             pages.push(i);
           }
         } else {
-          console.log(totalPages, currentPage);
-          
           if (screenWidth > 768) {
             // For wider screens, we keep the logic as before
             if (currentPage <= 3) {
