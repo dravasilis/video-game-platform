@@ -23,9 +23,9 @@ const Genres = () => {
 		<>
 			<MainNav header='Genres' results={genres?.count}>
 			<Banner banner="gamesbg3.jpg" customBrightness={true}/>
-			<div className="flex flex-col gap-8  px-20 max-lg:px-10 max-sm:px-4 ">
+			<div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
 					{genres?.results ? (
-						<div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
+						<div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full">
 							{genres.results.map((genre) => (
 								<MainCard key={genre.id} data={genre} />
 							))}

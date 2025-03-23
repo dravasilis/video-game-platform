@@ -8,6 +8,7 @@ interface Props {
 	count: number;
 	length: number;
 	dispatch: AppDispatch;
+  searchParam?:string;
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchAction: (params: BasicPagination) => any; // Fetch action for different entities
 }
@@ -15,10 +16,11 @@ interface Props {
 const Pagination = ({
 	count,
 	length,
+  searchParam,
 	dispatch,
 	fetchAction,
 }: Props) => {
-	const totalPages = Math.ceil(count / length);
+	const totalPages = Math.ceil(count / (length || 1));
 	const [currentPage, setCurrentPage] = useState(1);
 
 	const goToPage = (page: number ) => {
@@ -28,7 +30,7 @@ const Pagination = ({
             behavior:'smooth'
         })
 		setCurrentPage(page);
-         dispatch(fetchAction({ page }));
+         dispatch(fetchAction({ page,search: searchParam,search_exact: searchParam? true:undefined, }));
 
 	};
 
@@ -93,9 +95,9 @@ const Pagination = ({
 	return (
 		<div className="flex items-center justify-center space-x-2 mt-4">
 			<Button
-				className="hover:cursor-pointer border border-[#464444] hover:bg-[#ffffff3d] active:scale-95  max-sm:py-1 max-sm:px-3 max-sm:text-xs"
+				className={`hover:cursor-pointer ${currentPage===1?'brightness-50':''} border border-[#464444] hover:bg-[#ffffff3d] active:scale-95  max-sm:py-1 max-sm:px-3 max-sm:text-xs`}
 				onClick={() => goToPage(currentPage - 1 )}
-				disabled={currentPage === 1}
+				inert={currentPage === 1}
 				variant="outline"
 			>
 				Prev
@@ -117,7 +119,7 @@ const Pagination = ({
 				</Button>
 			))}
 			<Button
-				className="hover:cursor-pointer border border-[#464444] hover:bg-[#ffffff3d] active:scale-95 max-sm:py-1 max-sm:px-3 max-sm:text-xs "
+				className={`hover:cursor-pointer ${currentPage === totalPages?'brightness-50':''} border border-[#464444] hover:bg-[#ffffff3d] active:scale-95  max-sm:py-1 max-sm:px-3 max-sm:text-xs`}
 				onClick={() => goToPage(currentPage + 1 )}
 				disabled={currentPage === totalPages}
 				variant="outline"

@@ -5,26 +5,30 @@
 	transition-duration: 200ms;
 	border: 1px solid transparent;
 	border-radius: 6px;
-	img{
+	overflow: hidden;
+	img {
+		transition-duration: 200ms;
 		max-height: 75%;
+		will-change: transform;
 	}
 	&:hover {
-        img{
-            box-shadow: none !important;
-        }
-        .front{
-	    background: linear-gradient(45deg, #333232 0%, #0c0c0c 100%);
-
-        }
+		img {
+			transition-duration: 200ms;
+			transform: scale(1.03);
+			box-shadow: none !important;
+		}
+		.front {
+			background: linear-gradient(45deg, #333232 0%, #0c0c0c 100%);
+		}
 		border: 1px solid rgba(66, 66, 66, 0.774);
 		transition-duration: 200ms;
 		cursor: pointer;
 	}
 	&:active {
-        img{
-            box-shadow: none !important;
-        }
-        transform: scale(0.98);
+		img {
+			box-shadow: none !important;
+		}
+		transform: scale(0.98);
 	}
 }
 
@@ -77,9 +81,9 @@
 	.main-card {
 		width: 175px;
 		height: 225px;
-        &:hover{
-            border-color: transparent !important;
-        }
+		&:hover {
+			border-color: transparent !important;
+		}
 	}
 }
 @media screen and (max-width: 400px) {
@@ -88,4 +92,3 @@
 		height: 200px;
 	}
 }
- 

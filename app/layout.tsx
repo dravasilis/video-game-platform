@@ -1,5 +1,5 @@
 import { Montserrat } from "next/font/google";
-import { Metadata } from "next/types";
+import { Metadata, Viewport } from "next/types";
 import RawgReferral from "./components/rawgReferral/rawgReferral";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
@@ -31,8 +31,13 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["https://video-game-platform.vercel.app/images/logo.png"], // Added Twitter image
   },
-};
 
+};
+export const viewport:Viewport={
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1
+}
 const roboto = Montserrat({
   subsets: ["latin"],
   weight: "400",

@@ -58,8 +58,8 @@ export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async 
 });
 export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?:BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
-        ordering: "-ratings_count",
-        ...pg
+        ...( Object.fromEntries(Object.entries(pg??{}).filter(([_, v]) => v !== undefined))),
+        ordering:'-added'
     });
     if (!response) {
         throw new Error("Failed to fetch games");
@@ -77,6 +77,7 @@ const gamesSlice = createSlice({
             .addCase(fetchUpcomingGames.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+                
             })
             .addCase(fetchUpcomingGames.fulfilled, (state, action) => {
                 state.loading = false;
@@ -131,7 +132,7 @@ const gamesSlice = createSlice({
 export const selectUpcomingGames = (state: RootState) => state.games.upcomingGames;
 export const selectVintageGames = (state: RootState) => state.games.vintageGames;
 export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
-export const selectAllGames = (state: RootState) => state.games.popularGames;
+export const selectAllGames = (state: RootState) => state.games;
 
 // Export the reducer to be added to the store
 export default gamesSlice.reducer;

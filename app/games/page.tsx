@@ -25,22 +25,22 @@ const Games = () => {
 
 	return (
 		<>
-			<MainNav header="Games" results={popularGames?.count}>
+			<MainNav header="Games" results={popularGames.popularGames?.count}>
 				<Banner banner="gamesbg2.jpg" />
 				<div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
-					{popularGames?.results ? (
-						<div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
-							{popularGames.results.map((game) => (
+					{popularGames.popularGames?.results ? (
+						<div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full ">
+							{popularGames.popularGames.results.map((game) => (
 								<MainCard key={game.id} data={game} />
 							))}
 						</div>
 					) : (
 						<Loader />
 					)}
-					{popularGames && (
+					{popularGames.popularGames && (
 						<Pagination
-							count={popularGames?.count ?? 0}
-							length={popularGames?.results.length ?? 0}
+							count={popularGames.popularGames?.count ?? 0}
+							length={popularGames.popularGames?.results.length ?? 0}
 							dispatch={dispatch} // Pass dispatch
 							fetchAction={fetchAllGames} // Pass fetch action for games
 						/>
