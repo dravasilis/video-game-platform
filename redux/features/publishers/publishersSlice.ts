@@ -20,7 +20,7 @@ const initialState: PublishersState = {
 export const fetchPublishers = createAsyncThunk("genres/fetchPublishers", async (pg?:BasicPagination) => {
     pg = {...pg,page_size: pg?.page_size ?? 20}
     const response: HttpResponse<Publisher> = await fetchHelper('/publishers', {
-        ...pg
+        ...( Object.fromEntries(Object.entries(pg??{}).filter(([_, v]) => v !== undefined))),
     });
     if (!response) {
         throw new Error("Failed to fetch genres");
@@ -49,5 +49,5 @@ const publishersSlice = createSlice({
     },
 });
 
-export const selectPublishers = (state: RootState) => state.publishers.publishers;
+export const selectPublishers = (state: RootState) => state.publishers;
 export default publishersSlice.reducer;

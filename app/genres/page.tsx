@@ -11,32 +11,32 @@ import Banner from '../components/landing-page/banner/banner';
 
 const Genres = () => {
     const dispatch = useDispatch<AppDispatch>();
+	const genresState = useSelector(selectGenres);
 	
 		// Dispatch the action only once on component mount
 		useEffect(() => {
-			dispatch(fetchGenres());
+		!genresState.genres &&	dispatch(fetchGenres());
 		}, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 	
-		const genres = useSelector(selectGenres);
 
 	return (
 		<>
-			<MainNav header='Genres' results={genres?.count}>
+			<MainNav header='Genres' results={genresState.genres?.count}>
 			<Banner banner="gamesbg3.jpg" customBrightness={true}/>
 			<div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
-					{genres?.results ? (
+					{!genresState.loading ? (
 						<div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full">
-							{genres.results.map((genre) => (
+							{genresState.genres?.results.map((genre) => (
 								<MainCard key={genre.id} data={genre} />
 							))}
 						</div>
 					) : (
 						<Loader />
 					)}
-					{genres && (
+					{genresState.genres && (
 						<Pagination
-							count={genres?.count ?? 0}
-							length={genres?.results.length ?? 0}
+							count={genresState.genres?.count ?? 0}
+							length={genresState.genres?.results.length ?? 0}
 							dispatch={dispatch} // Pass dispatch
 							fetchAction={fetchGenres} // Pass fetch action for games
 						/>

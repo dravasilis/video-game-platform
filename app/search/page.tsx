@@ -1,7 +1,8 @@
 "use client";
 import {
+	clearGames,
 	fetchAllGames,
-	selectAllGames,
+	selectAllGames
 } from "@/redux/features/games/gamesSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
@@ -25,6 +26,10 @@ const SeachResults = () => {
 				search_exact: true,
 			})
 		);
+		return () => {
+			//initialize games to the initial state
+			dispatch(clearGames());
+		};
 	}, [dispatch, searchTerm]);
 	const searchResults = useSelector(selectAllGames);
 	console.log(searchResults);

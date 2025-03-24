@@ -18,7 +18,7 @@ const initialState: GenresState = {
 
 export const fetchGenres = createAsyncThunk("genres/fetchGenres", async (pg?:BasicPagination) => {
     const response: HttpResponse<Genre> = await fetchHelper('/genres', {
-        ...pg
+        ...( Object.fromEntries(Object.entries(pg??{}).filter(([_, v]) => v !== undefined))),
     });
     if (!response) {
         throw new Error("Failed to fetch genres");
@@ -47,5 +47,5 @@ const genresSlice = createSlice({
     },
 });
 
-export const selectGenres = (state: RootState) => state.genres.genres;
+export const selectGenres = (state: RootState) => state.genres;
 export default genresSlice.reducer;

@@ -7,13 +7,13 @@
 	border-radius: 6px;
 	overflow: hidden;
 	img {
-		transition-duration: 200ms;
+		transition-duration: 500ms;
 		max-height: 75%;
 		will-change: transform;
 	}
 	&:hover {
 		img {
-			transition-duration: 200ms;
+			transition-duration: 500ms;
 			transform: scale(1.03);
 			box-shadow: none !important;
 		}

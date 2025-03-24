@@ -10,8 +10,6 @@ interface Props {
 	results?:number
 }
 const MainNav = ({ children,header,results }: Props) => {
-	console.log(header,results);
-	
 	return (
 		<>
 			<div className="flex flex-col gap-4 py-4 animate-fade-in px-4">

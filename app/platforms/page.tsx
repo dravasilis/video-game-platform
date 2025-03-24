@@ -11,33 +11,33 @@ import Loader from '../components/shared/loader/loader';
 
 const Platforms = () => {
     const dispatch = useDispatch<AppDispatch>();
+    const platformsState = useSelector(selectPlatforms);
 	
     // Dispatch the action only once on component mount
     useEffect(() => {
-        dispatch(fetchPlatforms());
+       !platformsState.platforms && dispatch(fetchPlatforms());
     }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
-    const platforms = useSelector(selectPlatforms);
-    console.log(platforms);
+    console.log(platformsState.platforms);
 
 return (
     <>
-        <MainNav header='Platforms' results={platforms?.count}>
+        <MainNav header='Platforms' results={platformsState.platforms?.count}>
 				<Banner banner="gamesbg5.jpg" customBrightness={true} />
                 <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
-                {platforms?.results ? (
+                {!platformsState.loading ? (
                     <div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
-                        {platforms.results.map((platform) => (
+                        {platformsState.platforms?.results.map((platform) => (
                             <MainCard key={platform.id} data={platform} />
                         ))}
                     </div>
                 ) : (
                     <Loader />
                 )}
-                {platforms && (
+                {platformsState.platforms && (
                     <Pagination
-                        count={platforms?.count ?? 0}
-                        length={platforms?.results.length ?? 0}
+                        count={platformsState.platforms?.count ?? 0}
+                        length={platformsState.platforms?.results.length ?? 0}
                         dispatch={dispatch} // Pass dispatch
                         fetchAction={fetchPlatforms} // Pass fetch action for games
                     />

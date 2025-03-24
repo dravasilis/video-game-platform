@@ -33,7 +33,7 @@ export interface Game {
 	ratings_count: number,
 	released: string,
 	reviews_count: number,
-	reviews_text_count: number,
+	reviews_text_count: string,
 	saturated_color: string,
 	short_screenshots: ShortScreenshot[],
 	slug: string,
@@ -44,4 +44,32 @@ export interface Game {
 	updated: string,
 	user_game?: string;
 }
-
+export interface GameDetails extends Game{
+	name_original:string,
+	description:string,
+	metacritic_platforms:MetacriticPlatform[],
+	background_image_additional:string,
+	website:string,
+	reactions:string[],
+	screenshots_count:number,
+	movies_count:number,
+	creators_count:number,
+	achievements_count:number,
+	parent_achievements_count:number,
+	reddit_url:string,
+	reddit_name:string,
+	reddit_description:string,
+	reddit_logo:string,
+	reddit_count:number,
+	twitch_count:string,
+	youtube_count:string,
+	alternative_names:string[],
+	metacritic_url:string,
+	parents_count:number,
+	additions_count:number,
+	game_series_count:number,
+}
+interface MetacriticPlatform{
+	metascore:number,
+	url:string
+}
