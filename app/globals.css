@@ -10,6 +10,11 @@
     --color-primary-200: #7d8593;
     --color-primary-250: #c1d1ed;
     --color-primary-300: #d8dee9;
+    --color-primary-350: #d0d0d0;
+    --color-success: #29cf7f;
+    --color-warning: #fcbe4e;
+    --color-danger: #fb6a75;
+    --color-dark: #262626;
 }
 
 @keyframes fadeIn {

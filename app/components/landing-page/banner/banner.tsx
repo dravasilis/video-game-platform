@@ -2,17 +2,21 @@ import React from "react";
 import "./banner.css";
 import Image from "next/image";
 interface Props {
-  banner: string;
+  banner?: string;
+  customBrightness?: boolean;
+  href?: string;
 }
-const Banner = ({ banner }: Props) => {
+const Banner = ({ banner, href, customBrightness }: Props) => {
   return (
     <div className="z-0">
       <div className="bannerGradient banner"></div>
       <Image
-        className="banner object-cover"
+        className={`banner object-cover ${
+          customBrightness ? "brightness-[.35]" : ""
+        }`}
         width={1920}
         height={1080}
-        src={`/images/${banner}`}
+        src={href ?? `/images/${banner}`}
         alt="banner"
       />
     </div>

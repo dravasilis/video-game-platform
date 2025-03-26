@@ -19,7 +19,7 @@ const initialState: PlatformsState = {
 export const fetchPlatforms = createAsyncThunk("genres/fetchPlatforms", async (pg?:BasicPagination) => {
     pg = {...pg,page_size: pg?.page_size ?? 20}
     const response: HttpResponse<Platform> = await fetchHelper('/platforms', {
-        ...pg
+        ...( Object.fromEntries(Object.entries(pg??{}).filter(([_, v]) => v !== undefined))),
     });
     if (!response) {
         throw new Error("Failed to fetch platforms");
@@ -48,5 +48,5 @@ const platformsSlice = createSlice({
     },
 });
 
-export const selectPlatforms = (state: RootState) => state.platforms.platforms;
+export const selectPlatforms = (state: RootState) => state.platforms;
 export default platformsSlice.reducer;

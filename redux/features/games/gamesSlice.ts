@@ -1,5 +1,5 @@
 import { fetchHelper } from "@/app/helpers/fetch-helper";
-import { Game } from "@/app/models/game";
+import { Game, GameDetails } from "@/app/models/game";
 import { HttpResponse } from "@/app/models/httpResponse";
 import { BasicPagination } from "@/app/models/pagination";
 import { RootState } from "@/redux/store";
@@ -10,6 +10,7 @@ interface GamesState {
     vintageGames: HttpResponse<Game> | null;
     topRatedGames: HttpResponse<Game> | null;
     popularGames: HttpResponse<Game> | null;
+    selectedGame: GameDetails | null;
     loading: boolean;
     error: string | null;
 }
@@ -18,6 +19,7 @@ const initialState: GamesState = {
     vintageGames: null,
     topRatedGames: null,
     popularGames: null,
+    selectedGame: null,
     loading: false,
     error: null,
 };
@@ -56,11 +58,18 @@ export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async 
     }
     return response;
 });
-export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?:BasicPagination) => {
+export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?: BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
-        ordering: "-ratings_count",
-        ...pg
+        ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
+        ordering: '-added'
     });
+    if (!response) {
+        throw new Error("Failed to fetch games");
+    }
+    return response;
+});
+export const fetchGame = createAsyncThunk("games/fetchGame", async (id: number) => {
+    const response: GameDetails = await fetchHelper(`/games/${id}`);
     if (!response) {
         throw new Error("Failed to fetch games");
     }
@@ -71,12 +80,20 @@ export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?:Basic
 const gamesSlice = createSlice({
     name: "games",
     initialState,
-    reducers: {},
+    reducers: {
+        clearGames: (state) => {
+            state.popularGames = null; // Reset games state without making a request
+        },
+        clearSelectedGame: (state) => {
+            state.selectedGame = null; // Reset games state without making a request
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchUpcomingGames.pending, (state) => {
                 state.loading = true;
                 state.error = null;
+
             })
             .addCase(fetchUpcomingGames.fulfilled, (state, action) => {
                 state.loading = false;
@@ -123,6 +140,18 @@ const gamesSlice = createSlice({
             .addCase(fetchAllGames.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGame.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGame.fulfilled, (state, action) => {
+                state.loading = false;
+                state.selectedGame = action.payload;
+            })
+            .addCase(fetchGame.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
             });
     },
 });
@@ -131,7 +160,9 @@ const gamesSlice = createSlice({
 export const selectUpcomingGames = (state: RootState) => state.games.upcomingGames;
 export const selectVintageGames = (state: RootState) => state.games.vintageGames;
 export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
-export const selectAllGames = (state: RootState) => state.games.popularGames;
+export const selectAllGames = (state: RootState) => state.games;
+export const selectGameById = (state: RootState) => state.games;
+export const { clearGames } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
 export default gamesSlice.reducer;
