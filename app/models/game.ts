@@ -1,6 +1,6 @@
 import { ESRB_rating } from "./esrb-rating";
 import { Genre } from "./genre";
-import { Platform } from "./platform";
+import { PlatformsDetails } from "./platform";
 import { Publisher } from "./publisher";
 import { Rating } from "./rating";
 import { ShortScreenshot } from "./short-screenshot";
@@ -25,8 +25,8 @@ export interface Game {
 	id: number,
 	metacritic: number,
 	name: string,
-	parent_platforms: Platform[],
-	platforms: Platform[],
+	parent_platforms: PlatformsDetails[],
+	platforms: PlatformsDetails[],
 	playtime: number,
 	rating: number,
 	rating_top: number,
