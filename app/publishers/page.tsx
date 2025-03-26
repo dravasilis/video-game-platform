@@ -17,7 +17,7 @@ const Publishers = () => {
   const publishersState = useSelector(selectPublishers);
   // Dispatch the action only once on component mount
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     !publishersState.publishers && dispatch(fetchPublishers());
   }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
