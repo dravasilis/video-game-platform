@@ -10,6 +10,7 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./page.scss";
+import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
@@ -24,7 +25,7 @@ const GamePage = () => {
     <div>
       <MainNav>
         {gameState.selectedGame ? (
-          <div className="flex flex-col gap-12  px-16 max-sm:px-4 ">
+          <div className="flex flex-col   px-16 max-sm:px-4 max-lg:px-8">
             <Banner
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
@@ -35,11 +36,11 @@ const GamePage = () => {
                 alt="gameState.selectedGameImage"
                 width={1920}
                 height={1080}
-                className="w-[300px] shadow-[0px_0px_9px_2px_#121212] h-[350px] max-sm:w-full max-sm:h-full object-cover rounded-lg relative bottom-4"
+                className="w-[300px] max-lg:w-[200px]  max-lg:h-[250px] shadow-[0px_0px_9px_2px_#121212] h-[350px] max-sm:w-full max-sm:h-full object-cover rounded-lg relative bottom-4"
               />
               <div className="flex flex-col gap-4">
                 {/* TITLE  */}
-                <h1 className="text-5xl max-sm:text-2xl font-bold pb-4 max-sm:pb-0 -ml-4 max-sm:ml-0">
+                <h1 className="text-5xl max-lg:text-3xl max-sm:text-2xl font-bold pb-4 max-sm:pb-0 -ml-4 max-sm:ml-0">
                   {gameState.selectedGame.name}
                 </h1>
                 {/* RATING  */}
@@ -93,24 +94,42 @@ const GamePage = () => {
                   </p>
                 </div>
                 {/* GENRES  */}
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 flex-wrap">
                   {gameState.selectedGame.genres.map((genre, index) => (
-                    <Link href={"/genres"} key={index} className="genre">
+                    <Link href={"/genres"} key={index} className="pill">
                       {genre.name}
                     </Link>
                   ))}
                 </div>
+                <SeparatingLine />
+                {/* PLATFORMS  */}
+                <div className="flex items-center gap-2 flex-wrap">
+                  {gameState.selectedGame.platforms.map(
+                    (platformDetails, index) => (
+                      <Link href={"/platforms"} key={index} className="pill">
+                        {platformDetails.platform.name}
+                      </Link>
+                    )
+                  )}
+                </div>
                 {/* REDDIT */}
                 <Link
-                  href={gameState.selectedGame.metacritic_url}
+                  href={gameState.selectedGame.reddit_url}
                   target="_blank"
-                  className="w-max"
+                  className="w-max flex gap-1"
                 >
                   <Image
                     src={"/svg/reddit.svg"}
                     alt="reddit"
-                    width={20}
-                    height={20}
+                    width={60}
+                    height={60}
+                  />
+                  <Image
+                    src={"/svg/redirect.svg"}
+                    alt="reddit"
+                    width={13}
+                    height={13}
+                    className="mb-2"
                   />
                 </Link>
               </div>
