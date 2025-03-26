@@ -18,7 +18,7 @@ const Platforms = () => {
 
   // Dispatch the action only once on component mount
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !platformsState.platforms && dispatch(fetchPlatforms());
   }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
