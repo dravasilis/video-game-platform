@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 const RawgReferral = () => {
   return (
-    <div className="flex items-center text-sm max-sm:text-xs gap-1 py-8   justify-end px-24 max-xl:px-20 max-lg:px-16 max-md:px-12 max-sm:px-5">
+    <div className="flex items-center relative text-sm max-sm:text-xs gap-1 py-8   justify-end px-24 max-xl:px-20 max-lg:px-16 max-md:px-12 max-sm:px-5">
       <Image src={copyright} alt="copyrightSvg" width={20} height={20} />
       Powered by
       <Link

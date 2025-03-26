@@ -1,6 +1,7 @@
 import { ESRB_rating } from "./esrb-rating";
 import { Genre } from "./genre";
 import { Platform } from "./platform";
+import { Publisher } from "./publisher";
 import { Rating } from "./rating";
 import { ShortScreenshot } from "./short-screenshot";
 import { StoreData } from "./store";
@@ -44,32 +45,34 @@ export interface Game {
 	updated: string,
 	user_game?: string;
 }
-export interface GameDetails extends Game{
-	name_original:string,
-	description:string,
-	metacritic_platforms:MetacriticPlatform[],
-	background_image_additional:string,
-	website:string,
-	reactions:string[],
-	screenshots_count:number,
-	movies_count:number,
-	creators_count:number,
-	achievements_count:number,
-	parent_achievements_count:number,
-	reddit_url:string,
-	reddit_name:string,
-	reddit_description:string,
-	reddit_logo:string,
-	reddit_count:number,
-	twitch_count:string,
-	youtube_count:string,
-	alternative_names:string[],
-	metacritic_url:string,
-	parents_count:number,
-	additions_count:number,
-	game_series_count:number,
+export interface GameDetails extends Game {
+	name_original: string,
+	description: string,
+	description_raw: string,
+	metacritic_platforms: MetacriticPlatform[],
+	background_image_additional: string,
+	website: string,
+	reactions: string[],
+	screenshots_count: number,
+	movies_count: number,
+	creators_count: number,
+	achievements_count: number,
+	parent_achievements_count: number,
+	reddit_url: string,
+	reddit_name: string,
+	reddit_description: string,
+	reddit_logo: string,
+	reddit_count: number,
+	twitch_count: string,
+	youtube_count: string,
+	alternative_names: string[],
+	metacritic_url: string,
+	parents_count: number,
+	additions_count: number,
+	game_series_count: number,
+	developers: Publisher[];
 }
-interface MetacriticPlatform{
-	metascore:number,
-	url:string
+interface MetacriticPlatform {
+	metascore: number,
+	url: string;
 }
