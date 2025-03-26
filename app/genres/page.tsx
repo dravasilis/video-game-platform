@@ -15,9 +15,9 @@ const Genres = () => {
 
   // Dispatch the action only once on component mount
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     !genresState.genres && dispatch(fetchGenres());
-  }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
+  }, [dispatch]);
 
   return (
     <>
