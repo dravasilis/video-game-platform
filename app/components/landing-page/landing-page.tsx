@@ -29,7 +29,7 @@ const LandingPage = () => {
     dispatch(fetchUpcomingGames());
     dispatch(fetchVintageGames());
     dispatch(fetchTopRatedGames());
-  }); // Empty dependency array means this will only run once when the component mounts
+  }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
   const [upcoming, vintage, topRated] = [
     useSelector(selectUpcomingGames),

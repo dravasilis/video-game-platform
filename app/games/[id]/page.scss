@@ -3,10 +3,23 @@
     padding: 0.35rem 0.75rem;
     font-size: 14px;
     border-radius: 0.5rem;
-    background: linear-gradient(90deg, #45454575 0%, #b8b8b817 100%);
+    background: linear-gradient(90deg, #4545459a 0%, #b8b8b831 100%);
     box-shadow: 1px 1px 1px 1px #23222294;
 
     &:hover {
-        background: linear-gradient(90deg, #45454575 0%, #b8b8b833 100%);
+        background: linear-gradient(90deg, #454545ad 0%, #b8b8b852 100%);
     }
 }
+
+
+
+.stat-card-container {
+    width: 50%;
+}
+
+.stat-card {
+    width: 100% !important;
+
+}
+
+@media screen {}

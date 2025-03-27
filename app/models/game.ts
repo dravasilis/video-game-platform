@@ -7,13 +7,15 @@ import { ShortScreenshot } from "./short-screenshot";
 import { StoreData } from "./store";
 import { Tag } from "./tag";
 
-type AddedByStatus =
-	| "beaten"
-	| "dropped"
-	| "owned"
-	| "playing"
-	| "toplay"
-	| "yet";
+interface AddedByStatus {
+	beaten: number,
+	dropped: number,
+	owned: number,
+	playing: number,
+	toplay: number,
+	yet: number;
+}
+
 export interface Game {
 	added: number; //users count that added this game in their lists
 	added_by_status: AddedByStatus;

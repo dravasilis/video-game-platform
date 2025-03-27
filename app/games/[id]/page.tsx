@@ -11,6 +11,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./page.scss";
 import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
+import MainCard from "@/app/components/shared/main-card/main-card";
+import StatCard from "@/app/components/shared/stat-card/stat";
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
@@ -25,19 +27,96 @@ const GamePage = () => {
     <div>
       <MainNav>
         {gameState.selectedGame ? (
-          <div className="flex flex-col   px-16 max-sm:px-4 max-lg:px-8">
+          <div className="flex flex-col gap-12 px-16 max-sm:px-4 max-lg:px-8">
             <Banner
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
             />
             <div className="flex max-sm:flex-col gap-12 max-sm:gap-0 z-10 mt-[12rem] max-sm:mt-[2rem] max-sm:px-0">
-              <Image
-                src={gameState.selectedGame.background_image}
-                alt="gameState.selectedGameImage"
-                width={1920}
-                height={1080}
-                className="w-[300px] max-lg:w-[200px]  max-lg:h-[250px] shadow-[0px_0px_9px_2px_#121212] h-[350px] max-sm:w-full max-sm:h-full object-cover rounded-lg relative bottom-4"
-              />
+              <div className="flex flex-col gap-2">
+                <Image
+                  src={gameState.selectedGame.background_image}
+                  alt="gameState.selectedGameImage"
+                  width={1920}
+                  height={1080}
+                  className="w-[300px] max-lg:w-[200px]  max-lg:h-[250px] shadow-[0px_0px_9px_2px_#121212] h-[350px] max-sm:w-full max-sm:h-full object-cover rounded-lg relative bottom-4"
+                />
+                <div className="grid grid-cols-2 gap-2 text-sm">
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/owned.svg"}
+                      alt="owned"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Owned</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.owned.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/beaten.svg"}
+                      alt="beaten"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Beaten</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.beaten.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/playing.svg"}
+                      alt="playing"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Playing</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.playing.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/wishlist.svg"}
+                      alt="wishlist"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Wishlist</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.toplay.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/backlogged.svg"}
+                      alt="backlogged"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Backlogged</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.yet.toLocaleString()}
+                    </span>
+                  </div>
+                  <div className="flex gap-1">
+                    <Image
+                      src={"/svg/dropped.svg"}
+                      alt="dropped"
+                      width={20}
+                      height={20}
+                    />
+                    <span>Dropped</span>
+                    <span>
+                      {gameState.selectedGame.added_by_status.dropped.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
               <div className="flex flex-col gap-4">
                 {/* TITLE  */}
                 <h1 className="text-5xl max-lg:text-3xl max-sm:text-2xl font-bold pb-4 max-sm:pb-0 -ml-4 max-sm:ml-0">
@@ -140,6 +219,51 @@ const GamePage = () => {
               <p className="text-[16px] text-primary-350 leading-[26px]">
                 {gameState.selectedGame.description_raw}
               </p>
+            </div>
+            {/* STATS  */}
+            <div className="flex   gap-8">
+              <StatCard
+                title={"Lists"}
+                svg="lists"
+                count={String(gameState.selectedGame.added)}
+              />
+              <StatCard
+                title={"Reviews"}
+                svg="star"
+                count={String(gameState.selectedGame.reviews_count)}
+              />
+              <StatCard
+                title={"Suggestions"}
+                svg="suggestions"
+                count={String(gameState.selectedGame.suggestions_count)}
+              />
+              <StatCard
+                title={"Achievements"}
+                svg="achievements"
+                count={String(gameState.selectedGame.achievements_count)}
+              />
+            </div>
+            {/* STORES  */}
+            <div className="flex flex-col gap-4 pt-8">
+              <h2 className="text-3xl text-primary-100 font-bold">
+                Available at
+              </h2>
+              <div className="flex gap-4 flex-wrap">
+                {gameState.selectedGame.stores.map((storeDetails, index) => (
+                  <MainCard key={index} data={storeDetails.store} />
+                ))}
+              </div>
+            </div>
+            {/* TAGS  */}
+            <div className="flex flex-col gap-4 pt-8">
+              <h3 className="text-lg text-primary-150 font-bold">Tags</h3>
+              <div className="flex gap-4 flex-wrap">
+                {gameState.selectedGame.tags.map((tag, index) => (
+                  <Link href={"/genres"} key={index} className="pill">
+                    {tag.name}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
