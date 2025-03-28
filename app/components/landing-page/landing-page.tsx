@@ -20,7 +20,7 @@ import Description from "./description/description";
 import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
 import FeatureShowcase from "./feature-showcase/feature-showcase";
 import Title from "./title/title";
-
+import "./landing-page.css";
 const LandingPage = () => {
   const dispatch = useDispatch<AppDispatch>();
 

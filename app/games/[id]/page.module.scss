@@ -1,0 +1,61 @@
+.pill {
+    color: var(--color-primary-350);
+    padding: 0.35rem 0.5rem;
+    font-size: 14px;
+    border-radius: 0.5rem;
+    background: linear-gradient(90deg, #4545459a 0%, #b8b8b831 100%);
+    box-shadow: 1px 1px 1px 1px #23222294;
+
+    &:hover {
+        background: linear-gradient(90deg, #454545ad 0%, #b8b8b852 100%);
+    }
+}
+
+
+.mainCardContainer>div {
+    width: 175px !important;
+    height: 225px !important;
+
+}
+
+.statCardParent>div {
+    padding: 0 !important;
+    width: 40%;
+
+    >div {
+        padding: .75rem 0.25rem;
+        width: 100% !important;
+
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .statCardParent>div {
+        width: 35%;
+        padding: 0 !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .pill {
+        padding: 0.35rem 0.5rem;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .statCardParent>div {
+        >div {
+            padding: .75rem 0.25rem !important;
+
+            span {
+                font-size: 12px;
+            }
+
+            img {
+                width: 15px;
+            }
+        }
+    }
+}

@@ -26,7 +26,7 @@ const MainCard = <
   data,
 }: Props<T>) => {
   return (
-    <div className="main-card">
+    <div className="mainCard">
       <div className="content">
         <div className="front">
           <Image
