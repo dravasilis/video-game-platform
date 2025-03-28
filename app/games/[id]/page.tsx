@@ -2,7 +2,12 @@
 import Banner from "@/app/components/landing-page/banner/banner";
 import MainNav from "@/app/components/main-nav/main-nav";
 import Loader from "@/app/components/shared/loader/loader";
-import { fetchGame, selectGameById } from "@/redux/features/games/gamesSlice";
+import {
+  fetchGame,
+  fetchGameTrailers,
+  selectGameById,
+  selectGameTrailers,
+} from "@/redux/features/games/gamesSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,16 +19,30 @@ import MainCard from "@/app/components/shared/main-card/main-card";
 import StatCard from "@/app/components/shared/stat-card/stat";
 import { statuses } from "@/app/constants/statuses";
 import styles from "./page.module.scss";
+import { CarouselUI } from "@/app/components/shared/carousel/CardsCarousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { Trailer } from "@/app/models/game";
+import { Card, CardContent } from "@/components/ui/card";
+import VideoCarousel from "@/app/components/shared/video-carousel/video-carousel";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
   // Dispatch the action only once on component mount
+  const gameState = useSelector(selectGameById);
+  const trailer = useSelector(selectGameTrailers);
   useEffect(() => {
     dispatch(fetchGame(Number(id)));
+    dispatch(fetchGameTrailers(Number(id)));
   }, [dispatch]);
-  const gameState = useSelector(selectGameById);
   console.log(gameState);
+  console.log(trailer);
 
   return (
     <div>
@@ -137,6 +156,28 @@ const GamePage = () => {
                       className="mb-2"
                     />
                   </Link>
+                  {/* WEBSITE URL */}
+                  <Link
+                    href={gameState.selectedGame.website}
+                    target="_blank"
+                    className="w-max flex gap-1"
+                  >
+                    <Image
+                      src={"/svg/website.svg"}
+                      alt="website"
+                      width={20}
+                      height={20}
+                      className="mb-2"
+                    />
+                    <span className="text-primary-250 text-sm">Website</span>
+                    <Image
+                      src={"/svg/redirect.svg"}
+                      alt="reddit"
+                      width={13}
+                      height={13}
+                      className="mb-4"
+                    />
+                  </Link>
                 </div>
                 {/* GENRES  */}
                 <div className="flex items-center gap-2 flex-wrap">
@@ -181,7 +222,7 @@ const GamePage = () => {
               )}
             </div>
             {/* DESCRIPTION  */}
-            <div className="flex flex-col gap-4 relative">
+            <div className="flex flex-col gap-4 relative py-12 max-sm:py-0">
               <h2 className="text-3xl text-primary-100 font-bold">Overview</h2>
               <p className="text-[16px] text-primary-350 leading-[26px]">
                 {gameState.selectedGame.description_raw}
@@ -212,6 +253,12 @@ const GamePage = () => {
                 count={String(gameState.selectedGame.achievements_count)}
               />
             </div>
+            {/* TRAILERS  */}
+            <div className="flex flex-col gap-4 relative py-12 max-sm:py-4">
+              <h2 className="text-3xl text-primary-100 font-bold">Trailers</h2>
+              {/* asdsad */}
+              <VideoCarousel trailers={trailer?.results ?? []} />
+            </div>
             {/* STORES  */}
             <div className="flex flex-col gap-4 pt-8">
               <h2 className="text-3xl text-primary-100 font-bold">
@@ -230,7 +277,7 @@ const GamePage = () => {
               <h3 className="text-lg text-primary-150 font-bold">Tags</h3>
               <div className="flex gap-4 flex-wrap">
                 {gameState.selectedGame.tags.map((tag, index) => (
-                  <Link href={"/genres"} key={index} className="pill">
+                  <Link href={"/genres"} key={index} className={styles.pill}>
                     {tag.name}
                   </Link>
                 ))}

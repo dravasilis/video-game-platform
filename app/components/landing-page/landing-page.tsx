@@ -23,19 +23,20 @@ import Title from "./title/title";
 import "./landing-page.css";
 const LandingPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-
-  // Dispatch the actions only once on component mount
-  useEffect(() => {
-    dispatch(fetchUpcomingGames());
-    dispatch(fetchVintageGames());
-    dispatch(fetchTopRatedGames());
-  }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
-
   const [upcoming, vintage, topRated] = [
     useSelector(selectUpcomingGames),
     useSelector(selectVintageGames),
     useSelector(selectTopRatedGames),
   ];
+  // Dispatch the actions only once on component mount
+  useEffect(() => {
+    if (!upcoming && !vintage && !topRated) {
+      dispatch(fetchUpcomingGames());
+      dispatch(fetchVintageGames());
+      dispatch(fetchTopRatedGames());
+    }
+  }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
+
   return (
     <div className="px-24 max-xl:px-20 max-lg:px-16 max-md:px-12 max-sm:px-5">
       {/* START BROWSING BUTTON  */}

@@ -1,5 +1,5 @@
 import { fetchHelper } from "@/app/helpers/fetch-helper";
-import { Game, GameDetails } from "@/app/models/game";
+import { Game, GameDetails, TrailersResponse } from "@/app/models/game";
 import { HttpResponse } from "@/app/models/httpResponse";
 import { BasicPagination } from "@/app/models/pagination";
 import { RootState } from "@/redux/store";
@@ -11,6 +11,7 @@ interface GamesState {
     topRatedGames: HttpResponse<Game> | null;
     popularGames: HttpResponse<Game> | null;
     selectedGame: GameDetails | null;
+    selectedGameTrailer: TrailersResponse | null;
     loading: boolean;
     error: string | null;
 }
@@ -20,6 +21,7 @@ const initialState: GamesState = {
     topRatedGames: null,
     popularGames: null,
     selectedGame: null,
+    selectedGameTrailer: null,
     loading: false,
     error: null,
 };
@@ -72,6 +74,13 @@ export const fetchGame = createAsyncThunk("games/fetchGame", async (id: number) 
     const response: GameDetails = await fetchHelper(`/games/${id}`);
     if (!response) {
         throw new Error("Failed to fetch games");
+    }
+    return response;
+});
+export const fetchGameTrailers = createAsyncThunk("games/fetchGameTrailers", async (id: number) => {
+    const response: TrailersResponse = await fetchHelper(`/games/${id}/movies`);
+    if (!response) {
+        throw new Error("Failed to fetch games trailers");
     }
     return response;
 });
@@ -152,6 +161,18 @@ const gamesSlice = createSlice({
             .addCase(fetchGame.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameTrailers.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameTrailers.fulfilled, (state, action) => {
+                state.loading = false;
+                state.selectedGameTrailer = action.payload;
+            })
+            .addCase(fetchGameTrailers.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
             });
     },
 });
@@ -162,6 +183,7 @@ export const selectVintageGames = (state: RootState) => state.games.vintageGames
 export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
 export const selectAllGames = (state: RootState) => state.games;
 export const selectGameById = (state: RootState) => state.games;
+export const selectGameTrailers = (state: RootState) => state.games.selectedGameTrailer;
 export const { clearGames } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
