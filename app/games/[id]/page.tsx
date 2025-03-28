@@ -2,45 +2,37 @@
 import Banner from "@/app/components/landing-page/banner/banner";
 import MainNav from "@/app/components/main-nav/main-nav";
 import Loader from "@/app/components/shared/loader/loader";
+import MainCard from "@/app/components/shared/main-card/main-card";
+import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
+import StatCard from "@/app/components/shared/stat-card/stat";
+import VideoCarousel from "@/app/components/shared/video-carousel/video-carousel";
+import { statuses } from "@/app/constants/statuses";
 import {
   fetchGame,
   fetchGameTrailers,
   selectGameById,
   selectGameTrailers,
 } from "@/redux/features/games/gamesSlice";
+import BarChart from "@/app/components/shared/bar-chart/bar-chart";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
-import MainCard from "@/app/components/shared/main-card/main-card";
-import StatCard from "@/app/components/shared/stat-card/stat";
-import { statuses } from "@/app/constants/statuses";
 import styles from "./page.module.scss";
-import { CarouselUI } from "@/app/components/shared/carousel/CardsCarousel";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Trailer } from "@/app/models/game";
-import { Card, CardContent } from "@/components/ui/card";
-import VideoCarousel from "@/app/components/shared/video-carousel/video-carousel";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
   // Dispatch the action only once on component mount
-  const gameState = useSelector(selectGameById);
-  const trailer = useSelector(selectGameTrailers);
+
   useEffect(() => {
     dispatch(fetchGame(Number(id)));
     dispatch(fetchGameTrailers(Number(id)));
   }, [dispatch]);
+  const gameState = useSelector(selectGameById);
+  const trailer = useSelector(selectGameTrailers);
   console.log(gameState);
   console.log(trailer);
 
@@ -48,7 +40,7 @@ const GamePage = () => {
     <div>
       <MainNav>
         {gameState.selectedGame ? (
-          <div className="flex flex-col gap-8 px-16 max-sm:px-0 max-lg:px-8">
+          <div className="flex flex-col gap-8 px-16 max-sm:px-0 max-lg:px-8 overflow-hidden">
             <Banner
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
@@ -221,6 +213,14 @@ const GamePage = () => {
                 )
               )}
             </div>
+            {/* CHART  */}
+            <div className="py-8 max-sm:py-12">
+              <BarChart
+                count={Array.from(
+                  gameState.selectedGame.ratings.map((r) => r.count)
+                )}
+              />
+            </div>
             {/* DESCRIPTION  */}
             <div className="flex flex-col gap-4 relative py-12 max-sm:py-0">
               <h2 className="text-3xl text-primary-100 font-bold">Overview</h2>
@@ -230,7 +230,7 @@ const GamePage = () => {
             </div>
             {/* STATS  */}
             <div
-              className={`flex max-[1200px]:flex-wrap gap-8 ${styles.statCardParent}`}
+              className={`flex justify-center max-[1200px]:flex-wrap gap-8 ${styles.statCardParent}`}
             >
               <StatCard
                 title={"Lists"}
@@ -254,7 +254,11 @@ const GamePage = () => {
               />
             </div>
             {/* TRAILERS  */}
-            <div className="flex flex-col gap-4 relative py-12 max-sm:py-4">
+            <div
+              className={`flex flex-col gap-4 relative py-12 max-sm:py-4 ${
+                trailer?.count === 0 ? "hidden" : ""
+              }`}
+            >
               <h2 className="text-3xl text-primary-100 font-bold">Trailers</h2>
               {/* asdsad */}
               <VideoCarousel trailers={trailer?.results ?? []} />

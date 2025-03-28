@@ -18,18 +18,6 @@ interface Props {
 const VideoCarousel = ({ trailers }: Props) => {
   const [slidesToScroll, setSlidesToScroll] = React.useState(1);
 
-  React.useEffect(() => {
-    const updateSlides = () => {
-      const width = window.innerWidth;
-      if (width <= 1280) setSlidesToScroll(1);
-      else setSlidesToScroll(2);
-    };
-
-    updateSlides();
-    window.addEventListener("resize", updateSlides);
-    return () => window.removeEventListener("resize", updateSlides);
-  }, []);
-
   return (
     <Carousel
       opts={{ slidesToScroll }}
@@ -37,7 +25,7 @@ const VideoCarousel = ({ trailers }: Props) => {
     >
       <CarouselContent>
         {trailers.map((trailer: Trailer, index: number) => (
-          <CarouselItem key={index} className=" basis-1/2 max-xl:basis-1/1  ">
+          <CarouselItem key={index} className=" basis-1/1  ">
             <Card className={styles.card}>
               <CardContent className={styles.cardContent}>
                 <div
