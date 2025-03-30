@@ -178,3 +178,8 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.h2{
+    font-size: 1.875rem;
+    color: var(--color-primary-100);
+    font-weight: bold;
+}
