@@ -2,6 +2,7 @@ import { fetchHelper } from "@/app/helpers/fetch-helper";
 import { Game, GameDetails, Screenshot, Trailer } from "@/app/models/game";
 import { HttpResponse, SecondaryHttpResponse } from "@/app/models/httpResponse";
 import { BasicPagination } from "@/app/models/pagination";
+import { Store, StoreDetails } from "@/app/models/store";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -13,6 +14,9 @@ interface GamesState {
     selectedGame: GameDetails | null;
     selectedGameTrailer: SecondaryHttpResponse<Trailer> | null;
     selectedGameScreenshots: SecondaryHttpResponse<Screenshot> | null;
+    sameSeriesGames: SecondaryHttpResponse<Game> | null;
+    gameExtraContent: SecondaryHttpResponse<Game> | null;
+    gameStores: SecondaryHttpResponse<StoreDetails> | null;
     loading: boolean;
     error: string | null;
 }
@@ -24,6 +28,9 @@ const initialState: GamesState = {
     selectedGame: null,
     selectedGameTrailer: null,
     selectedGameScreenshots: null,
+    sameSeriesGames: null,
+    gameExtraContent: null,
+    gameStores: null,
     loading: false,
     error: null,
 };
@@ -90,6 +97,27 @@ export const fetchGameScreenshots = createAsyncThunk("games/fetchGameScreenshots
     const response: SecondaryHttpResponse<Screenshot> = await fetchHelper(`/games/${id}/screenshots`);
     if (!response) {
         throw new Error("Failed to fetch games screenshots");
+    }
+    return response;
+});
+export const fetchGameSeries = createAsyncThunk("games/fetchGameSeries", async (id: number) => {
+    const response: SecondaryHttpResponse<Game> = await fetchHelper(`/games/${id}/game-series`);
+    if (!response) {
+        throw new Error("Failed to fetch games series");
+    }
+    return response;
+});
+export const fetchGameExtraContent = createAsyncThunk("games/fetchGameExtraContent", async (id: number) => {
+    const response: SecondaryHttpResponse<Game> = await fetchHelper(`/games/${id}/additions`);
+    if (!response) {
+        throw new Error("Failed to fetch games extra content");
+    }
+    return response;
+});
+export const fetchGameStores = createAsyncThunk("games/fetchGameStores", async (id: number) => {
+    const response: SecondaryHttpResponse<StoreDetails> = await fetchHelper(`/games/${id}/stores`);
+    if (!response) {
+        throw new Error("Failed to fetch games stores");
     }
     return response;
 });
@@ -194,6 +222,42 @@ const gamesSlice = createSlice({
             .addCase(fetchGameScreenshots.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameSeries.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameSeries.fulfilled, (state, action) => {
+                state.loading = false;
+                state.sameSeriesGames = action.payload;
+            })
+            .addCase(fetchGameSeries.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameExtraContent.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameExtraContent.fulfilled, (state, action) => {
+                state.loading = false;
+                state.gameExtraContent = action.payload;
+            })
+            .addCase(fetchGameExtraContent.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameStores.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameStores.fulfilled, (state, action) => {
+                state.loading = false;
+                state.gameStores = action.payload;
+            })
+            .addCase(fetchGameStores.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
             });
     },
 });
@@ -206,6 +270,9 @@ export const selectAllGames = (state: RootState) => state.games;
 export const selectGameById = (state: RootState) => state.games;
 export const selectGameTrailers = (state: RootState) => state.games.selectedGameTrailer;
 export const selectGameScreenshots = (state: RootState) => state.games.selectedGameScreenshots;
+export const selectSeriesGames = (state: RootState) => state.games.sameSeriesGames;
+export const selectGameExtraContent = (state: RootState) => state.games.gameExtraContent;
+export const selectGameStores = (state: RootState) => state.games.gameStores;
 export const { clearGames } = gamesSlice.actions;
 
 // Export the reducer to be added to the store

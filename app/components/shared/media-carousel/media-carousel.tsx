@@ -19,8 +19,6 @@ interface Props {
 
 const MediaCarousel = ({ trailer, screenshots }: Props) => {
   const [slidesToScroll, setSlidesToScroll] = React.useState(2);
-  console.log(trailer);
-
   useEffect(() => {
     const width = window.innerWidth;
     if (width <= 900) setSlidesToScroll(1); // 2xl:basis-1/6
@@ -44,9 +42,6 @@ const MediaCarousel = ({ trailer, screenshots }: Props) => {
                     <source src={trailer.data.max} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                  <span className="text-primary-100 font-bold px-4">
-                    {trailer.name}
-                  </span>
                 </div>
               </CardContent>
             </Card>

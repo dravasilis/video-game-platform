@@ -1,21 +1,25 @@
 "use client";
 import Banner from "@/app/components/landing-page/banner/banner";
 import MainNav from "@/app/components/main-nav/main-nav";
+import BarChart from "@/app/components/shared/bar-chart/bar-chart";
 import Loader from "@/app/components/shared/loader/loader";
 import MainCard from "@/app/components/shared/main-card/main-card";
+import MediaCarousel from "@/app/components/shared/media-carousel/media-carousel";
 import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
 import StatCard from "@/app/components/shared/stat-card/stat";
-import VideoCarousel from "@/app/components/shared/media-carousel/media-carousel";
 import { statuses } from "@/app/constants/statuses";
 import {
   fetchGame,
+  fetchGameExtraContent,
   fetchGameScreenshots,
+  fetchGameSeries,
+  fetchGameStores,
   fetchGameTrailers,
   selectGameById,
   selectGameScreenshots,
   selectGameTrailers,
+  selectSeriesGames,
 } from "@/redux/features/games/gamesSlice";
-import BarChart from "@/app/components/shared/bar-chart/bar-chart";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,7 +27,7 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
-import MediaCarousel from "@/app/components/shared/media-carousel/media-carousel";
+import { Store, StoreData } from "@/app/models/store";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -34,14 +38,22 @@ const GamePage = () => {
     dispatch(fetchGame(Number(id)));
     dispatch(fetchGameTrailers(Number(id)));
     dispatch(fetchGameScreenshots(Number(id)));
+    dispatch(fetchGameSeries(Number(id)));
+    dispatch(fetchGameExtraContent(Number(id)));
+    dispatch(fetchGameStores(Number(id)));
   }, [dispatch]);
   const gameState = useSelector(selectGameById);
   const trailer = useSelector(selectGameTrailers);
   const screenshots = useSelector(selectGameScreenshots);
-  //   console.log(gameState);
-  console.log(screenshots);
-  console.log(trailer);
+  console.log(gameState);
+  const navigateToStore = (storeData: StoreData): string => {
+    const storeUrl = gameState.gameStores?.results.find(
+      (s) => s.store_id === storeData.store.id
+    )?.url;
+    console.log(storeUrl);
 
+    return storeUrl ?? "";
+  };
   return (
     <div>
       <MainNav>
@@ -110,27 +122,34 @@ const GamePage = () => {
                   </span>
                 </button>
                 {/* METACRITIC  */}
-                <Link
-                  href={gameState.selectedGame.metacritic_url}
-                  target="_blank"
-                  className={`rounded-md py-1 px-3 text-lg font-bold text-dark ${
-                    gameState.selectedGame.metacritic > 60
-                      ? "bg-success"
-                      : gameState.selectedGame.metacritic < 50
-                      ? "bg-danger"
-                      : "bg-warning"
-                  } w-max`}
-                >
-                  {gameState.selectedGame.metacritic}
-                </Link>
+                {gameState.selectedGame.metacritic && (
+                  <Link
+                    href={gameState.selectedGame.metacritic_url}
+                    target="_blank"
+                    className={`rounded-md py-1 px-3 text-lg font-bold text-dark ${
+                      gameState.selectedGame.metacritic > 60
+                        ? "bg-success"
+                        : gameState.selectedGame.metacritic < 50
+                        ? "bg-danger"
+                        : "bg-warning"
+                    } w-max`}
+                  >
+                    {gameState.selectedGame.metacritic}
+                  </Link>
+                )}
+
                 {/* RELEASE DATE  */}
                 <div className="text-primary-150 flex flex-col gap-1 items-start max-sm:text-xs">
                   <p>
                     released {""}
                     <span className="text-primary-350  font-bold max-sm:text-sm text-lg">
-                      {new Date(gameState.selectedGame.released)
-                        .toDateString()
-                        .substring(4)}
+                      {gameState.selectedGame.tba ? (
+                        <i>TBA</i>
+                      ) : (
+                        new Date(gameState.selectedGame.released)
+                          .toDateString()
+                          .substring(4)
+                      )}
                     </span>
                   </p>
                   <p>
@@ -287,17 +306,55 @@ const GamePage = () => {
                 )}
               />
             </div>
-            {/* STORES  */}
-            <div className="flex flex-col gap-4 pt-8">
-              <h2 className="h2">Available at</h2>
-              <div
-                className={`flex gap-4 flex-wrap ${styles.mainCardContainer}`}
-              >
-                {gameState.selectedGame.stores.map((storeDetails, index) => (
-                  <MainCard key={index} data={storeDetails.store} />
-                ))}
+            {/* SERIES  */}
+            {(gameState.sameSeriesGames?.results?.length ?? 0) > 0 && (
+              <div className="flex flex-col gap-4 pt-8">
+                <h2 className="h2">More in the same series</h2>
+                <div
+                  className={`flex gap-4 flex-wrap ${styles.mainCardContainer}`}
+                >
+                  {gameState.sameSeriesGames?.results.map((game, index) => (
+                    <Link key={index} href={`/games/${game.id}`}>
+                      <MainCard data={game} />
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+            {/* EXTRA CONTENT  */}
+            {(gameState.gameExtraContent?.results?.length ?? 0) > 0 && (
+              <div className="flex flex-col gap-4 pt-8">
+                <h2 className="h2">Extra content</h2>
+                <div
+                  className={`flex gap-4 flex-wrap ${styles.mainCardContainer}`}
+                >
+                  {gameState.gameExtraContent?.results.map((game, index) => (
+                    <Link key={index} href={`/games/${game.id}`}>
+                      <MainCard data={game} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* STORES  */}
+            {gameState.selectedGame.stores.length > 0 && (
+              <div className="flex flex-col gap-4 pt-8">
+                <h2 className="h2">Available at</h2>
+                <div
+                  className={`flex gap-4 flex-wrap ${styles.mainCardContainer}`}
+                >
+                  {gameState.selectedGame.stores.map((store, index) => (
+                    <Link
+                      key={index}
+                      href={navigateToStore(store)}
+                      target="_blank"
+                    >
+                      <MainCard data={store.store} />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
             {/* TAGS  */}
             <div className="flex flex-col gap-4 pt-8">
               <h3 className="text-lg text-primary-150 font-bold">Tags</h3>

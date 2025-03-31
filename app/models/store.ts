@@ -11,3 +11,9 @@ export interface StoreData {
     id: number,
     store: Store;
 }
+export interface StoreDetails {
+    game_id: number,
+    id: number,
+    store_id: number,
+    url: string;
+}
