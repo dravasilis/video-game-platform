@@ -6,9 +6,9 @@ export const fetchHelper = async <T extends BasicPagination>(endpoint: string, p
     const params = new URLSearchParams({
         // key: API_KEY ?? '',
         key: environment.RAWGApiKey,
-        ...Object.fromEntries(Object.entries(pagination ?? {}).map(([key, value]) => [key, String(value)])) // Ensure values are strings
+        ...Object.fromEntries(Object.entries(pagination ?? {}).map(([key, value]) => [key, String(value)])), // Ensure values are strings
+        mode: 'no-cors',
     });
-
     try {
         const res = await fetch(
             `https://api.rawg.io/api${endpoint}?${params}`
