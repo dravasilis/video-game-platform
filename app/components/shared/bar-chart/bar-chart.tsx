@@ -65,9 +65,11 @@ const BarChart = ({ count, total, percents, rating }: Props) => {
       },
       tooltip: {
         callbacks: {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           title: (tooltipItems: any) => {
             return `${tooltipItems[0].label}`;
           },
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           label: (tooltipItem: any) => {
             const value = tooltipItem.raw;
             return `  ${Number(value).toLocaleString()} users`;
