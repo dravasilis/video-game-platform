@@ -78,13 +78,6 @@ interface MetacriticPlatform {
 	metascore: number,
 	url: string;
 }
-export interface TrailersResponse {
-	count: number,
-	next: string,
-	previous: string,
-	results: Trailer[];
-
-}
 export interface Trailer {
 	id: number,
 	name: string,
@@ -93,4 +86,11 @@ export interface Trailer {
 		480: string,
 		max: string;
 	};
+}
+export interface Screenshot {
+	id: number,
+	width: number,
+	height: number,
+	image: string,
+	is_deleted: boolean;
 }

@@ -1,6 +1,6 @@
 import { fetchHelper } from "@/app/helpers/fetch-helper";
-import { Game, GameDetails, TrailersResponse } from "@/app/models/game";
-import { HttpResponse } from "@/app/models/httpResponse";
+import { Game, GameDetails, Screenshot, Trailer } from "@/app/models/game";
+import { HttpResponse, SecondaryHttpResponse } from "@/app/models/httpResponse";
 import { BasicPagination } from "@/app/models/pagination";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -11,7 +11,8 @@ interface GamesState {
     topRatedGames: HttpResponse<Game> | null;
     popularGames: HttpResponse<Game> | null;
     selectedGame: GameDetails | null;
-    selectedGameTrailer: TrailersResponse | null;
+    selectedGameTrailer: SecondaryHttpResponse<Trailer> | null;
+    selectedGameScreenshots: SecondaryHttpResponse<Screenshot> | null;
     loading: boolean;
     error: string | null;
 }
@@ -22,6 +23,7 @@ const initialState: GamesState = {
     popularGames: null,
     selectedGame: null,
     selectedGameTrailer: null,
+    selectedGameScreenshots: null,
     loading: false,
     error: null,
 };
@@ -78,9 +80,16 @@ export const fetchGame = createAsyncThunk("games/fetchGame", async (id: number) 
     return response;
 });
 export const fetchGameTrailers = createAsyncThunk("games/fetchGameTrailers", async (id: number) => {
-    const response: TrailersResponse = await fetchHelper(`/games/${id}/movies`);
+    const response: SecondaryHttpResponse<Trailer> = await fetchHelper(`/games/${id}/movies`);
     if (!response) {
         throw new Error("Failed to fetch games trailers");
+    }
+    return response;
+});
+export const fetchGameScreenshots = createAsyncThunk("games/fetchGameScreenshots", async (id: number) => {
+    const response: SecondaryHttpResponse<Screenshot> = await fetchHelper(`/games/${id}/screenshots`);
+    if (!response) {
+        throw new Error("Failed to fetch games screenshots");
     }
     return response;
 });
@@ -173,6 +182,18 @@ const gamesSlice = createSlice({
             .addCase(fetchGameTrailers.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameScreenshots.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameScreenshots.fulfilled, (state, action) => {
+                state.loading = false;
+                state.selectedGameScreenshots = action.payload;
+            })
+            .addCase(fetchGameScreenshots.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
             });
     },
 });
@@ -184,6 +205,7 @@ export const selectTopRatedGames = (state: RootState) => state.games.topRatedGam
 export const selectAllGames = (state: RootState) => state.games;
 export const selectGameById = (state: RootState) => state.games;
 export const selectGameTrailers = (state: RootState) => state.games.selectedGameTrailer;
+export const selectGameScreenshots = (state: RootState) => state.games.selectedGameScreenshots;
 export const { clearGames } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
