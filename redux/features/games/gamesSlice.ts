@@ -1,8 +1,8 @@
 import { fetchHelper } from "@/app/helpers/fetch-helper";
-import { Game, GameDetails, Screenshot, Trailer } from "@/app/models/game";
+import { Game, GameDetails, RedditPost, Screenshot, Trailer } from "@/app/models/game";
 import { HttpResponse, SecondaryHttpResponse } from "@/app/models/httpResponse";
 import { BasicPagination } from "@/app/models/pagination";
-import { Store, StoreDetails } from "@/app/models/store";
+import { StoreDetails } from "@/app/models/store";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
@@ -17,6 +17,7 @@ interface GamesState {
     sameSeriesGames: SecondaryHttpResponse<Game> | null;
     gameExtraContent: SecondaryHttpResponse<Game> | null;
     gameStores: SecondaryHttpResponse<StoreDetails> | null;
+    redditPosts: SecondaryHttpResponse<RedditPost> | null;
     loading: boolean;
     error: string | null;
 }
@@ -30,6 +31,7 @@ const initialState: GamesState = {
     selectedGameScreenshots: null,
     sameSeriesGames: null,
     gameExtraContent: null,
+    redditPosts: null,
     gameStores: null,
     loading: false,
     error: null,
@@ -118,6 +120,13 @@ export const fetchGameStores = createAsyncThunk("games/fetchGameStores", async (
     const response: SecondaryHttpResponse<StoreDetails> = await fetchHelper(`/games/${id}/stores`);
     if (!response) {
         throw new Error("Failed to fetch games stores");
+    }
+    return response;
+});
+export const fetchGameRedditPosts = createAsyncThunk("games/fetchGameRedditPosts", async (id: number) => {
+    const response: SecondaryHttpResponse<RedditPost> = await fetchHelper(`/games/${id}/reddit`);
+    if (!response) {
+        throw new Error("Failed to fetch games reddit posts");
     }
     return response;
 });
@@ -258,6 +267,18 @@ const gamesSlice = createSlice({
             .addCase(fetchGameStores.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchGameRedditPosts.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchGameRedditPosts.fulfilled, (state, action) => {
+                state.loading = false;
+                state.redditPosts = action.payload;
+            })
+            .addCase(fetchGameRedditPosts.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message || 'Something went wrong';
             });
     },
 });
@@ -273,6 +294,7 @@ export const selectGameScreenshots = (state: RootState) => state.games.selectedG
 export const selectSeriesGames = (state: RootState) => state.games.sameSeriesGames;
 export const selectGameExtraContent = (state: RootState) => state.games.gameExtraContent;
 export const selectGameStores = (state: RootState) => state.games.gameStores;
+export const selectRedditPosts = (state: RootState) => state.games.redditPosts;
 export const { clearGames } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
