@@ -14,3 +14,9 @@ export interface HttpResponse<T> {
     seo_title: string,
 
 }
+export interface SecondaryHttpResponse<T> {
+    count: number,
+    next: string,
+    previous: string,
+    results: T[];
+}

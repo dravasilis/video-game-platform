@@ -179,19 +179,8 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
-.browse {
-    background: linear-gradient(90deg, #1a1c2600 0%, #a2a2cf17 100%);
-    padding: 0.75rem 1rem;
-    border-radius: 0.25rem;
-}
-
-@media screen and (max-width: 600px) {
-    .browse {
-        padding: 0.35rem 0.75rem;
-        font-size: 0.675rem;
-
-        img {
-            width: 10px;
-        }
-    }
+.h2 {
+    font-size: 1.875rem;
+    color: var(--color-primary-100);
+    font-weight: bold;
 }

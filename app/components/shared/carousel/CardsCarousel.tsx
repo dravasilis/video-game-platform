@@ -12,6 +12,7 @@ import "./CardsCarousel.scss";
 import { Game } from "@/app/models/game";
 import Image from "next/image";
 import nextSvg from "../../../../public/svg/next.svg";
+import Link from "next/link";
 interface props {
   games: Game[];
 }
@@ -42,6 +43,7 @@ export function CarouselUI({ games }: props) {
             key={index}
             className="sm:basis-1/2  md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
           >
+            <Link href={`/games/${game.id}`}>
             <Card className="card">
               <CardContent className="cardContent">
                 <div className="card-overlay ">
@@ -58,6 +60,7 @@ export function CarouselUI({ games }: props) {
                 />
               </CardContent>
             </Card>
+            </Link>
           </CarouselItem>
         ))}
         <CarouselItem className="smd:basis-1/3 lg:basis-1/6">

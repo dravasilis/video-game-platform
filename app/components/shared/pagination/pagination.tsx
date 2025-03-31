@@ -40,16 +40,18 @@ const Pagination = ({
 
   //this method updated the url params so that useEffect runs again
   const goToPage = (page: number) => {
-    // Create a new URLSearchParams instance to modify the query params
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", page.toString());
-    // Update the URL without a full page reload
-    router.push(`?${params.toString()}`);
     window.scroll({
       top: 0,
       left: 0,
       behavior: "smooth",
     });
+    setTimeout(() => {
+      // Create a new URLSearchParams instance to modify the query params
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("page", page.toString());
+      // Update the URL without a full page reload
+      router.push(`?${params.toString()}`);
+    }, 200);
   };
 
   const renderPageNumbers = () => {

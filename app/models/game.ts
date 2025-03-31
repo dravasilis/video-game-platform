@@ -7,13 +7,15 @@ import { ShortScreenshot } from "./short-screenshot";
 import { StoreData } from "./store";
 import { Tag } from "./tag";
 
-type AddedByStatus =
-	| "beaten"
-	| "dropped"
-	| "owned"
-	| "playing"
-	| "toplay"
-	| "yet";
+interface AddedByStatus {
+	beaten: number,
+	dropped: number,
+	owned: number,
+	playing: number,
+	toplay: number,
+	yet: number;
+}
+
 export interface Game {
 	added: number; //users count that added this game in their lists
 	added_by_status: AddedByStatus;
@@ -75,4 +77,30 @@ export interface GameDetails extends Game {
 interface MetacriticPlatform {
 	metascore: number,
 	url: string;
+}
+export interface Trailer {
+	id: number,
+	name: string,
+	preview: string,
+	data: {
+		480: string,
+		max: string;
+	};
+}
+export interface Screenshot {
+	id: number,
+	width: number,
+	height: number,
+	image: string,
+	is_deleted: boolean;
+}
+export interface RedditPost {
+	id: number,
+	name: string,
+	text: string,
+	image: string,
+	url: string,
+	username: string,
+	username_url: string,
+	created: string;
 }
