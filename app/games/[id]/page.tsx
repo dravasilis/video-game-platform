@@ -8,6 +8,7 @@ import MediaCarousel from "@/app/components/shared/media-carousel/media-carousel
 import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
 import StatCard from "@/app/components/shared/stat-card/stat";
 import { statuses } from "@/app/constants/statuses";
+import { StoreData } from "@/app/models/store";
 import {
   fetchGame,
   fetchGameExtraContent,
@@ -19,7 +20,6 @@ import {
   selectGameById,
   selectGameScreenshots,
   selectGameTrailers,
-  selectSeriesGames,
 } from "@/redux/features/games/gamesSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
@@ -28,7 +28,6 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
-import { Store, StoreData } from "@/app/models/store";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
