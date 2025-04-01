@@ -28,19 +28,7 @@ export const Categories: Category[] = [
         subTitle: 'Over 50 Platforms',
         img: '/images/consoles.jpg',
         redirectTo: 'platforms'
-    },
-      {
-        title: 'Browse Reviews',
-        subTitle: 'Over 500K Reviews',
-        img: '/images/bg8.jpg',
-        redirectTo: 'reviews'
-    },
-    {
-        title: 'Browse Trailers',
-        subTitle: 'Over 500K Trailers',
-        img: '/images/bg100.jpg',
-        redirectTo: 'trailers'
-    },
-   
-  
+    }
+
+
 ];

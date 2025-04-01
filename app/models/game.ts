@@ -7,7 +7,7 @@ import { ShortScreenshot } from "./short-screenshot";
 import { StoreData } from "./store";
 import { Tag } from "./tag";
 
-interface AddedByStatus {
+export interface AddedByStatus {
 	beaten: number,
 	dropped: number,
 	owned: number,

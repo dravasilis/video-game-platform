@@ -4,7 +4,10 @@ export interface BasicPagination {
 	search?: string,
 	search_precise?: boolean,
 	search_exact?: boolean,
-    ordering?:string,
+	ordering?: string,
 	next?: string,
-	previous?: string
+	previous?: string;
+	genres?: string;
+	publishers?: string;
+	platforms?: number;
 }

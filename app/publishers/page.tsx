@@ -11,6 +11,7 @@ import MainCard from "../components/shared/main-card/main-card";
 import Loader from "../components/shared/loader/loader";
 import Pagination from "../components/shared/pagination/pagination";
 import Banner from "../components/landing-page/banner/banner";
+import Link from "next/link";
 
 const Publishers = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -31,7 +32,12 @@ const Publishers = () => {
           {!publishersState.loading ? (
             <div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
               {publishersState.publishers?.results.map((publisher) => (
-                <MainCard key={publisher.id} data={publisher} />
+                <Link
+                  key={publisher.id}
+                  href={`/games?publishers=${publisher.slug}`}
+                >
+                  <MainCard data={publisher} />
+                </Link>
               ))}
             </div>
           ) : (

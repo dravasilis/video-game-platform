@@ -27,13 +27,19 @@ const Pagination = ({
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    const genreParam = searchParams.get("genres") ?? undefined;
+    const publisherParam = searchParams.get("publishers") ?? undefined;
     const page = Number(searchParams.get("page")) || 1; // Default to page 1 if null
+    const platformParam = Number(searchParams.get("platforms")) || undefined; // Default to page 1 if null
     setCurrentPage(page); // This updates state correctly
     dispatch(
       fetchAction({
         page, // Use the extracted page number directly
         search: searchParam,
         search_exact: searchParam ? true : undefined,
+        genres: genreParam,
+        publishers: publisherParam,
+        platforms: platformParam,
       })
     );
   }, [searchParams]);
