@@ -3,6 +3,7 @@ import { Metadata, Viewport } from "next/types";
 import RawgReferral from "./components/rawgReferral/rawgReferral";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
@@ -31,13 +32,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: ["https://video-game-platform.vercel.app/images/logo.png"], // Added Twitter image
   },
-
 };
-export const viewport:Viewport={
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1
-}
+  maximumScale: 1,
+};
 const roboto = Montserrat({
   subsets: ["latin"],
   weight: "400",
@@ -49,7 +49,9 @@ export default function RootLayout({
   return (
     <html className={roboto.className} lang="en">
       <body>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <Suspense fallback={"Loading"}>{children}</Suspense>
+        </StoreProvider>
         <RawgReferral />
       </body>
     </html>
