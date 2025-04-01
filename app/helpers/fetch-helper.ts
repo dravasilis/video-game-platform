@@ -8,6 +8,7 @@ export const fetchHelper = async <T extends BasicPagination>(endpoint: string, p
     const params = new URLSearchParams({
         // key: API_KEY ?? '',
         key: environment.RAWGApiKey,
+        cors: 'no-cors',
         ...Object.fromEntries(Object.entries(pagination ?? {}).map(([key, value]) => [key, String(value)])), // Ensure values are strings
     });
     try {
