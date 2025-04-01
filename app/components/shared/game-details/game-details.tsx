@@ -104,7 +104,11 @@ const GameDetails = (props: Props) => {
         {/* GENRES  */}
         <div className="flex items-center gap-2 flex-wrap">
           {props.genres.map((genre, index) => (
-            <Link href={"/genres"} key={index} className={styles.pill}>
+            <Link
+              href={"/games?genres=" + genre.slug}
+              key={index}
+              className={styles.pill}
+            >
               {genre.name}
             </Link>
           ))}
@@ -113,7 +117,11 @@ const GameDetails = (props: Props) => {
         {/* PLATFORMS  */}
         <div className="flex items-center gap-2 flex-wrap">
           {props.platforms.map((platformDetails, index) => (
-            <Link href={"/platforms"} key={index} className={styles.pill}>
+            <Link
+              href={`/games?platforms=${platformDetails.platform.id}`}
+              key={index}
+              className={styles.pill}
+            >
               {platformDetails.platform.name}
             </Link>
           ))}
