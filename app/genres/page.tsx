@@ -8,6 +8,7 @@ import MainCard from "../components/shared/main-card/main-card";
 import Loader from "../components/shared/loader/loader";
 import Pagination from "../components/shared/pagination/pagination";
 import Banner from "../components/landing-page/banner/banner";
+import Link from "next/link";
 
 const Genres = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -27,7 +28,9 @@ const Genres = () => {
           {!genresState.loading ? (
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full">
               {genresState.genres?.results.map((genre) => (
-                <MainCard key={genre.id} data={genre} />
+                <Link key={genre.id} href={"/games?genres=" + genre.slug}>
+                  <MainCard data={genre} />
+                </Link>
               ))}
             </div>
           ) : (

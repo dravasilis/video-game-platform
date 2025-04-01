@@ -12,6 +12,7 @@ import MainCard from "../components/shared/main-card/main-card";
 import Pagination from "../components/shared/pagination/pagination";
 import Banner from "../components/landing-page/banner/banner";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const Games = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -21,8 +22,7 @@ const Games = () => {
   useEffect(() => {
     // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !popularGames.popularGames && dispatch(fetchAllGames());
-  }, [dispatch, popularGames]); // Empty dependency array means this will only run once when the component mounts
-
+  }, [dispatch, popularGames]);
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count}>

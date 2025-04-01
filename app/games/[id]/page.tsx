@@ -28,6 +28,8 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
+import LinkButton from "@/app/components/shared/link-button/link-button";
+import GameDetails from "@/app/components/shared/game-details/game-details";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -93,148 +95,20 @@ const GamePage = () => {
                   )}
                 </div>
               </div>
-
-              <div className="flex flex-col gap-4">
-                {/* TITLE  */}
-                <h1 className="text-5xl max-lg:text-3xl max-sm:text-2xl font-bold pb-4 max-sm:pb-0 -ml-4 max-sm:ml-0">
-                  {gameState.selectedGame.name}
-                </h1>
-                {/* RATING  */}
-                <button
-                  onClick={() =>
-                    document
-                      .getElementById("ratings")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                  className="flex gap-2 items-center font-bold hover:cursor-pointer w-max"
-                >
-                  <Image
-                    src={"/svg/star.svg"}
-                    alt="star"
-                    width={20}
-                    height={20}
-                  />
-                  {gameState.selectedGame.rating} / 5
-                  <span className="text-xs text-primary-200">
-                    {gameState.selectedGame.ratings_count > 1000
-                      ? Math.floor(gameState.selectedGame.ratings_count / 1000)
-                      : ""}
-                    K ratings
-                  </span>
-                </button>
-                {/* METACRITIC  */}
-                {gameState.selectedGame.metacritic && (
-                  <Link
-                    href={gameState.selectedGame.metacritic_url}
-                    target="_blank"
-                    className={`rounded-md py-1 px-3 text-lg font-bold text-dark ${
-                      gameState.selectedGame.metacritic > 60
-                        ? "bg-success"
-                        : gameState.selectedGame.metacritic < 50
-                        ? "bg-danger"
-                        : "bg-warning"
-                    } w-max`}
-                  >
-                    {gameState.selectedGame.metacritic}
-                  </Link>
-                )}
-
-                {/* RELEASE DATE  */}
-                <div className="text-primary-150 flex flex-col gap-1 items-start max-sm:text-xs">
-                  <p>
-                    released {""}
-                    <span className="text-primary-350  font-bold max-sm:text-sm text-lg">
-                      {gameState.selectedGame.tba ? (
-                        <i>TBA</i>
-                      ) : (
-                        new Date(gameState.selectedGame.released)
-                          .toDateString()
-                          .substring(4)
-                      )}
-                    </span>
-                  </p>
-                  <p>
-                    by{" "}
-                    {gameState.selectedGame.developers.map((dev, index) => (
-                      <span
-                        key={index}
-                        className=" text-primary-350 font-bold text-lg max-sm:text-sm"
-                      >
-                        {dev.name}
-                        {gameState.selectedGame &&
-                          index !==
-                            gameState.selectedGame.developers.length - 1 &&
-                          ", "}
-                      </span>
-                    ))}
-                  </p>
-                  {/* REDDIT */}
-                  <Link
-                    href={gameState.selectedGame.reddit_url}
-                    target="_blank"
-                    className="w-max flex gap-1"
-                  >
-                    <Image
-                      src={"/svg/reddit.svg"}
-                      alt="reddit"
-                      width={60}
-                      height={60}
-                    />
-                    <Image
-                      src={"/svg/redirect.svg"}
-                      alt="reddit"
-                      width={13}
-                      height={13}
-                      className="mb-2"
-                    />
-                  </Link>
-                  {/* WEBSITE URL */}
-                  <Link
-                    href={gameState.selectedGame.website}
-                    target="_blank"
-                    className="w-max flex gap-1"
-                  >
-                    <Image
-                      src={"/svg/website.svg"}
-                      alt="website"
-                      width={20}
-                      height={20}
-                      className="mb-2"
-                    />
-                    <span className="text-primary-250 text-sm">Website</span>
-                    <Image
-                      src={"/svg/redirect.svg"}
-                      alt="reddit"
-                      width={13}
-                      height={13}
-                      className="mb-4"
-                    />
-                  </Link>
-                </div>
-                {/* GENRES  */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  {gameState.selectedGame.genres.map((genre, index) => (
-                    <Link href={"/genres"} key={index} className={styles.pill}>
-                      {genre.name}
-                    </Link>
-                  ))}
-                </div>
-                <SeparatingLine />
-                {/* PLATFORMS  */}
-                <div className="flex items-center gap-2 flex-wrap">
-                  {gameState.selectedGame.platforms.map(
-                    (platformDetails, index) => (
-                      <Link
-                        href={"/platforms"}
-                        key={index}
-                        className={styles.pill}
-                      >
-                        {platformDetails.platform.name}
-                      </Link>
-                    )
-                  )}
-                </div>
-              </div>
+              <GameDetails
+                title={gameState.selectedGame.name}
+                rating={gameState.selectedGame.rating}
+                ratingsCount={gameState.selectedGame.ratings_count}
+                metacritic={gameState.selectedGame.metacritic}
+                metacriticUrl={gameState.selectedGame.metacritic_url}
+                tba={gameState.selectedGame.tba}
+                releaseDate={gameState.selectedGame.released}
+                publishers={gameState.selectedGame.developers}
+                reddirUrl={gameState.selectedGame.reddit_url}
+                websiteUrl={gameState.selectedGame.website}
+                genres={gameState.selectedGame.genres}
+                platforms={gameState.selectedGame.platforms}
+              />
             </div>
             {/* STATS for smaller screen */}
             <div className="sm:hidden grid grid-cols-2   gap-y-2 gap-x-6 text-sm">
@@ -283,6 +157,11 @@ const GamePage = () => {
                 title={"Achievements"}
                 svg="achievements"
                 count={String(gameState.selectedGame.achievements_count)}
+              />
+              <StatCard
+                title={"Playtime"}
+                svg="time"
+                count={String(gameState.selectedGame.playtime) + "h"}
               />
             </div>
             {/* TRAILERS  */}
