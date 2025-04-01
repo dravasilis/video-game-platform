@@ -1,9 +1,6 @@
 import { BasicPagination } from "../models/pagination";
 
-export const fetchHelper = async <T extends BasicPagination>(endpoint: string, pagination: T = { page_size: 100 } as T) => {
-    const API_KEY = process.env.API_KEY;
-    console.log(pagination);
-
+export const fetchHelper = async <T extends BasicPagination>(endpoint: string, pagination?: T) => {
     const NEXT_PUBLIC_API_KEY = process.env.API_KEY;
     const params = new URLSearchParams({
         key: NEXT_PUBLIC_API_KEY ?? '',
