@@ -2,12 +2,14 @@
 import Banner from "@/app/components/landing-page/banner/banner";
 import MainNav from "@/app/components/main-nav/main-nav";
 import BarChart from "@/app/components/shared/bar-chart/bar-chart";
+import GameDetails from "@/app/components/shared/game-details/game-details";
+import GameListsStatus from "@/app/components/shared/game-lists-status/game-lists-status";
 import Loader from "@/app/components/shared/loader/loader";
 import MainCard from "@/app/components/shared/main-card/main-card";
 import MediaCarousel from "@/app/components/shared/media-carousel/media-carousel";
-import SeparatingLine from "@/app/components/shared/separatingLine/separating-line";
+import RedditPosts from "@/app/components/shared/reddit-posts/reddit-posts";
 import StatCard from "@/app/components/shared/stat-card/stat";
-import { statuses } from "@/app/constants/statuses";
+import { GamePageStats } from "@/app/constants/stats";
 import { StoreData } from "@/app/models/store";
 import {
   fetchGame,
@@ -28,11 +30,6 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
-import LinkButton from "@/app/components/shared/link-button/link-button";
-import GameDetails from "@/app/components/shared/game-details/game-details";
-import { GamePageStats } from "@/app/constants/stats";
-import RedditPosts from "@/app/components/shared/reddit-posts/reddit-posts";
-import GameListsStatus from "@/app/components/shared/game-lists-status/game-lists-status";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();

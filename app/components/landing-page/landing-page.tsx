@@ -19,8 +19,8 @@ import StartBrowsing from "./browse-button/browse-button";
 import Description from "./description/description";
 import FeatureShowcaseCarousel from "./feature-showcase-carousel/feature-showcase-carousel";
 import FeatureShowcase from "./feature-showcase/feature-showcase";
-import Title from "./title/title";
 import "./landing-page.css";
+import Title from "./title/title";
 const LandingPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [upcoming, vintage, topRated] = [
@@ -51,7 +51,7 @@ const LandingPage = () => {
               key={index}
               svg={stat.svg}
               title={stat.title}
-              count={stat.count}
+              count={stat.count ?? "0"}
             />
           ))}
         </div>
