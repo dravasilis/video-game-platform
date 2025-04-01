@@ -4,11 +4,10 @@ export const fetchHelper = async <T extends BasicPagination>(endpoint: string, p
     const API_KEY = process.env.API_KEY;
     console.log(pagination);
 
-    // const API_KEY = process.env.API_KEY;
+    const NEXT_PUBLIC_API_KEY = process.env.API_KEY;
     const params = new URLSearchParams({
-        key: API_KEY ?? '',
+        key: NEXT_PUBLIC_API_KEY ?? '',
         // key: environment.RAWGApiKey,
-        cors: 'no-cors',
         ...Object.fromEntries(Object.entries(pagination ?? {}).map(([key, value]) => [key, String(value)])), // Ensure values are strings
     });
     try {
