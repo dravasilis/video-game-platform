@@ -30,12 +30,14 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
+import { setSearchPressed } from "@/redux/features/search/searchSlice";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
 
   useEffect(() => {
+    dispatch(setSearchPressed(false));
     dispatch(fetchGame(Number(id)));
     dispatch(fetchGameTrailers(Number(id)));
     dispatch(fetchGameScreenshots(Number(id)));
@@ -108,7 +110,7 @@ const GamePage = () => {
                 metacriticUrl={gameState.selectedGame.metacritic_url}
                 tba={gameState.selectedGame.tba}
                 releaseDate={gameState.selectedGame.released}
-                publishers={gameState.selectedGame.developers}
+                developers={gameState.selectedGame.developers}
                 reddirUrl={gameState.selectedGame.reddit_url}
                 websiteUrl={gameState.selectedGame.website}
                 genres={gameState.selectedGame.genres}

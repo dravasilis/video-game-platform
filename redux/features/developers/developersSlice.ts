@@ -5,20 +5,20 @@ import { Publisher } from "@/app/models/publisher";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-interface PublishersState {
-    publishers: HttpResponse<Publisher> | null;
+interface DevelopersState {
+    developers: HttpResponse<Publisher> | null;
     loading: boolean;
     error: string | null;
 }
-const initialState: PublishersState = {
-    publishers: null,
+const initialState: DevelopersState = {
+    developers: null,
     loading: false,
     error: null,
 };
 
-export const fetchPublishers = createAsyncThunk("genres/fetchPublishers", async (pg?: BasicPagination) => {
+export const fetchDevelopers = createAsyncThunk("genres/fetchDevelopers", async (pg?: BasicPagination) => {
     pg = { ...pg, page_size: pg?.page_size ?? 20 };
-    const response: HttpResponse<Publisher> = await fetchHelper('/publishers', {
+    const response: HttpResponse<Publisher> = await fetchHelper('/developers', {
         ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
     });
     if (!response) {
@@ -27,26 +27,26 @@ export const fetchPublishers = createAsyncThunk("genres/fetchPublishers", async 
     return response;
 });
 // Create the slice
-const publishersSlice = createSlice({
-    name: "publishers",
+const developersSlice = createSlice({
+    name: "developers",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchPublishers.pending, (state) => {
+            .addCase(fetchDevelopers.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchPublishers.fulfilled, (state, action) => {
+            .addCase(fetchDevelopers.fulfilled, (state, action) => {
                 state.loading = false;
-                state.publishers = action.payload;
+                state.developers = action.payload;
             })
-            .addCase(fetchPublishers.rejected, (state, action) => {
+            .addCase(fetchDevelopers.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
             });
     },
 });
 
-export const selectPublishers = (state: RootState) => state.publishers;
-export default publishersSlice.reducer;
+export const selectDevelopers = (state: RootState) => state.developers;
+export default developersSlice.reducer;

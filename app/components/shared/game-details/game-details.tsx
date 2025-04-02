@@ -14,7 +14,7 @@ interface Props {
   metacriticUrl: string;
   tba?: boolean;
   releaseDate: string;
-  publishers: Publisher[];
+  developers: Publisher[];
   reddirUrl: string;
   websiteUrl: string;
   genres: Genre[];
@@ -78,14 +78,15 @@ const GameDetails = (props: Props) => {
           {/* DEVELOPERS  */}
           <p>
             by{" "}
-            {props.publishers.map((publisher, index) => (
-              <span
+            {props.developers.map((developer, index) => (
+              <Link
+                href={"/games?developers=" + developer.slug}
                 key={index}
-                className=" text-primary-350 font-bold text-lg max-sm:text-sm"
+                className=" text-primary-350 font-bold text-lg max-sm:text-sm hover:brightness-75"
               >
-                {publisher.name}
-                {index !== props.publishers.length - 1 && ", "}
-              </span>
+                {developer.name}
+                {index !== props.developers.length - 1 && ", "}
+              </Link>
             ))}
           </p>
           {/* REDDIT */}

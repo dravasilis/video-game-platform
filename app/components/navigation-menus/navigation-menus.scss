@@ -1,0 +1,26 @@
+.menu {
+    padding: 0.75rem 16px !important;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--color-primary-350);
+
+    &:hover {
+        background: linear-gradient(90deg, #313131 0%, #353535 100%);
+    }
+}
+
+.fillMenu {
+    background: linear-gradient(90deg, #232323 0%, #202020 100%);
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.dropdownMenu {
+    box-shadow: 1px 9px 11px 2px #0d0d0d;
+    background: linear-gradient(90deg, #232323 0%, #202020 100%);
+    position: absolute;
+    left: 0;
+    top: 1.95rem;
+    width: 15rem;
+    border-radius: 0.25rem;
+}

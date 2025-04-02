@@ -9,7 +9,11 @@ interface Props {
 const Banner = ({ banner, href, customBrightness }: Props) => {
   return (
     <div className="z-0">
-      <div className="bannerGradient banner"></div>
+      <div
+        className={`bannerGradient banner ${
+          customBrightness ? "bannerGradientSecondary" : "bannerGradient"
+        }`}
+      ></div>
       <Image
         className={`banner object-cover ${
           customBrightness ? "brightness-[.35]" : ""

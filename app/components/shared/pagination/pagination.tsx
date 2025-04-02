@@ -23,12 +23,15 @@ const Pagination = ({
 }: Props) => {
   const totalPages = Math.ceil(count / (length || 1));
   const [currentPage, setCurrentPage] = useState(1);
+  const [screenWidth, setscreenWidth] = useState(1);
   const router = useRouter();
   const searchParams = useSearchParams();
 
   useEffect(() => {
+    setscreenWidth(window.innerWidth);
     const genreParam = searchParams.get("genres") ?? undefined;
     const publisherParam = searchParams.get("publishers") ?? undefined;
+    const developerParam = searchParams.get("developers") ?? undefined;
     const page = Number(searchParams.get("page")) || 1; // Default to page 1 if null
     const platformParam = Number(searchParams.get("platforms")) || undefined; // Default to page 1 if null
     setCurrentPage(page); // This updates state correctly
@@ -40,6 +43,7 @@ const Pagination = ({
         genres: genreParam,
         publishers: publisherParam,
         platforms: platformParam,
+        developers: developerParam,
       })
     );
   }, [searchParams]);
@@ -62,7 +66,6 @@ const Pagination = ({
 
   const renderPageNumbers = () => {
     const pages = [];
-    const screenWidth = window.innerWidth;
     const maxVisiblePages = 6;
 
     if (totalPages <= maxVisiblePages) {

@@ -29,6 +29,18 @@
     }
 }
 
+@keyframes dropDown {
+    0% {
+        transform: translateY(-0.2rem);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 @keyframes slideInLeft {
     0% {
         transform: translateX(-3rem);
@@ -60,6 +72,12 @@
 }
 
 @layer utilities {
+    .animate-drop-down {
+        animation: dropDown 0.25s ease-in-out;
+    }
+}
+
+@layer utilities {
     .animate-slide-in-left {
         animation: slideInLeft 0.75s ease-in-out;
     }
@@ -79,6 +97,10 @@ body {
     color: var(--color-primary-100);
     font-weight: 400;
     font-style: normal;
+}
+
+button {
+    cursor: pointer;
 }
 
 ::-webkit-scrollbar {

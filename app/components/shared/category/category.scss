@@ -9,16 +9,17 @@
     border-radius: .5rem;
     box-shadow: 0px 0px 2px 0px #474d58;
     width: max-content;
-    border:1px solid transparent;
+    border: 1px solid transparent;
     transition-duration: 150ms;
 
     &:hover {
         transition-duration: 150ms;
         cursor: pointer;
-   border-color: rgba(95, 95, 95, 0.664);
-    box-shadow: 0px 0px 2px 0px #909aac96;
+        border-color: rgba(95, 95, 95, 0.664);
+        box-shadow: 0px 0px 2px 0px #909aac96;
     }
-    &:active{
+
+    &:active {
         transform: scale(.9);
     }
 }
@@ -38,5 +39,9 @@
     &:hover {
         border-color: #4444449f;
         transform: translateX(-2px);
+    }
+
+    &:active {
+        transform: scale(.98);
     }
 }

@@ -9,5 +9,6 @@ export interface BasicPagination {
 	previous?: string;
 	genres?: string;
 	publishers?: string;
+	developers?: string;
 	platforms?: number;
 }

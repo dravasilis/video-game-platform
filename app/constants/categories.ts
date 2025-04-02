@@ -24,11 +24,18 @@ export const Categories: Category[] = [
         redirectTo: 'publishers'
     },
     {
+        title: 'Browse Developers',
+        subTitle: 'Over 445K Developers',
+        img: '/images/bg20.jpg',
+        redirectTo: 'developers'
+    },
+    {
         title: 'Browse Platforms',
         subTitle: 'Over 50 Platforms',
         img: '/images/consoles.jpg',
         redirectTo: 'platforms'
-    }
+    },
+
 
 
 ];

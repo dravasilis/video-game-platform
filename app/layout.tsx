@@ -4,6 +4,7 @@ import RawgReferral from "./components/rawgReferral/rawgReferral";
 import "./globals.css";
 import StoreProvider from "./StoreProvider";
 import { Suspense } from "react";
+import Loader from "./components/shared/loader/loader";
 
 export const metadata: Metadata = {
   title: "Gamepedia: Explore Now The Largest Video Game Platform", // Optimized title capitalization
@@ -50,7 +51,7 @@ export default function RootLayout({
     <html className={roboto.className} lang="en">
       <body>
         <StoreProvider>
-          <Suspense fallback={"Loading"}>{children}</Suspense>
+          <Suspense fallback={<Loader />}>{children}</Suspense>
         </StoreProvider>
         <RawgReferral />
       </body>

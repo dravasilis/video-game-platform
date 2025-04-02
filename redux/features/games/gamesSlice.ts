@@ -11,6 +11,7 @@ interface GamesState {
     vintageGames: HttpResponse<Game> | null;
     topRatedGames: HttpResponse<Game> | null;
     popularGames: HttpResponse<Game> | null;
+    searchedGames: HttpResponse<Game> | null;
     selectedGame: GameDetails | null;
     selectedGameTrailer: SecondaryHttpResponse<Trailer> | null;
     selectedGameScreenshots: SecondaryHttpResponse<Screenshot> | null;
@@ -26,6 +27,7 @@ const initialState: GamesState = {
     vintageGames: null,
     topRatedGames: null,
     popularGames: null,
+    searchedGames: null,
     selectedGame: null,
     selectedGameTrailer: null,
     selectedGameScreenshots: null,
@@ -72,6 +74,16 @@ export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async 
     return response;
 });
 export const fetchAllGames = createAsyncThunk("games/fetchAll", async (pg?: BasicPagination) => {
+    const response: HttpResponse<Game> = await fetchHelper('/games', {
+        ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
+        ordering: '-added'
+    });
+    if (!response) {
+        throw new Error("Failed to fetch games");
+    }
+    return response;
+});
+export const fetchSearchedGames = createAsyncThunk("games/fetchSearchedGames", async (pg?: BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
         ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
         ordering: '-added'
@@ -137,7 +149,7 @@ const gamesSlice = createSlice({
     initialState,
     reducers: {
         clearGames: (state) => {
-            state.popularGames = null; // Reset games state without making a request
+            state.searchedGames = null; // Reset games state without making a request
         },
         clearSelectedGame: (state) => {
             state.selectedGame = null; // Reset games state without making a request
@@ -195,6 +207,9 @@ const gamesSlice = createSlice({
             .addCase(fetchAllGames.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'Something went wrong';
+            })
+            .addCase(fetchSearchedGames.fulfilled, (state, action) => {
+                state.searchedGames = action.payload;
             })
             .addCase(fetchGame.pending, (state) => {
                 state.loading = true;
@@ -288,6 +303,7 @@ export const selectUpcomingGames = (state: RootState) => state.games.upcomingGam
 export const selectVintageGames = (state: RootState) => state.games.vintageGames;
 export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
 export const selectAllGames = (state: RootState) => state.games;
+export const selectSearchedGames = (state: RootState) => state.games;
 export const selectGameById = (state: RootState) => state.games;
 export const selectGameTrailers = (state: RootState) => state.games.selectedGameTrailer;
 export const selectGameScreenshots = (state: RootState) => state.games.selectedGameScreenshots;

@@ -12,6 +12,11 @@
     z-index: 1;
 }
 
+.bannerGradientSecondary {
+    background: linear-gradient(0deg, #0f1216 1%, #0a0c0f00 54%, #0f1216fc 92%);
+    z-index: 1;
+}
+
 @media screen and (max-width: 1350px) {
     .banner {
         height: 45rem;

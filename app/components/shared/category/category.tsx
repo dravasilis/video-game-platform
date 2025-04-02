@@ -10,7 +10,7 @@ import Link from "next/link";
 const GameCategory = ({ category }: Props) => {
   return (
     <>
-      <div className="category-container">
+      <Link href={category.redirectTo} className="category-container">
         <Image
           src={category.img}
           alt={category.title}
@@ -27,16 +27,12 @@ const GameCategory = ({ category }: Props) => {
           </p>
         </div>
         <div className="p-6 pt-0">
-          <Link
-            href={category.redirectTo}
-            type="button"
-            className="category-button "
-          >
+          <button className="category-button ">
             Dive in
             <Image src={nextSvg} alt="next" width={15} />
-          </Link>
+          </button>
         </div>
-      </div>
+      </Link>
     </>
   );
 };
