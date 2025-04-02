@@ -127,7 +127,7 @@ const Search = () => {
                     width={1080}
                     height={720}
                     alt="game"
-                    className="rounded-md object-cover w-[65px] h-[65px]"
+                    className="rounded-md object-cover max-sm:w-[35px] max-sm:h-[35px] w-[65px] h-[65px]"
                   />
                   <span className="text-sm">{game.name}</span>
                 </Link>

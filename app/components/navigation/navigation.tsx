@@ -20,7 +20,7 @@ const Navigation = () => {
           </h1>
         </Link>
         <NavigationMenus />
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full justify-end">
           <Search />
           <MobileNavigation />
         </div>
