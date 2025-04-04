@@ -129,7 +129,7 @@ const Search = () => {
                     alt="game"
                     className="rounded-md object-cover max-sm:w-[35px] max-sm:h-[35px] w-[65px] h-[65px]"
                   />
-                  <span className="text-sm">{game.name}</span>
+                  <span className="text-sm max-sm:text-xs">{game.name}</span>
                 </Link>
               ))}
             </div>

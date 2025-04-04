@@ -181,7 +181,7 @@ const GamePage = () => {
               </div>
             )}
             {/* EXTRA CONTENT  */}
-            {(gameState.gameExtraContent?.results?.length ?? 0) > 0 && (
+            {gameState.gameExtraContent && (
               <div className="flex flex-col gap-4 pt-8">
                 <h2 className="h2">Extra content</h2>
                 <div

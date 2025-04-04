@@ -8,7 +8,7 @@ import MobileNavigation from "../mobile-navigation/mobile-navigation";
 const Navigation = () => {
   return (
     <>
-      <div className="flex w-full justify-between  z-20 ">
+      <div className="flex w-full justify-between  z-20 h-10">
         <Link href="/home" className="flex gap-1 items-center z-10">
           <Image
             src={logo}
@@ -20,7 +20,7 @@ const Navigation = () => {
           </h1>
         </Link>
         <NavigationMenus />
-        <div className="flex items-center gap-2 w-full justify-end">
+        <div className=" flex items-center justify-end">
           <Search />
           <MobileNavigation />
         </div>

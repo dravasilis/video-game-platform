@@ -23,7 +23,6 @@ const Developers = () => {
   }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
   console.log(developersState.developers);
-
   return (
     <>
       <MainNav header="Developers" results={developersState.developers?.count}>
