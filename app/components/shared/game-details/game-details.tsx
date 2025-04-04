@@ -6,6 +6,7 @@ import Link from "next/link";
 import LinkButton from "../link-button/link-button";
 import SeparatingLine from "../separatingLine/separating-line";
 import styles from "../../../games/[id]/page.module.scss";
+import Metacritic from "../metacritic/metacritic";
 interface Props {
   title: string;
   rating: number;
@@ -47,21 +48,7 @@ const GameDetails = (props: Props) => {
           </span>
         </button>
         {/* METACRITIC  */}
-        {props.metacritic && (
-          <Link
-            href={props.metacriticUrl}
-            target="_blank"
-            className={`rounded-md py-1 px-3 text-lg font-bold text-dark ${
-              props.metacritic > 60
-                ? "bg-success"
-                : props.metacritic < 50
-                ? "bg-danger"
-                : "bg-warning"
-            } w-max`}
-          >
-            {props.metacritic}
-          </Link>
-        )}
+        <Metacritic rating={props.metacritic} url={props.metacriticUrl} />
 
         {/* RELEASE DATE  */}
         <div className="text-primary-150 flex flex-col gap-1 items-start max-sm:text-xs">

@@ -11,4 +11,5 @@ export interface BasicPagination {
 	publishers?: string;
 	developers?: string;
 	platforms?: number;
+	dates?: string;
 }

@@ -19,7 +19,7 @@ export const navigationMenus: NavigationMenu[] = [
             },
             {
                 name: 'Top Rated Games',
-                redirectUrl: '/games'
+                redirectUrl: '/games/top-rated'
             },
             {
                 name: '<b>Browse all games  →</b>',

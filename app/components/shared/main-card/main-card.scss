@@ -1,7 +1,7 @@
 /* From Uiverse.io by ElSombrero2 */
 .mainCard {
 	width: 300px;
-	height: 350px;
+	height: 390px;
 	transition-duration: 200ms;
 	border: 1px solid transparent;
 	border-radius: 6px;
@@ -9,7 +9,7 @@
 
 	img {
 		transition-duration: 500ms;
-		max-height: 75%;
+		height: 70%;
 		will-change: transform;
 	}
 
@@ -62,15 +62,20 @@
 @media screen and (max-width: 1700px) {
 	.mainCard {
 		width: 250px;
-		height: 300px;
+		height: 400px;
 	}
 }
 
 @media screen and (max-width: 1280px) {
 	.mainCard {
 		width: 200px;
-		height: 250px;
+		height: 275px;
+
+		img {
+			height: 65%;
+		}
 	}
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -91,6 +96,10 @@
 	.mainCard {
 		width: 175px;
 		height: 225px;
+
+		img {
+			height: 60%;
+		}
 
 		&:hover {
 			border-color: transparent !important;

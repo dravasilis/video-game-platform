@@ -12,12 +12,14 @@ interface Props {
   searchParam?: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   fetchAction: (params: BasicPagination) => any; // Fetch action for different entities
+  pg?: BasicPagination;
 }
 
 const Pagination = ({
   count,
   length,
   searchParam,
+  pg,
   dispatch,
   fetchAction,
 }: Props) => {
@@ -44,6 +46,7 @@ const Pagination = ({
         publishers: publisherParam,
         platforms: platformParam,
         developers: developerParam,
+        ...pg,
       })
     );
   }, [searchParams]);

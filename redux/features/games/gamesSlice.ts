@@ -63,10 +63,11 @@ export const fetchVintageGames = createAsyncThunk("games/fetchVintage", async ()
     }
     return response;
 });
-export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async () => {
+export const fetchTopRatedGames = createAsyncThunk("games/fetchTopRated", async (pg?: BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
         ordering: "-metacritic",
         dates: "2012-01-01,2025-01-01",
+        ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
     });
     if (!response) {
         throw new Error("Failed to fetch games");
