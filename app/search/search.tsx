@@ -24,6 +24,7 @@ const Search = () => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey && event.key.toLowerCase() === "k") {
         document.getElementById('page-content')!.style.opacity = "0.35";
+        document.getElementById('page-content')!.inert= true;
         event.preventDefault();
         dispatch(setSearchPressed(true));
       }
@@ -86,6 +87,8 @@ const Search = () => {
           onClick={() => {
             dispatch(setSearchPressed(true));
             document.getElementById('page-content')!.style.opacity = "0.35";
+        document.getElementById('page-content')!.inert= true;
+
           }}
         >
           <Image
