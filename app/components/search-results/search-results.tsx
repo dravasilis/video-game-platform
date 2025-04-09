@@ -1,22 +1,21 @@
 "use client";
 import {
-  fetchAllGames,
   clearGames,
-  selectAllGames,
+  fetchAllGames,
   fetchSearchedGames,
-  selectSearchedGames,
+  selectSearchedGames
 } from "@/redux/features/games/gamesSlice";
 import { AppDispatch } from "@/redux/store";
+import Image from "next/image";
 import Link from "next/link";
-import Loader from "../shared/loader/loader";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Banner from "../landing-page/banner/banner";
 import MainNav from "../main-nav/main-nav";
+import Loader from "../shared/loader/loader";
 import MainCard from "../shared/main-card/main-card";
 import Pagination from "../shared/pagination/pagination";
-import Image from "next/image";
 const SearchResults = () => {
   const searchParams = useSearchParams();
 

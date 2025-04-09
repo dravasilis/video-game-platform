@@ -1,13 +1,12 @@
 "use client";
 import { navigationMenus } from "@/app/constants/navigation-menus";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import menuSvg from "../../../public/svg/menu.svg";
-import closeSvg from "../../../public/svg/close.svg";
-import arrow from "../../../public/svg/arrow.svg";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import arrow from "../../../public/svg/arrow.svg";
+import closeSvg from "../../../public/svg/close.svg";
+import menuSvg from "../../../public/svg/menu.svg";
 import styles from "./mobile-navigation.module.scss";
-import Search from "@/app/search/search";
 
 const MobileNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

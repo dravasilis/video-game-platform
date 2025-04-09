@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import styles from "../../../games/[id]/page.module.scss";
 
 interface Props {
@@ -11,7 +10,6 @@ interface Props {
 
 const AppliedFilter = ({
   appliedFilter,
-  filterName,
   filterSlug,
   clearFilter,
 }: Props) => {
