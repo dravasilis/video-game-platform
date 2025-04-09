@@ -38,6 +38,7 @@ const Games = () => {
   };
 
   useEffect(() => {
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !platforms.platforms && dispatch(fetchPlatforms());
   },[])
   return (
