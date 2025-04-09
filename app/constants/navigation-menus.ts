@@ -11,11 +11,11 @@ export const navigationMenus: NavigationMenu[] = [
 
             {
                 name: 'Upcoming Games',
-                redirectUrl: '/games'
+                redirectUrl: '/upcoming-games'
             },
             {
                 name: 'Retro Collection',
-                redirectUrl: '/games'
+                redirectUrl: '/retro-collection'
             },
             {
                 name: 'Top Rated Games',

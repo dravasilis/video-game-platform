@@ -40,10 +40,10 @@ const initialState: GamesState = {
 };
 
 // Create an async thunk to fetch games
-export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async () => {
+export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async (pg?:BasicPagination) => {
     const currentDate = new Date().toISOString().split("T")[0];
-
     const response: HttpResponse<Game> = await fetchHelper('/games', {
+        ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
         ordering: "released",
         dates: `${currentDate},${currentDate.substring(0, 4)}-12-31`,
     });
@@ -53,8 +53,9 @@ export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async 
 
     return response;
 });
-export const fetchVintageGames = createAsyncThunk("games/fetchVintage", async () => {
+export const fetchVintageGames = createAsyncThunk("games/fetchVintage", async (pg?:BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
+        ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
         ordering: "ratings_count",
         dates: "1995-01-01,2005-01-01",
     });

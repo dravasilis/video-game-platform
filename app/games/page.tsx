@@ -13,26 +13,33 @@ import AppliedFilter from "../components/shared/applied-filter/applied-filter";
 import Loader from "../components/shared/loader/loader";
 import MainCard from "../components/shared/main-card/main-card";
 import Pagination from "../components/shared/pagination/pagination";
+import { fetchPlatforms, selectPlatforms } from "@/redux/features/platforms/platformsSlice";
+import { useEffect } from "react";
 const Games = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const popularGames = useSelector(selectAllGames);
+  const platforms = useSelector(selectPlatforms);
   const searchParams = useSearchParams();
 
   const genreParam = searchParams.get("genres") ?? undefined;
-  const platformParam = searchParams.get("platforms") ?? undefined;
+  const platformParam = Number(searchParams.get("platforms") )|| null;
+  console.log(platformParam);
+  
   const publisherParam = searchParams.get("publishers") ?? undefined;
   const devloperParam = searchParams.get("developers") ?? undefined;
-
+  
   const clearFilter = (filterName: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    console.log(searchParams);
-
     searchParams.delete(filterName); // Remove the filter
 
     const newQuery = searchParams.toString();
     router.push(newQuery ? `?page=1` : window.location.pathname);
   };
+
+  useEffect(() => {
+    !platforms.platforms && dispatch(fetchPlatforms());
+  },[])
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>
@@ -50,7 +57,7 @@ const Games = () => {
             <AppliedFilter
               filterName="Platform"
               filterSlug="platforms"
-              appliedFilter={platformParam}
+              appliedFilter={ platforms.platforms?.results.find(p=>p.id === platformParam)?.name ??'Not Found'}
               clearFilter={clearFilter}
             />
           )}
@@ -72,15 +79,13 @@ const Games = () => {
           )}
           {!popularGames.loading ? (
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full ">
-              {(popularGames.popularGames?.count ?? 0) > 0 ? (
+              {(popularGames.popularGames?.count ?? 0) > 0 && (
                 popularGames.popularGames?.results.map((game) => (
                   <Link href={`/games/${game.id}`} key={game.id}>
                     <MainCard data={game} />
                   </Link>
                 ))
-              ) : (
-                <div>Something went wrong</div>
-              )}
+              )  }
             </div>
           ) : (
             <Loader />

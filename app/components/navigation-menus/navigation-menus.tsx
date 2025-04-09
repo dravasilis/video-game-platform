@@ -41,7 +41,7 @@ const NavigationMenus = () => {
                   }`}
                 />
                 {hoveredIndex === index && (
-                  <div className="dropdownMenu animate-drop-down ">
+                  <div className="dropdownMenu  animate-drop-down ">
                     {menu.children.map((child, index) => (
                       <Link href={child.redirectUrl ?? "/home"} key={index}>
                         <div
