@@ -1,4 +1,4 @@
-// import { environment } from "@/env/environment";
+import { environment } from "@/env/environment";
 import { BasicPagination } from "../models/pagination";
 
 export const fetchHelper = async <T extends BasicPagination>(endpoint: string, pagination?: T) => {

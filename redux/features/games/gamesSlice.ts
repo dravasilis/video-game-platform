@@ -313,7 +313,7 @@ export const selectSeriesGames = (state: RootState) => state.games.sameSeriesGam
 export const selectGameExtraContent = (state: RootState) => state.games.gameExtraContent;
 export const selectGameStores = (state: RootState) => state.games.gameStores;
 export const selectRedditPosts = (state: RootState) => state.games.redditPosts;
-export const { clearGames } = gamesSlice.actions;
+export const { clearGames,clearSelectedGame } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
 export default gamesSlice.reducer;
