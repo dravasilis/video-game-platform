@@ -37,6 +37,8 @@ const Search = () => {
       ) {
         dispatch(setSearchPressed(false));
         document.getElementById('page-content')!.style.opacity = "1";
+        document.getElementById('page-content')!.inert= false;
+
       }
     };
 

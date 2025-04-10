@@ -3,6 +3,7 @@ import {
   fetchAllGames,
   selectAllGames,
 } from "@/redux/features/games/gamesSlice";
+import { selectPlatforms } from "@/redux/features/platforms/platformsSlice";
 import { AppDispatch } from "@/redux/store";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -10,11 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Banner from "../components/landing-page/banner/banner";
 import MainNav from "../components/main-nav/main-nav";
 import AppliedFilter from "../components/shared/applied-filter/applied-filter";
+import Filters from "../components/shared/filters/filters";
 import Loader from "../components/shared/loader/loader";
 import MainCard from "../components/shared/main-card/main-card";
 import Pagination from "../components/shared/pagination/pagination";
-import { fetchPlatforms, selectPlatforms } from "@/redux/features/platforms/platformsSlice";
-import { useEffect } from "react";
 const Games = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
@@ -36,16 +36,12 @@ const Games = () => {
     const newQuery = searchParams.toString();
     router.push(newQuery ? `?page=1` : window.location.pathname);
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
-    !platforms.platforms && dispatch(fetchPlatforms());
-  },[])
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
         <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
+          <Filters/>
           {genreParam && (
             <AppliedFilter
               filterName="Genre"
