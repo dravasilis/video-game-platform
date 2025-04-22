@@ -63,7 +63,6 @@ const Games = () => {
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
         <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
           <Filters />
-
           <div className="flex gap-4 items-center">
             {(genreParam?.split(",").length ?? 0) > 0 &&
               genreParam
@@ -95,6 +94,7 @@ const Games = () => {
                 ?.split(",")
                 .map((publisher, index) => (
                   <AppliedFilter
+                    key={index}
                     filterName="Publisher"
                     filterTitle="publishers"
                     filterValue={publisher}
@@ -106,6 +106,7 @@ const Games = () => {
                 ?.split(",")
                 .map((developer, index) => (
                   <AppliedFilter
+                    key={index}
                     filterName="Developer"
                     filterTitle="developers"
                     filterValue={developer}

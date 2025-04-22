@@ -15,7 +15,7 @@ import {
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import arrow from "../../../../public/svg/arrow.svg";
 import bow from "../../../../public/svg/bow.svg";
@@ -26,7 +26,7 @@ import "./filters.scss";
 import { Genre } from "@/app/models/genre";
 import { Platform } from "@/app/models/platform";
 import { Publisher } from "@/app/models/publisher";
-
+import { useEffect, useRef } from "react";
 const Filters = () => {
   const router = useRouter();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -40,7 +40,7 @@ const Filters = () => {
   const genres = useSelector(selectGenres);
   const publishers = useSelector(selectPublishers);
   const developers = useSelector(selectDevelopers);
-
+  const filterRef = useRef<HTMLDivElement>(null);
   const applyFilters = () => {
     selectedGenres.length > 0 &&
       updateParams("genres", selectedGenres.map((g) => g.slug).join(","));
@@ -70,9 +70,27 @@ const Filters = () => {
     !publishers.publishers && dispatch(fetchPublishers());
     !developers.developers && dispatch(fetchDevelopers());
   }, [dispatch]);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
+        console.log("clicked outside");
 
+        setIsFiltersOpen(false); // Close the dropdown
+      }
+    };
+    if (isFiltersOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
   return (
-    <div className="relative">
+    <div ref={filterRef} className="relative">
       <button
         className="filter-button"
         onClick={() => {
