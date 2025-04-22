@@ -76,7 +76,7 @@ const MainCard = <
                   </span>
                 )}
               </div>
-              <Metacritic rating={data.metacritic} />
+              {data.genres?.length && <Metacritic rating={data.metacritic} />}
             </div>
             {data.games_count && (
               <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">

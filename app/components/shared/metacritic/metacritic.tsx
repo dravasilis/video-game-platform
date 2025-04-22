@@ -22,7 +22,7 @@ const Metacritic = ({ rating, url }: Props) => {
               : "bg-warning"
           } w-max`}
         >
-          {rating}
+          {rating ?? <i>N/A</i>}
         </Link>
       ) : (
         <div

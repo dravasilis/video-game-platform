@@ -181,7 +181,7 @@ const GamePage = () => {
               </div>
             )}
             {/* EXTRA CONTENT  */}
-            {gameState.gameExtraContent && (
+            {(gameState.gameExtraContent?.count ?? 0) > 0 && (
               <div className="flex flex-col gap-4 pt-8">
                 <h2 className="h2">Extra content</h2>
                 <div
@@ -216,16 +216,18 @@ const GamePage = () => {
             )}
 
             {/* TAGS  */}
-            <div className="flex flex-col gap-4 pt-8">
-              <h3 className="text-lg text-primary-150 font-bold">Tags</h3>
-              <div className="flex gap-4 flex-wrap">
-                {gameState.selectedGame.tags.map((tag, index) => (
-                  <Link href={"/genres"} key={index} className={styles.pill}>
-                    {tag.name}
-                  </Link>
-                ))}
+            {gameState.selectedGame.tags.length > 0 && (
+              <div className="flex flex-col gap-4 pt-8">
+                <h3 className="text-lg text-primary-150 font-bold">Tags</h3>
+                <div className="flex gap-4 flex-wrap">
+                  {gameState.selectedGame.tags.map((tag, index) => (
+                    <Link href={"/genres"} key={index} className={styles.pill}>
+                      {tag.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
             {/* REDDIT POSTS  */}
             <RedditPosts posts={gameState.redditPosts?.results ?? []} />
           </div>
