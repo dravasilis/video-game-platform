@@ -40,7 +40,7 @@ const initialState: GamesState = {
 };
 
 // Create an async thunk to fetch games
-export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async (pg?:BasicPagination) => {
+export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async (pg?: BasicPagination) => {
     const currentDate = new Date().toISOString().split("T")[0];
     const response: HttpResponse<Game> = await fetchHelper('/games', {
         ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
@@ -53,7 +53,7 @@ export const fetchUpcomingGames = createAsyncThunk("games/fetchUpcoming", async 
 
     return response;
 });
-export const fetchVintageGames = createAsyncThunk("games/fetchVintage", async (pg?:BasicPagination) => {
+export const fetchVintageGames = createAsyncThunk("games/fetchVintage", async (pg?: BasicPagination) => {
     const response: HttpResponse<Game> = await fetchHelper('/games', {
         ...(Object.fromEntries(Object.entries(pg ?? {}).filter(([_, v]) => v !== undefined))),
         ordering: "ratings_count",
@@ -313,7 +313,7 @@ export const selectSeriesGames = (state: RootState) => state.games.sameSeriesGam
 export const selectGameExtraContent = (state: RootState) => state.games.gameExtraContent;
 export const selectGameStores = (state: RootState) => state.games.gameStores;
 export const selectRedditPosts = (state: RootState) => state.games.redditPosts;
-export const { clearGames,clearSelectedGame } = gamesSlice.actions;
+export const { clearGames, clearSelectedGame } = gamesSlice.actions;
 
 // Export the reducer to be added to the store
 export default gamesSlice.reducer;

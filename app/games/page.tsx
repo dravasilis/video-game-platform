@@ -21,68 +21,106 @@ const Games = () => {
   const popularGames = useSelector(selectAllGames);
   const platforms = useSelector(selectPlatforms);
   const searchParams = useSearchParams();
-
   const genreParam = searchParams.get("genres") ?? undefined;
-  const platformParam = Number(searchParams.get("platforms") )|| null;
-  console.log(platformParam);
-  
+  const platformParam = searchParams.get("platforms");
+  const platformsNames = platforms.platforms?.results
+    .filter((platform) =>
+      platformParam?.split(",").includes(platform.id.toString())
+    )
+    .map((p) => p.name);
   const publisherParam = searchParams.get("publishers") ?? undefined;
   const devloperParam = searchParams.get("developers") ?? undefined;
-  
-  const clearFilter = (filterName: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.delete(filterName); // Remove the filter
 
+  const clearFilter = (
+    filterTitle: string,
+    filterValue: string,
+    isPlatforms?: boolean
+  ) => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const values = searchParams.getAll(filterTitle)[0].split(","); // get the parma's values
+    const updatedValues = isPlatforms
+      ? values.filter(
+          (value) =>
+            value.localeCompare(
+              String(
+                platforms.platforms?.results.find((p) => p.name === filterValue)
+                  ?.id
+              ) ?? "not found"
+            ) !== 0
+        ) // remove the value you want to delete
+      : values.filter((value) => value.localeCompare(filterValue) !== 0); // remove the value you want to delete
+    searchParams.delete(filterTitle); // delete the filter title
+    if (updatedValues.length) {
+      searchParams.set(filterTitle, updatedValues.join(","));
+    }
+    searchParams.set("page", "1");
     const newQuery = searchParams.toString();
-    router.push(newQuery ? `?page=1` : window.location.pathname);
+    router.push(`${window.location.pathname}?${newQuery || "page=1"}`);
   };
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
         <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
-          <Filters/>
-          {genreParam && (
-            <AppliedFilter
-              filterName="Genre"
-              filterSlug="genres"
-              appliedFilter={genreParam}
-              clearFilter={clearFilter}
-            />
-          )}
-          {platformParam && (
-            <AppliedFilter
-              filterName="Platform"
-              filterSlug="platforms"
-              appliedFilter={ platforms.platforms?.results.find(p=>p.id === platformParam)?.name ??'Not Found'}
-              clearFilter={clearFilter}
-            />
-          )}
-          {publisherParam && (
-            <AppliedFilter
-              filterName="Publisher"
-              filterSlug="publishers"
-              appliedFilter={publisherParam}
-              clearFilter={clearFilter}
-            />
-          )}
-          {devloperParam && (
-            <AppliedFilter
-              filterName="Developer"
-              filterSlug="developers"
-              appliedFilter={devloperParam}
-              clearFilter={clearFilter}
-            />
-          )}
+          <Filters />
+
+          <div className="flex gap-4 items-center">
+            {(genreParam?.split(",").length ?? 0) > 0 &&
+              genreParam
+                ?.split(",")
+                .map((genre, index) => (
+                  <AppliedFilter
+                    key={index}
+                    filterName="Genre"
+                    filterTitle="genres"
+                    filterValue={genre}
+                    clearFilter={clearFilter}
+                  />
+                ))}
+            {(platformParam?.split(",").length ?? 0) > 0 &&
+              platformParam
+                ?.split(",")
+                .map((platform, index) => (
+                  <AppliedFilter
+                    key={index}
+                    filterName="Platform"
+                    filterTitle="platforms"
+                    filterValue={platformsNames?.[index] ?? platform}
+                    isPlatforms={true}
+                    clearFilter={clearFilter}
+                  />
+                ))}
+            {(publisherParam?.split(",").length ?? 0) > 0 &&
+              publisherParam
+                ?.split(",")
+                .map((publisher, index) => (
+                  <AppliedFilter
+                    filterName="Publisher"
+                    filterTitle="publishers"
+                    filterValue={publisher}
+                    clearFilter={clearFilter}
+                  />
+                ))}
+            {(devloperParam?.split(",").length ?? 0) > 0 &&
+              devloperParam
+                ?.split(",")
+                .map((developer, index) => (
+                  <AppliedFilter
+                    filterName="Developer"
+                    filterTitle="developers"
+                    filterValue={developer}
+                    clearFilter={clearFilter}
+                  />
+                ))}
+          </div>
           {!popularGames.loading ? (
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full ">
-              {(popularGames.popularGames?.count ?? 0) > 0 && (
+              {(popularGames.popularGames?.count ?? 0) > 0 &&
                 popularGames.popularGames?.results.map((game) => (
                   <Link href={`/games/${game.id}`} key={game.id}>
                     <MainCard data={game} />
                   </Link>
-                ))
-              )  }
+                ))}
             </div>
           ) : (
             <Loader />

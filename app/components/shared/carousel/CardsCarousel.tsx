@@ -44,22 +44,24 @@ export function CarouselUI({ games }: props) {
             className="sm:basis-1/2  md:basis-1/3 lg:basis-1/4 xl:basis-1/5 2xl:basis-1/6"
           >
             <Link href={`/games/${game.id}`}>
-            <Card className="card">
-              <CardContent className="cardContent">
-                <div className="card-overlay ">
-                  <span className="text-transparent">{game.name}</span>
-                  <span className="text-transparent">{game.released}</span>
-                </div>
-                <Image
-                unoptimized
-                  src={game.background_image ?? "/svg/game.svg"}
-                  width={1920}
-                  height={600}
-                  alt="carouselImage"
-                  className="w-full object-cover duration-100 h-full rounded-md shadow-[0px_0px_1px_2px_#41606f73]"
-                />
-              </CardContent>
-            </Card>
+              <Card className="card">
+                <CardContent className="cardContent">
+                  <div className="card-overlay ">
+                    <span className="text-transparent font-bold">
+                      {game.name}
+                    </span>
+                    <span className="text-transparent">{game.released}</span>
+                  </div>
+                  <Image
+                    unoptimized
+                    src={game.background_image ?? "/svg/game.svg"}
+                    width={1920}
+                    height={600}
+                    alt="carouselImage"
+                    className="w-full object-cover duration-100 h-full rounded-md shadow-[0px_0px_1px_2px_#41606f73]"
+                  />
+                </CardContent>
+              </Card>
             </Link>
           </CarouselItem>
         ))}

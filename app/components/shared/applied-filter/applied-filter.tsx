@@ -2,24 +2,33 @@
 import styles from "../../../games/[id]/page.module.scss";
 
 interface Props {
-  appliedFilter: string;
+  filterValue: string;
   filterName: string;
-  filterSlug: string;
-  clearFilter: (filterName: string) => void;
+  filterTitle: string;
+  isPlatforms?: boolean;
+  clearFilter: (
+    filterTitle: string,
+    filterValue: string,
+    isPlatforms?: boolean
+  ) => void;
 }
 
 const AppliedFilter = ({
-  appliedFilter,
-  filterSlug,
+  filterValue,
+  filterTitle,
+  isPlatforms,
   clearFilter,
 }: Props) => {
+  console.log(filterTitle);
+  console.log(filterValue);
+
   return (
     <div className="flex items-center gap-1">
       <button
-        onClick={() => clearFilter(filterSlug)}
+        onClick={() => clearFilter(filterTitle, filterValue, isPlatforms)}
         className={`${styles.pill} cursor-pointer`}
       >
-        {appliedFilter}
+        {filterValue}
         <span className="text-primary-150">🞬</span>
       </button>
     </div>
