@@ -75,8 +75,11 @@ const Filters = () => {
   useEffect(() => {
     // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !platforms.platforms && dispatch(fetchPlatforms());
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !genres.genres && dispatch(fetchGenres());
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !publishers.publishers && dispatch(fetchPublishers());
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !developers.developers && dispatch(fetchDevelopers());
   }, [dispatch]);
   useEffect(() => {
@@ -101,9 +104,11 @@ const Filters = () => {
     <div ref={filterRef} className="relative">
       <button
         className="filter-button"
+        // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
         onClick={() => {
           // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
           setIsFiltersOpen(!isFiltersOpen);
+          // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
           !isFiltersOpen && setIsCategoryOpen(null);
         }}
       >
