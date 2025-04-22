@@ -73,6 +73,7 @@ const Filters = () => {
     setIsCategoryOpen(null);
   };
   useEffect(() => {
+    // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
     !platforms.platforms && dispatch(fetchPlatforms());
     !genres.genres && dispatch(fetchGenres());
     !publishers.publishers && dispatch(fetchPublishers());
@@ -101,6 +102,7 @@ const Filters = () => {
       <button
         className="filter-button"
         onClick={() => {
+          // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
           setIsFiltersOpen(!isFiltersOpen);
           !isFiltersOpen && setIsCategoryOpen(null);
         }}
