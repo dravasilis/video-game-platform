@@ -35,6 +35,7 @@ const LandingPage = () => {
       dispatch(fetchVintageGames());
       dispatch(fetchTopRatedGames());
     }
+    
   }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
   return (

@@ -1,26 +1,29 @@
 "use client";
 import { navigationMenus } from "@/app/constants/navigation-menus";
 import Image from "next/image";
-import React, { useEffect, useRef, useState } from "react";
-import menuSvg from "../../../public/svg/menu.svg";
-import closeSvg from "../../../public/svg/close.svg";
-import arrow from "../../../public/svg/arrow.svg";
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import arrow from "../../../public/svg/arrow.svg";
+import closeSvg from "../../../public/svg/close.svg";
+import menuSvg from "../../../public/svg/menu.svg";
 import styles from "./mobile-navigation.module.scss";
-import Search from "@/app/search/search";
 
 const MobileNavigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const handleCloseMenu=()=>{
+    setIsMenuOpen(false);
+    document.body.style.overflow = "unset";
+    setHoveredIndex(null);
+    document.getElementById('page-content')!.style.opacity = "1";
+document.getElementById('page-content')!.inert= false
+  }
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMenuOpen(false);
-        setHoveredIndex(null);
-        document.body.style.overflow = "unset";
+       handleCloseMenu()
       }
     };
 
@@ -40,6 +43,8 @@ const MobileNavigation = () => {
         onClick={() => {
           setIsMenuOpen(true);
           document.body.style.overflow = "hidden";
+          document.getElementById('page-content')!.style.opacity = "0.35";
+          document.getElementById('page-content')!.inert= true
         }}
       >
         <Image src={menuSvg} alt="menuSvg" width={30} height={30} />
@@ -52,9 +57,7 @@ const MobileNavigation = () => {
           <button
             className="flex"
             onClick={() => {
-              setIsMenuOpen(false);
-              document.body.style.overflow = "unset";
-              setHoveredIndex(null);
+              handleCloseMenu()
             }}
           >
             <Image src={closeSvg} alt="closeSvg" width={25} height={25} />
@@ -84,7 +87,9 @@ const MobileNavigation = () => {
                 {hoveredIndex === index && (
                   <div className="dropdownMenu animate-drop-down z-10 !w-full">
                     {menu.children.map((child, index) => (
-                      <Link href={child.redirectUrl ?? "/home"} key={index}>
+                      <Link href={child.redirectUrl ?? "/home"} key={index} onClick={()=>{
+                       handleCloseMenu()
+                      }}>
                         <div
                           className="menu"
                           dangerouslySetInnerHTML={{ __html: child.name }}
@@ -97,7 +102,9 @@ const MobileNavigation = () => {
             ) : (
               menu.redirectUrl && (
                 <Link
-                  href={menu.redirectUrl}
+                  href={menu.redirectUrl} onClick={()=>{
+                    handleCloseMenu()
+                  }}
                   key={index}
                   className="underlineEffectLine active:scale-[.98] w-full  px-4 max-xl:px-2 py-2"
                 >

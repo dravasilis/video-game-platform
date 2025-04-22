@@ -73,7 +73,7 @@
 
 @layer utilities {
     .animate-drop-down {
-        animation: dropDown 0.25s ease-in-out;
+        animation: dropDown 0.35s ease-in-out;
     }
 }
 

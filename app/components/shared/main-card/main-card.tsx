@@ -49,7 +49,7 @@ const MainCard = <
           />
 
           <div className="flex flex-col gap-2 max-sm:gap-1 px-4  justify-center h-[30%] max-xl:px-[10px] max-xl:h-[35%] max-sm:h-[40%] max-[640px]:py-0 max-[640px]:px-2">
-            <span className="max-xl:text-xs text-sm font-bold   text-primary-100">
+            <span className="max-xl:text-xs text-sm font-bold  truncate-two-lines text-primary-100">
               {data.name}
             </span>
             <div className="w-full flex items-center justify-between">
@@ -76,7 +76,9 @@ const MainCard = <
                   </span>
                 )}
               </div>
-              {data.genres?.length && <Metacritic rating={data.metacritic} />}
+              {(data.genres?.length ?? 0) > 0 && (
+                <Metacritic rating={data.metacritic} />
+              )}
             </div>
             {data.games_count && (
               <span className="text-xs max-xl:text-[10px] font-bold text-primary-150">

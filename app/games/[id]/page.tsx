@@ -12,6 +12,7 @@ import StatCard from "@/app/components/shared/stat-card/stat";
 import { GamePageStats } from "@/app/constants/stats";
 import { StoreData } from "@/app/models/store";
 import {
+  clearSelectedGame,
   fetchGame,
   fetchGameExtraContent,
   fetchGameRedditPosts,
@@ -45,6 +46,9 @@ const GamePage = () => {
     dispatch(fetchGameExtraContent(Number(id)));
     dispatch(fetchGameStores(Number(id)));
     dispatch(fetchGameRedditPosts(Number(id)));
+    return () => {
+      dispatch(clearSelectedGame());
+    };
   }, [dispatch]);
 
   const gameState = useSelector(selectGameById);

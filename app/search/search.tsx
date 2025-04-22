@@ -23,6 +23,8 @@ const Search = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.ctrlKey && event.key.toLowerCase() === "k") {
+        document.getElementById('page-content')!.style.opacity = "0.35";
+        document.getElementById('page-content')!.inert= true;
         event.preventDefault();
         dispatch(setSearchPressed(true));
       }
@@ -34,6 +36,9 @@ const Search = () => {
         !searchContainerRef.current.contains(event.target as Node)
       ) {
         dispatch(setSearchPressed(false));
+        document.getElementById('page-content')!.style.opacity = "1";
+        document.getElementById('page-content')!.inert= false;
+
       }
     };
 
@@ -70,8 +75,7 @@ const Search = () => {
           page_size: 10,
         })
       );
-    }, 500); // 1.5 sec delay
-    console.log(searchResults);
+    }, 500); // 1.5 sec delay 
 
     return () => clearTimeout(timeout); // Clear timeout on new input
   }, [searchTerm]);
@@ -82,7 +86,12 @@ const Search = () => {
       {!isPressed && (
         <button
           className="cursor-pointer"
-          onClick={() => dispatch(setSearchPressed(true))}
+          onClick={() => {
+            dispatch(setSearchPressed(true));
+            document.getElementById('page-content')!.style.opacity = "0.35";
+        document.getElementById('page-content')!.inert= true;
+
+          }}
         >
           <Image
             src={searchSvg}
