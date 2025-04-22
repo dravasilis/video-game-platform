@@ -42,27 +42,43 @@ const Filters = () => {
   const developers = useSelector(selectDevelopers);
   const filterRef = useRef<HTMLDivElement>(null);
   const applyFilters = () => {
-    selectedGenres.length > 0 &&
-      updateParams("genres", selectedGenres.map((g) => g.slug).join(","));
-    selectedPlatforms.length > 0 &&
-      updateParams("platforms", selectedPlatforms.map((p) => p.id).join(","));
-    selectedPublishers.length > 0 &&
-      updateParams(
-        "publishers",
-        selectedPublishers.map((p) => p.slug).join(",")
-      );
-    selectedDevelopers.length > 0 &&
-      updateParams(
-        "developers",
-        selectedDevelopers.map((d) => d.slug).join(",")
-      );
+    const params = new URLSearchParams(window.location.search);
+
+    if (selectedGenres.length > 0) {
+      params.set("genres", selectedGenres.map((g) => g.slug).join(","));
+    } else {
+      params.delete("genres");
+    }
+
+    if (selectedPlatforms.length > 0) {
+      params.set("platforms", selectedPlatforms.map((p) => p.id).join(","));
+    } else {
+      params.delete("platforms");
+    }
+
+    if (selectedPublishers.length > 0) {
+      params.set("publishers", selectedPublishers.map((p) => p.slug).join(","));
+    } else {
+      params.delete("publishers");
+    }
+
+    if (selectedDevelopers.length > 0) {
+      params.set("developers", selectedDevelopers.map((d) => d.slug).join(","));
+    } else {
+      params.delete("developers");
+    }
+
+    // Push the final combined query string
+    router.push(`${window.location.pathname}?${params.toString()}`);
     setIsFiltersOpen(false);
     setIsCategoryOpen(null);
   };
   const updateParams = (paramTitle: string, paramValues: string) => {
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(window.location.search);
     params.set(paramTitle, paramValues);
-    router.push(`?${params.toString()}`);
+
+    const newQuery = params.toString();
+    router.push(`${window.location.pathname}?${newQuery}`);
   };
   useEffect(() => {
     !platforms.platforms && dispatch(fetchPlatforms());
