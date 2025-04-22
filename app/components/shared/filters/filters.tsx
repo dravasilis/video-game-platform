@@ -1,4 +1,7 @@
 "use client";
+import { Genre } from "@/app/models/genre";
+import { Platform } from "@/app/models/platform";
+import { Publisher } from "@/app/models/publisher";
 import {
   fetchDevelopers,
   selectDevelopers,
@@ -14,8 +17,8 @@ import {
 } from "@/redux/features/publishers/publishersSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import arrow from "../../../../public/svg/arrow.svg";
 import bow from "../../../../public/svg/bow.svg";
@@ -23,10 +26,6 @@ import filterSvg from "../../../../public/svg/filters.svg";
 import weapons from "../../../../public/svg/weapons.svg";
 import CustomCheckbox from "../checkbox/checkbox";
 import "./filters.scss";
-import { Genre } from "@/app/models/genre";
-import { Platform } from "@/app/models/platform";
-import { Publisher } from "@/app/models/publisher";
-import { useEffect, useRef } from "react";
 const Filters = () => {
   const router = useRouter();
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
@@ -73,13 +72,6 @@ const Filters = () => {
     setIsFiltersOpen(false);
     setIsCategoryOpen(null);
   };
-  const updateParams = (paramTitle: string, paramValues: string) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set(paramTitle, paramValues);
-
-    const newQuery = params.toString();
-    router.push(`${window.location.pathname}?${newQuery}`);
-  };
   useEffect(() => {
     !platforms.platforms && dispatch(fetchPlatforms());
     !genres.genres && dispatch(fetchGenres());
@@ -88,13 +80,12 @@ const Filters = () => {
   }, [dispatch]);
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
+      // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
       if (
         filterRef.current &&
         !filterRef.current.contains(event.target as Node)
       ) {
-        console.log("clicked outside");
-
-        setIsFiltersOpen(false); // Close the dropdown
+        setIsFiltersOpen(false);
       }
     };
     if (isFiltersOpen) {
