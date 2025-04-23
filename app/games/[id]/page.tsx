@@ -89,7 +89,6 @@ const GamePage = () => {
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
             />
-            <SkeletonGamePage />
             <div className="flex max-sm:flex-col gap-12 max-sm:gap-0 z-10 mt-[12rem] max-sm:mt-[2rem] max-sm:px-0">
               <div className="flex flex-col gap-2">
                 <Image
