@@ -4,10 +4,10 @@ import MainNav from "@/app/components/main-nav/main-nav";
 import BarChart from "@/app/components/shared/bar-chart/bar-chart";
 import GameDetails from "@/app/components/shared/game-details/game-details";
 import GameListsStatus from "@/app/components/shared/game-lists-status/game-lists-status";
-import Loader from "@/app/components/shared/loader/loader";
 import MainCard from "@/app/components/shared/main-card/main-card";
 import MediaCarousel from "@/app/components/shared/media-carousel/media-carousel";
 import RedditPosts from "@/app/components/shared/reddit-posts/reddit-posts";
+import SkeletonGamePage from "@/app/components/shared/skeleton-game-page/skeleton-game-page";
 import StatCard from "@/app/components/shared/stat-card/stat";
 import { GamePageStats } from "@/app/constants/stats";
 import { StoreData } from "@/app/models/store";
@@ -24,6 +24,7 @@ import {
   selectGameScreenshots,
   selectGameTrailers,
 } from "@/redux/features/games/gamesSlice";
+import { setSearchPressed } from "@/redux/features/search/searchSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +32,6 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
-import { setSearchPressed } from "@/redux/features/search/searchSlice";
 
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -89,6 +89,7 @@ const GamePage = () => {
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
             />
+            <SkeletonGamePage />
             <div className="flex max-sm:flex-col gap-12 max-sm:gap-0 z-10 mt-[12rem] max-sm:mt-[2rem] max-sm:px-0">
               <div className="flex flex-col gap-2">
                 <Image
@@ -236,7 +237,7 @@ const GamePage = () => {
             <RedditPosts posts={gameState.redditPosts?.results ?? []} />
           </div>
         ) : (
-          <Loader />
+          <SkeletonGamePage />
         )}
       </MainNav>
     </div>
