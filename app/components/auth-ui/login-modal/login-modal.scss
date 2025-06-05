@@ -1,0 +1,13 @@
+.tab {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+    padding: 12px 20px;
+    transition-duration: 300ms;
+    background-color: rgba(77, 83, 94, 0.23);
+
+    &:hover {
+        background-color: rgba(77, 83, 94, 0.35);
+    }
+}

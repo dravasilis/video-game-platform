@@ -1,10 +1,9 @@
-import Link from "next/link";
-import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../../../public/images/logo.png";
 import Search from "../../search/search";
-import NavigationMenus from "../navigation-menus/navigation-menus";
 import MobileNavigation from "../mobile-navigation/mobile-navigation";
+import NavigationMenus from "../navigation-menus/navigation-menus";
 const Navigation = () => {
   return (
     <>
