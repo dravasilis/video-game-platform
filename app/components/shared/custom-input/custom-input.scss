@@ -1,0 +1,7 @@
+.input-wrapper:focus-within {
+    .input-label {
+        transition-duration: 150ms;
+        color: rgb(255, 255, 255);
+        letter-spacing: 0.5px;
+    }
+}

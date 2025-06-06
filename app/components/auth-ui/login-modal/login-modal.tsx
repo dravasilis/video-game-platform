@@ -1,6 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { auth } from "@/lib/firebase";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import bow from "../../../../public/svg/bow.svg";
+import sword from "../../../../public/svg/sword.svg";
 import weapons from "../../../../public/svg/weapons.svg";
 import CustomInput from "../../shared/custom-input/custom-input";
 import "./login-modal.scss";
@@ -10,7 +18,45 @@ interface Props {
 }
 
 const LoginPopup = ({ onClose }: Props) => {
-  const [selectedTab, setSelectedTab] = useState<"signin" | "signup">("signin");
+  const [selectedTab, setSelectedTab] = useState<"signIn" | "signUp">("signIn");
+  const [email, setEmail] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
+  const [triggerCheck, setTriggerCheck] = useState(false);
+
+  const handleLogin = async (authType: "signIn" | "signUp") => {
+    try {
+      setTriggerCheck(true);
+      authType === "signIn" && (await signIn());
+      authType === "signUp" && (await signUp());
+    } catch (error: any) {
+      alert(error.message);
+    }
+  };
+
+  const signIn = async () => {
+    if (!email || !password) return;
+    await signInWithEmailAndPassword(auth, email, password);
+    alert("Login successful");
+  };
+
+  const signUp = async () => {
+    if (!email || !password || !username) return;
+    if (!auth.currentUser) throw new Error("User is not authenticated");
+    if (password !== confirmPassword) throw new Error("Passwords do not match");
+    await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(auth.currentUser, { displayName: username });
+  };
+
+  const resetValues = () => {
+    setEmail(null);
+    setPassword(null);
+    setConfirmPassword(null);
+    setUsername(null);
+    setTriggerCheck(false);
+  };
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
   });
@@ -27,14 +73,17 @@ const LoginPopup = ({ onClose }: Props) => {
         {/* TABS  */}
         <div className="flex items-center justify-around">
           <button
-            onClick={() => setSelectedTab("signin")}
+            onClick={() => {
+              setSelectedTab("signIn");
+              resetValues();
+            }}
             className={`tab  rounded-s-lg duration-300 ${
-              selectedTab === "signin" ? "!bg-[#4d535e]" : ""
+              selectedTab === "signIn" ? "!bg-[#4d535e]" : ""
             }`}
           >
             <Image
               className={`duration-150 ${
-                selectedTab === "signin" ? "opacity-100" : "opacity-0"
+                selectedTab === "signIn" ? "opacity-100" : "opacity-0"
               }`}
               src={weapons}
               alt="weapons"
@@ -45,13 +94,16 @@ const LoginPopup = ({ onClose }: Props) => {
           </button>
           <button
             className={`tab rounded-e-lg duration-300   ${
-              selectedTab === "signup" ? "!bg-[#4d535e]" : ""
+              selectedTab === "signUp" ? "!bg-[#4d535e]" : ""
             }`}
-            onClick={() => setSelectedTab("signup")}
+            onClick={() => {
+              setSelectedTab("signUp");
+              resetValues();
+            }}
           >
             <Image
               className={`duration-150 ${
-                selectedTab === "signup" ? "opacity-100" : "opacity-0"
+                selectedTab === "signUp" ? "opacity-100" : "opacity-0"
               }`}
               src={weapons}
               alt="weapons"
@@ -61,38 +113,87 @@ const LoginPopup = ({ onClose }: Props) => {
             Create account
           </button>
         </div>
-        {/* SIGNIN CONTENT  */}
-        {selectedTab === "signin" ? (
-          <div className="flex flex-col gap-3  pt-4">
-            <CustomInput
-              label="Email"
-              placeholder="'Type your email here...'"
-              emitValue={(value) => console.log(value)}
-            ></CustomInput>
-            <CustomInput
-              label="Password"
-              placeholder="'Type your password here...'"
-              emitValue={(value) => console.log(value)}
-            ></CustomInput>
-          </div>
-        ) : (
-          <div className="flex flex-col gap-3  pt-4">
-            <CustomInput
-              label="Email"
-              placeholder="'Type your email here...'"
-              emitValue={(value) => console.log(value)}
-            ></CustomInput>
-            <CustomInput
-              label="Password"
-              placeholder="'Type your password here...'"
-              emitValue={(value) => console.log(value)}
-            ></CustomInput>
-          </div>
-        )}
-        {/* FOOTER  */}
-        <button className="w-max px-4 py-2 hover:bg-primary-200/50 active:scale-95 duration-200 text-sm self-end bg-primary-200 rounded-md m-5">
-          {selectedTab === "signin" ? "Sign in" : "Create account"}
-        </button>
+        <div className="flex flex-col gap-8 pt-2 pb-8">
+          {/* SIGNIN CONTENT  */}
+          {selectedTab === "signIn" ? (
+            <div className="flex flex-col gap-3  pt-4">
+              <CustomInput
+                label="Email*"
+                placeholder="Type your email here..."
+                isRequired={true}
+                triggerCheck={triggerCheck}
+                value={email}
+                emitValue={(value) => {
+                  setEmail(value);
+                }}
+              ></CustomInput>
+              <CustomInput
+                label="Password*"
+                isRequired={true}
+                triggerCheck={triggerCheck}
+                placeholder="Type your password here..."
+                value={password}
+                type="password"
+                emitValue={(value) => setPassword(value)}
+              ></CustomInput>
+            </div>
+          ) : (
+            // SIGNUP CONTENT
+            <div className="flex flex-col gap-3  pt-4">
+              <CustomInput
+                label="Email*"
+                isRequired={true}
+                placeholder="Type your email here..."
+                value={email}
+                triggerCheck={triggerCheck}
+                emitValue={(value) => setEmail(value)}
+              ></CustomInput>
+              <CustomInput
+                label="Password*"
+                placeholder="Type your password here..."
+                isRequired={true}
+                value={password}
+                type="password"
+                triggerCheck={triggerCheck}
+                emitValue={(value) => setPassword(value)}
+              ></CustomInput>
+              <CustomInput
+                label="Confirm password*"
+                placeholder="Type your password again here..."
+                value={confirmPassword}
+                isRequired={true}
+                type="password"
+                triggerCheck={triggerCheck}
+                emitValue={(value) => setConfirmPassword(value)}
+              ></CustomInput>
+              <CustomInput
+                label="Username*"
+                isRequired={true}
+                value={username}
+                triggerCheck={triggerCheck}
+                placeholder="Type your username here..."
+                emitValue={(value) => setUsername(value)}
+              ></CustomInput>
+            </div>
+          )}
+          {/* FOOTER  */}
+          <button
+            onClick={() => handleLogin(selectedTab)}
+            className="submit-button underlineEffect  "
+          >
+            {selectedTab === "signIn" ? (
+              <>
+                <Image src={sword} alt="weapons" width={20} height={20} />
+                <span>Sign in</span>
+              </>
+            ) : (
+              <>
+                <Image src={bow} alt="weapons" width={20} height={20} />
+                <span> Create account</span>
+              </>
+            )}
+          </button>
+        </div>
       </div>
     </div>
   );
