@@ -1,5 +1,7 @@
 "use client";
 import { auth } from "@/lib/firebase";
+import { fetchFirebaseUser } from "@/redux/features/user/userSlice";
+import { AppDispatch } from "@/redux/store";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -7,6 +9,7 @@ import {
 } from "firebase/auth";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import bow from "../../../../public/svg/bow.svg";
 import sword from "../../../../public/svg/sword.svg";
 import weapons from "../../../../public/svg/weapons.svg";
@@ -24,6 +27,7 @@ const LoginPopup = ({ onClose }: Props) => {
   const [confirmPassword, setConfirmPassword] = useState<string | null>(null);
   const [username, setUsername] = useState<string | null>(null);
   const [triggerCheck, setTriggerCheck] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleLogin = async (authType: "signIn" | "signUp") => {
     try {
@@ -39,6 +43,7 @@ const LoginPopup = ({ onClose }: Props) => {
     if (!email || !password) return;
     await signInWithEmailAndPassword(auth, email, password);
     alert("Login successful");
+    dispatch(fetchFirebaseUser());
   };
 
   const signUp = async () => {

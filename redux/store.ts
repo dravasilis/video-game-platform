@@ -4,6 +4,7 @@ import genresReducer from "./features/genres/genresSlice"; // Adjust the import 
 import publishersReducer from "./features/publishers/publishersSlice"; // Adjust the import path as needed
 import developersReducer from "./features/developers/developersSlice"; // Adjust the import path as needed
 import platformsReducer from "./features/platforms/platformsSlice"; // Adjust the import path as needed
+import userReducer from "./features/user/userSlice"; // Adjust the import path as needed
 import searchReducer from "./features/search/searchSlice"; // Adjust the import path as needed
 export const makeStore = () => {
     return configureStore({
@@ -14,6 +15,7 @@ export const makeStore = () => {
             developers: developersReducer,
             platforms: platformsReducer,
             search: searchReducer,
+            user: userReducer
         }
     });
 };

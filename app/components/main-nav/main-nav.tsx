@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import Navigation from "../navigation/navigation";
 import LoginButton from "../auth-ui/login-button/login-button";
 import LoginPopup from "../auth-ui/login-modal/login-modal";
+import { selectUser } from "@/redux/features/user/userSlice";
+import { useSelector } from "react-redux";
 
 interface Props {
   children: React.ReactNode;
@@ -11,19 +13,32 @@ interface Props {
 }
 const MainNav = ({ children, header, results }: Props) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const currentUser = useSelector(selectUser);
+
   return (
     <>
       <div className="flex flex-col gap-4 py-4 animate-fade-in px-4 ">
         <div className="flex flex-col gap-1 items-end">
-          <LoginButton onClick={() => setShowLoginModal(true)}></LoginButton>
-          {showLoginModal && (
-            <LoginPopup
-              onClose={() => {
-                setShowLoginModal(false);
-                document.body.style.overflow = "auto";
-              }}
-            ></LoginPopup>
+          {currentUser.user ? (
+            <span className="text-sm text-primary-150 z-10">
+              {currentUser.user.displayName}
+            </span>
+          ) : (
+            <>
+              <LoginButton
+                onClick={() => setShowLoginModal(true)}
+              ></LoginButton>
+              {showLoginModal && (
+                <LoginPopup
+                  onClose={() => {
+                    setShowLoginModal(false);
+                    document.body.style.overflow = "auto";
+                  }}
+                ></LoginPopup>
+              )}
+            </>
           )}
+
           <Navigation />
         </div>
         <div
