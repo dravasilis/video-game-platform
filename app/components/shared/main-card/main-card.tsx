@@ -1,8 +1,12 @@
+"use client";
 import Image from "next/image";
 import "./main-card.scss";
 import Metacritic from "../metacritic/metacritic";
 import { Genre } from "@/app/models/genre";
 import styles from "../../../games/[id]/page.module.scss";
+import heartEmpty from "../../../../public/svg/heartEmpty.svg";
+import heartFilled from "../../../../public/svg/heartFilled.svg";
+import { useState } from "react";
 interface Props<
   T extends {
     id: number;
@@ -33,6 +37,7 @@ const MainCard = <
 >({
   data,
 }: Props<T>) => {
+  const [test, setTest] = useState(false);
   return (
     <div className="mainCard">
       <div className="content">
@@ -49,9 +54,43 @@ const MainCard = <
           />
 
           <div className="flex flex-col gap-2 max-sm:gap-1 px-4  justify-center h-[30%] max-xl:px-[10px] max-xl:h-[35%] max-sm:h-[40%] max-[640px]:py-0 max-[640px]:px-2">
-            <span className="max-xl:text-xs text-sm font-bold  truncate-two-lines text-primary-100">
-              {data.name}
-            </span>
+            <div className="flex items-center justify-between w-full">
+              <span className="max-xl:text-xs text-sm font-bold  truncate-two-lines text-primary-100">
+                {data.name}
+              </span>
+              {!test && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTest(true);
+                  }}
+                >
+                  <Image
+                    src={heartEmpty}
+                    alt="emptyHeart"
+                    width={25}
+                    height={25}
+                    className="!w-[25px] !h-[25px]"
+                  />
+                </button>
+              )}
+              {test && (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setTest(false);
+                  }}
+                >
+                  <Image
+                    src={heartFilled}
+                    alt="emptyHeart"
+                    width={25}
+                    height={25}
+                    className="!w-[25px] !h-[25px] animate-drop-down"
+                  />
+                </button>
+              )}
+            </div>
             <div className="w-full flex items-center justify-between">
               <div className="flex flex-col gap-2">
                 {data.genres && (

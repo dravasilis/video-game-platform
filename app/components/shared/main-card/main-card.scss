@@ -58,14 +58,19 @@
 	justify-content: space-between;
 	border-radius: 4px;
 }
+
 .truncate-two-lines {
+	max-width: 10rem;
 	display: -webkit-box;
-	-webkit-line-clamp: 2;        /* Limit to 2 lines */
+	-webkit-line-clamp: 2;
+	/* Limit to 2 lines */
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	word-break: break-word;       /* Allow breaking long words */
-  }
+	word-break: break-word;
+	/* Allow breaking long words */
+}
+
 @media screen and (max-width: 1700px) {
 	.mainCard {
 		width: 250px;

@@ -48,10 +48,11 @@ const LoginPopup = ({ onClose }: Props) => {
 
   const signUp = async () => {
     if (!email || !password || !username) return;
-    if (!auth.currentUser) throw new Error("User is not authenticated");
     if (password !== confirmPassword) throw new Error("Passwords do not match");
     await createUserWithEmailAndPassword(auth, email, password);
+    if (!auth.currentUser) throw new Error("User is not authenticated");
     await updateProfile(auth.currentUser, { displayName: username });
+    dispatch(fetchFirebaseUser());
   };
 
   const resetValues = () => {
