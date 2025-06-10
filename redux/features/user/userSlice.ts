@@ -1,7 +1,7 @@
 import { HttpResponse } from "@/app/models/httpResponse";
 import { auth } from "@/lib/firebase";
 import { RootState } from "@/redux/store";
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { onAuthStateChanged, User } from "firebase/auth";
 
 interface UserState {
@@ -18,8 +18,11 @@ const initialState: UserState = {
 export const fetchFirebaseUser = createAsyncThunk<User | null>(
     "user/fetchFirebaseUser",
     async (_, { rejectWithValue }) => {
+
         return new Promise<User | null>((resolve, reject) => {
             const unsubscribe = onAuthStateChanged(auth, (user) => {
+                console.log(auth);
+
                 unsubscribe(); // Stop listening after first call
                 resolve(user);
             }, reject);
@@ -30,7 +33,11 @@ export const fetchFirebaseUser = createAsyncThunk<User | null>(
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers: {},
+    reducers: {
+        removeUser: (state) => {
+            state.user = null;
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(fetchFirebaseUser.pending, (state) => {
@@ -49,4 +56,5 @@ const userSlice = createSlice({
 });
 
 export const selectUser = (state: RootState) => state.user;
+export const { removeUser } = userSlice.actions;
 export default userSlice.reducer;

@@ -34,6 +34,7 @@ const LoginPopup = ({ onClose }: Props) => {
       setTriggerCheck(true);
       authType === "signIn" && (await signIn());
       authType === "signUp" && (await signUp());
+      onClose();
     } catch (error: any) {
       alert(error.message);
     }
@@ -42,7 +43,6 @@ const LoginPopup = ({ onClose }: Props) => {
   const signIn = async () => {
     if (!email || !password) return;
     await signInWithEmailAndPassword(auth, email, password);
-    alert("Login successful");
     dispatch(fetchFirebaseUser());
   };
 
@@ -73,7 +73,10 @@ const LoginPopup = ({ onClose }: Props) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="flex flex-col gap-4 bg-dark rounded-md shadow-lg w-[30rem]"
+        style={{
+          background: "linear-gradient(124deg, #121b21 53%, #18242c 100%)",
+        }}
+        className="flex flex-col gap-4   rounded-md shadow-lg w-[30rem]"
       >
         {/* TABS  */}
         <div className="flex items-center justify-around">
