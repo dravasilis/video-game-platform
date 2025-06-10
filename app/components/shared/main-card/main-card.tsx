@@ -1,12 +1,12 @@
 "use client";
-import Image from "next/image";
-import "./main-card.scss";
-import Metacritic from "../metacritic/metacritic";
 import { Genre } from "@/app/models/genre";
-import styles from "../../../games/[id]/page.module.scss";
+import Image from "next/image";
+import { useState } from "react";
 import heartEmpty from "../../../../public/svg/heartEmpty.svg";
 import heartFilled from "../../../../public/svg/heartFilled.svg";
-import { useState } from "react";
+import styles from "../../../games/[id]/page.module.scss";
+import Metacritic from "../metacritic/metacritic";
+import "./main-card.scss";
 interface Props<
   T extends {
     id: number;

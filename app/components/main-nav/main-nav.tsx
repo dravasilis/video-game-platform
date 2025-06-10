@@ -1,6 +1,6 @@
 import React from "react";
-import Navigation from "../navigation/navigation";
 import AuthUi from "../auth-ui/auth-ui";
+import Navigation from "../navigation/navigation";
 
 interface Props {
   children: React.ReactNode;
