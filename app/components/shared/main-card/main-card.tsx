@@ -1,5 +1,7 @@
 "use client";
+import { setFavorite } from "@/app/helpers/favorites";
 import { Genre } from "@/app/models/genre";
+import { auth } from "@/lib/firebase";
 import Image from "next/image";
 import { useState } from "react";
 import heartEmpty from "../../../../public/svg/heartEmpty.svg";
@@ -63,6 +65,7 @@ const MainCard = <
                   onClick={(e) => {
                     e.preventDefault();
                     setTest(true);
+                    setFavorite(auth, data.id, "add");
                   }}
                 >
                   <Image
@@ -79,6 +82,7 @@ const MainCard = <
                   onClick={(e) => {
                     e.preventDefault();
                     setTest(false);
+                    setFavorite(auth, data.id, "remove");
                   }}
                 >
                   <Image

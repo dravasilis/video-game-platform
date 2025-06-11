@@ -15,11 +15,16 @@ import Filters from "../components/shared/filters/filters";
 import Loader from "../components/shared/loader/loader";
 import MainCard from "../components/shared/main-card/main-card";
 import Pagination from "../components/shared/pagination/pagination";
+import { useEffect } from "react";
+import { getFavorites } from "../helpers/favorites";
+import { auth } from "@/lib/firebase";
+import { selectUser } from "@/redux/features/user/userSlice";
 const Games = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const popularGames = useSelector(selectAllGames);
   const platforms = useSelector(selectPlatforms);
+  const currentUserState = useSelector(selectUser);
   const searchParams = useSearchParams();
   const genreParam = searchParams.get("genres") ?? undefined;
   const platformParam = searchParams.get("platforms");
@@ -57,6 +62,10 @@ const Games = () => {
     const newQuery = searchParams.toString();
     router.push(`${window.location.pathname}?${newQuery || "page=1"}`);
   };
+
+  useEffect(() => {
+    if (currentUserState.user) getFavorites(currentUserState.user);
+  }, [currentUserState]);
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>

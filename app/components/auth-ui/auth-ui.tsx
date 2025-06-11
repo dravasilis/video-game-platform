@@ -1,17 +1,14 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { auth } from "@/lib/firebase";
+import { fetchFirebaseUser, selectUser } from "@/redux/features/user/userSlice";
+import { AppDispatch } from "@/redux/store";
+import { onAuthStateChanged } from "firebase/auth";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import logoutSvg from "../../../public/svg/logout.svg";
 import LoginButton from "./login-button/login-button";
 import LoginPopup from "./login-modal/login-modal";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchFirebaseUser,
-  removeUser,
-  selectUser,
-} from "@/redux/features/user/userSlice";
-import logoutSvg from "../../../public/svg/logout.svg";
-import Image from "next/image";
-import { auth } from "@/lib/firebase";
-import { AppDispatch } from "@/redux/store";
 const AuthUi = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const currentUser = useSelector(selectUser);
@@ -22,14 +19,17 @@ const AuthUi = () => {
     if (!confirmLogout) return;
     try {
       await auth.signOut();
-      dispatch(removeUser());
     } catch (error) {
       alert("Logout failed. Please try again.");
     }
   };
   useEffect(() => {
-    dispatch(fetchFirebaseUser());
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      dispatch(fetchFirebaseUser()); // This will trigger on every auth change
+    });
+
+    return () => unsubscribe(); // Cleanup on unmount
+  }, [dispatch]);
   return (
     <>
       {currentUser.user ? (

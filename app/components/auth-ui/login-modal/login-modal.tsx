@@ -43,7 +43,6 @@ const LoginPopup = ({ onClose }: Props) => {
   const signIn = async () => {
     if (!email || !password) return;
     await signInWithEmailAndPassword(auth, email, password);
-    dispatch(fetchFirebaseUser());
   };
 
   const signUp = async () => {
@@ -52,7 +51,6 @@ const LoginPopup = ({ onClose }: Props) => {
     await createUserWithEmailAndPassword(auth, email, password);
     if (!auth.currentUser) throw new Error("User is not authenticated");
     await updateProfile(auth.currentUser, { displayName: username });
-    dispatch(fetchFirebaseUser());
   };
 
   const resetValues = () => {
