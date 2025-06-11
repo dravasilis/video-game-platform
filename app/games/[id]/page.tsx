@@ -32,12 +32,33 @@ import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./page.module.scss";
-
+import {
+  listenToFavorites,
+  selectFavorites,
+} from "@/redux/features/favorites/favoritesSlice";
+import { selectUser } from "@/redux/features/user/userSlice";
+import heartEmpty from "../../../public/svg/heartEmpty.svg";
+import heartFilled from "../../../public/svg/heartFilled.svg";
+import { auth } from "@/lib/firebase";
+import { setLoginModalOpen } from "@/redux/features/loginModal/loginModalSlice";
+import { setFavorite } from "@/app/helpers/favorites";
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
+  const userFavorites = useSelector(selectFavorites).favorites;
+  const currentUser = useSelector(selectUser).user;
+
+  const handleSetFavorite = (type: "remove" | "add") => {
+    if (!auth.currentUser) {
+      dispatch(setLoginModalOpen(true));
+      return;
+    }
+    if (gameState.selectedGame)
+      setFavorite(auth, gameState.selectedGame.id, type);
+  };
 
   useEffect(() => {
+    dispatch(listenToFavorites(currentUser?.uid ?? ""));
     dispatch(setSearchPressed(false));
     dispatch(fetchGame(Number(id)));
     dispatch(fetchGameTrailers(Number(id)));
@@ -105,21 +126,55 @@ const GamePage = () => {
                   />
                 </div>
               </div>
-              {/* STATS for bigger screen */}
-              <GameDetails
-                title={gameState.selectedGame.name}
-                rating={gameState.selectedGame.rating}
-                ratingsCount={gameState.selectedGame.ratings_count}
-                metacritic={gameState.selectedGame.metacritic}
-                metacriticUrl={gameState.selectedGame.metacritic_url}
-                tba={gameState.selectedGame.tba}
-                releaseDate={gameState.selectedGame.released}
-                developers={gameState.selectedGame.developers}
-                reddirUrl={gameState.selectedGame.reddit_url}
-                websiteUrl={gameState.selectedGame.website}
-                genres={gameState.selectedGame.genres}
-                platforms={gameState.selectedGame.platforms}
-              />
+              <div className="flex flex-col gap-8">
+                {/* STATS for bigger screen */}
+                <GameDetails
+                  title={gameState.selectedGame.name}
+                  rating={gameState.selectedGame.rating}
+                  ratingsCount={gameState.selectedGame.ratings_count}
+                  metacritic={gameState.selectedGame.metacritic}
+                  metacriticUrl={gameState.selectedGame.metacritic_url}
+                  tba={gameState.selectedGame.tba}
+                  releaseDate={gameState.selectedGame.released}
+                  developers={gameState.selectedGame.developers}
+                  reddirUrl={gameState.selectedGame.reddit_url}
+                  websiteUrl={gameState.selectedGame.website}
+                  genres={gameState.selectedGame.genres}
+                  platforms={gameState.selectedGame.platforms}
+                />
+                {/* ADD TO FAVORITES */}
+                <button
+                  onClick={() => {
+                    userFavorites.find((id) =>
+                      id === gameState.selectedGame?.id
+                        ? handleSetFavorite("remove")
+                        : handleSetFavorite("add")
+                    );
+                  }}
+                  className="flex items-center gap-2 w-max active:scale-95"
+                >
+                  <Image
+                    src={
+                      userFavorites.find(
+                        (id) => id === gameState.selectedGame?.id
+                      )
+                        ? heartFilled
+                        : heartEmpty
+                    }
+                    alt="heart"
+                    width={25}
+                    height={25}
+                    className="!w-[25px] !h-[25px] animate-drop-down"
+                  />
+                  <span>
+                    {userFavorites.find(
+                      (id) => id === gameState.selectedGame?.id
+                    )
+                      ? "Remove from favorites"
+                      : "Add to favorites"}
+                  </span>
+                </button>
+              </div>
             </div>
             {/* STATS for smaller screen */}
             <div className="sm:hidden">
@@ -178,7 +233,12 @@ const GamePage = () => {
                 >
                   {gameState.sameSeriesGames?.results.map((game, index) => (
                     <Link key={index} href={`/games/${game.id}`}>
-                      <MainCard data={game} />
+                      <MainCard
+                        data={game}
+                        isFavorite={
+                          !!userFavorites.find((id) => id === game.id)
+                        }
+                      />
                     </Link>
                   ))}
                 </div>
@@ -193,7 +253,12 @@ const GamePage = () => {
                 >
                   {gameState.gameExtraContent?.results.map((game, index) => (
                     <Link key={index} href={`/games/${game.id}`}>
-                      <MainCard data={game} />
+                      <MainCard
+                        data={game}
+                        isFavorite={
+                          !!userFavorites.find((id) => id === game.id)
+                        }
+                      />
                     </Link>
                   ))}
                 </div>
@@ -212,7 +277,7 @@ const GamePage = () => {
                       href={navigateToStore(store)}
                       target="_blank"
                     >
-                      <MainCard data={store.store} />
+                      <MainCard data={store.store} isFavorite={false} />
                     </Link>
                   ))}
                 </div>

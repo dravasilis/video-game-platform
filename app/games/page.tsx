@@ -1,5 +1,9 @@
 "use client";
 import {
+  listenToFavorites,
+  selectFavorites,
+} from "@/redux/features/favorites/favoritesSlice";
+import {
   fetchAllGames,
   selectAllGames,
 } from "@/redux/features/games/gamesSlice";
@@ -7,6 +11,7 @@ import { selectPlatforms } from "@/redux/features/platforms/platformsSlice";
 import { AppDispatch } from "@/redux/store";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Banner from "../components/landing-page/banner/banner";
 import MainNav from "../components/main-nav/main-nav";
@@ -15,16 +20,14 @@ import Filters from "../components/shared/filters/filters";
 import Loader from "../components/shared/loader/loader";
 import MainCard from "../components/shared/main-card/main-card";
 import Pagination from "../components/shared/pagination/pagination";
-import { useEffect } from "react";
-import { getFavorites } from "../helpers/favorites";
-import { auth } from "@/lib/firebase";
 import { selectUser } from "@/redux/features/user/userSlice";
 const Games = () => {
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   const popularGames = useSelector(selectAllGames);
   const platforms = useSelector(selectPlatforms);
-  const currentUserState = useSelector(selectUser);
+  const userFavorites = useSelector(selectFavorites).favorites;
+  const currentUser = useSelector(selectUser).user;
   const searchParams = useSearchParams();
   const genreParam = searchParams.get("genres") ?? undefined;
   const platformParam = searchParams.get("platforms");
@@ -64,8 +67,8 @@ const Games = () => {
   };
 
   useEffect(() => {
-    if (currentUserState.user) getFavorites(currentUserState.user);
-  }, [currentUserState]);
+    dispatch(listenToFavorites(currentUser?.uid ?? ""));
+  }, [currentUser]);
   return (
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>
@@ -128,7 +131,10 @@ const Games = () => {
               {(popularGames.popularGames?.count ?? 0) > 0 &&
                 popularGames.popularGames?.results.map((game) => (
                   <Link href={`/games/${game.id}`} key={game.id}>
-                    <MainCard data={game} />
+                    <MainCard
+                      data={game}
+                      isFavorite={!!userFavorites.find((id) => id === game.id)}
+                    />
                   </Link>
                 ))}
             </div>

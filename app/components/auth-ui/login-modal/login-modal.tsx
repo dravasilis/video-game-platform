@@ -51,6 +51,7 @@ const LoginPopup = ({ onClose }: Props) => {
     await createUserWithEmailAndPassword(auth, email, password);
     if (!auth.currentUser) throw new Error("User is not authenticated");
     await updateProfile(auth.currentUser, { displayName: username });
+    dispatch(fetchFirebaseUser()); // Manually trigger your user fetch
   };
 
   const resetValues = () => {
@@ -75,7 +76,7 @@ const LoginPopup = ({ onClose }: Props) => {
         style={{
           background: "linear-gradient(124deg, #121b21 53%, #18242c 100%)",
         }}
-        className="flex flex-col gap-4   rounded-md shadow-lg w-[30rem]"
+        className="flex flex-col gap-4  animate-fade-in rounded-md shadow-lg w-[30rem]"
       >
         {/* TABS  */}
         <div className="flex items-center justify-around">

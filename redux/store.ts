@@ -6,6 +6,8 @@ import developersReducer from "./features/developers/developersSlice"; // Adjust
 import platformsReducer from "./features/platforms/platformsSlice"; // Adjust the import path as needed
 import userReducer from "./features/user/userSlice"; // Adjust the import path as needed
 import searchReducer from "./features/search/searchSlice"; // Adjust the import path as needed
+import loginModalReducer from "./features/loginModal/loginModalSlice"; // Adjust the import path as needed
+import favoritesReducer from "./features/favorites/favoritesSlice"; // Adjust the import path as needed
 export const makeStore = () => {
     return configureStore({
         reducer: {
@@ -15,7 +17,9 @@ export const makeStore = () => {
             developers: developersReducer,
             platforms: platformsReducer,
             search: searchReducer,
-            user: userReducer
+            user: userReducer,
+            favorites: favoritesReducer,
+            loginModal: loginModalReducer
         }
     });
 };

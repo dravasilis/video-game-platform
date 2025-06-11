@@ -1,20 +1,23 @@
 "use client";
 import { auth } from "@/lib/firebase";
+import {
+  selectLoginModalStatus,
+  setLoginModalOpen,
+} from "@/redux/features/loginModal/loginModalSlice";
 import { fetchFirebaseUser, selectUser } from "@/redux/features/user/userSlice";
 import { AppDispatch } from "@/redux/store";
 import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import logoutSvg from "../../../public/svg/logout.svg";
 import LoginButton from "./login-button/login-button";
 import LoginPopup from "./login-modal/login-modal";
 const AuthUi = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const openLoginModal = useSelector(selectLoginModalStatus);
   const currentUser = useSelector(selectUser);
   const dispatch = useDispatch<AppDispatch>();
   const handleLogout = async () => {
-    console.log(showLoginModal);
     const confirmLogout = confirm("Are you sure you want to log out?");
     if (!confirmLogout) return;
     try {
@@ -24,8 +27,8 @@ const AuthUi = () => {
     }
   };
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      dispatch(fetchFirebaseUser()); // This will trigger on every auth change
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      await dispatch(fetchFirebaseUser()); // This will trigger on every auth change
     });
 
     return () => unsubscribe(); // Cleanup on unmount
@@ -43,11 +46,13 @@ const AuthUi = () => {
         </div>
       ) : (
         <>
-          <LoginButton onClick={() => setShowLoginModal(true)}></LoginButton>
-          {showLoginModal && (
+          <LoginButton
+            onClick={() => dispatch(setLoginModalOpen(true))}
+          ></LoginButton>
+          {openLoginModal && (
             <LoginPopup
               onClose={() => {
-                setShowLoginModal(false);
+                dispatch(setLoginModalOpen(false));
                 document.body.style.overflow = "auto";
               }}
             ></LoginPopup>

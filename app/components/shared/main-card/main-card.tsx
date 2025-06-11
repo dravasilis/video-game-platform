@@ -2,8 +2,10 @@
 import { setFavorite } from "@/app/helpers/favorites";
 import { Genre } from "@/app/models/genre";
 import { auth } from "@/lib/firebase";
+import { setLoginModalOpen } from "@/redux/features/loginModal/loginModalSlice";
+import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 import heartEmpty from "../../../../public/svg/heartEmpty.svg";
 import heartFilled from "../../../../public/svg/heartFilled.svg";
 import styles from "../../../games/[id]/page.module.scss";
@@ -23,6 +25,7 @@ interface Props<
   }
 > {
   data: T;
+  isFavorite: boolean;
 }
 const MainCard = <
   T extends {
@@ -38,8 +41,18 @@ const MainCard = <
   }
 >({
   data,
+  isFavorite,
 }: Props<T>) => {
-  const [test, setTest] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleSetFavorite = (type: "remove" | "add") => {
+    if (!auth.currentUser) {
+      dispatch(setLoginModalOpen(true));
+      return;
+    }
+    setFavorite(auth, data.id, type);
+  };
+
   return (
     <div className="mainCard">
       <div className="content">
@@ -60,40 +73,38 @@ const MainCard = <
               <span className="max-xl:text-xs text-sm font-bold  truncate-two-lines text-primary-100">
                 {data.name}
               </span>
-              {!test && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setTest(true);
-                    setFavorite(auth, data.id, "add");
-                  }}
-                >
-                  <Image
-                    src={heartEmpty}
-                    alt="emptyHeart"
-                    width={25}
-                    height={25}
-                    className="!w-[25px] !h-[25px]"
-                  />
-                </button>
-              )}
-              {test && (
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setTest(false);
-                    setFavorite(auth, data.id, "remove");
-                  }}
-                >
-                  <Image
-                    src={heartFilled}
-                    alt="emptyHeart"
-                    width={25}
-                    height={25}
-                    className="!w-[25px] !h-[25px] animate-drop-down"
-                  />
-                </button>
-              )}
+              {(data.genres?.length ?? 0) > 0 &&
+                (!isFavorite ? (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSetFavorite("add");
+                    }}
+                  >
+                    <Image
+                      src={heartEmpty}
+                      alt="emptyHeart"
+                      width={25}
+                      height={25}
+                      className="!w-[25px] !h-[25px]"
+                    />
+                  </button>
+                ) : (
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSetFavorite("remove");
+                    }}
+                  >
+                    <Image
+                      src={heartFilled}
+                      alt="emptyHeart"
+                      width={25}
+                      height={25}
+                      className="!w-[25px] !h-[25px] animate-drop-down"
+                    />
+                  </button>
+                ))}
             </div>
             <div className="w-full flex items-center justify-between">
               <div className="flex flex-col gap-2">

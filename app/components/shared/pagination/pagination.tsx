@@ -36,9 +36,6 @@ const Pagination = ({
     const developerParam = searchParams.get("developers") ?? undefined;
     const page = Number(searchParams.get("page")) || 1; // Default to page 1 if null
     const platformParam = searchParams.get("platforms") ?? undefined; // Default to page 1 if null
-    console.log(platformParam);
-    console.log(searchParams.get("platforms"));
-
     setCurrentPage(page); // This updates state correctly
     dispatch(
       fetchAction({
