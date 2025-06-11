@@ -53,8 +53,7 @@ const GamePage = () => {
       dispatch(setLoginModalOpen(true));
       return;
     }
-    if (gameState.selectedGame)
-      setFavorite(auth, gameState.selectedGame.id, type);
+    if (gameState.selectedGame) setFavorite(auth, gameState.selectedGame, type);
   };
 
   useEffect(() => {
@@ -70,7 +69,7 @@ const GamePage = () => {
     return () => {
       dispatch(clearSelectedGame());
     };
-  }, [dispatch]);
+  }, [dispatch, currentUser]);
 
   const gameState = useSelector(selectGameById);
   const trailer = useSelector(selectGameTrailers);
@@ -110,7 +109,7 @@ const GamePage = () => {
               href={gameState.selectedGame?.background_image_additional}
               customBrightness={true}
             />
-            <div className="flex max-sm:flex-col gap-12 max-sm:gap-0 z-10 mt-[12rem] max-sm:mt-[2rem] max-sm:px-0">
+            <div className="flex max-sm:flex-col gap-12 max-sm:gap-0 z-[9] mt-[12rem] max-sm:mt-[2rem] max-sm:px-0">
               <div className="flex flex-col gap-2">
                 <Image
                   unoptimized
@@ -145,8 +144,8 @@ const GamePage = () => {
                 {/* ADD TO FAVORITES */}
                 <button
                   onClick={() => {
-                    userFavorites.find((id) =>
-                      id === gameState.selectedGame?.id
+                    userFavorites.find((_game) =>
+                      _game.id === gameState.selectedGame?.id
                         ? handleSetFavorite("remove")
                         : handleSetFavorite("add")
                     );
@@ -156,7 +155,7 @@ const GamePage = () => {
                   <Image
                     src={
                       userFavorites.find(
-                        (id) => id === gameState.selectedGame?.id
+                        (_game) => _game.id === gameState.selectedGame?.id
                       )
                         ? heartFilled
                         : heartEmpty
@@ -168,7 +167,7 @@ const GamePage = () => {
                   />
                   <span>
                     {userFavorites.find(
-                      (id) => id === gameState.selectedGame?.id
+                      (_game) => _game.id === gameState.selectedGame?.id
                     )
                       ? "Remove from favorites"
                       : "Add to favorites"}
@@ -236,7 +235,7 @@ const GamePage = () => {
                       <MainCard
                         data={game}
                         isFavorite={
-                          !!userFavorites.find((id) => id === game.id)
+                          !!userFavorites.find((_game) => _game.id === game.id)
                         }
                       />
                     </Link>
@@ -256,7 +255,7 @@ const GamePage = () => {
                       <MainCard
                         data={game}
                         isFavorite={
-                          !!userFavorites.find((id) => id === game.id)
+                          !!userFavorites.find((_game) => _game.id === game.id)
                         }
                       />
                     </Link>

@@ -29,7 +29,7 @@ const Genres = () => {
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full">
               {genresState.genres?.results.map((genre) => (
                 <Link key={genre.id} href={"/games?genres=" + genre.slug}>
-                  <MainCard data={genre} />
+                  <MainCard data={genre} isFavorite={false} />
                 </Link>
               ))}
             </div>

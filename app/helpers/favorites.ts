@@ -1,21 +1,43 @@
 import { Auth } from "firebase/auth";
 import { arrayRemove, arrayUnion, doc, getDoc, getFirestore, setDoc, updateDoc } from "firebase/firestore";
 import { AppUser } from "../models/user";
+import { Game } from "../models/game";
 
-export const setFavorite = async (auth: Auth, gameId: number, type: 'remove' | 'add') => {
+export const setFavorite = async (auth: Auth, game: Game, type: 'remove' | 'add') => {
 
     if (!auth.currentUser?.uid) return;
     const db = getFirestore();
     const userRef = doc(db, 'users', auth.currentUser.uid);
+    const gameObject = {
+        id: game.id,
+        name: game.name,
+        background_image: game.background_image,
+        metacritic: game.metacritic,
+        genres: game.genres.map(genre => genre.name)
+    };
     try {
-        type === 'add' ?
+        if (type === 'add') {
             await setDoc(userRef, {
-                favorites: arrayUnion(gameId)
-            }, { merge: true })
-            :
-            await updateDoc(userRef, {
-                favorites: arrayRemove(gameId)
-            });
+                favorites: arrayUnion(gameObject)
+            }, { merge: true });
+
+        }
+        else if (type === 'remove') {
+            const docSnap = await getDoc(userRef);
+            if (docSnap.exists()) {
+                const currentFavorites = docSnap.data().favorites || [];
+                const gameToRemove = currentFavorites.find((fav: Game) => fav.id === game.id);
+
+                if (gameToRemove) {
+                    await updateDoc(userRef, {
+                        favorites: arrayRemove(gameToRemove)
+                    });
+                }
+            }
+
+        }
+
+
     } catch (error: any) {
         console.error('Error adding game to favorites:', error.message);
         throw error;

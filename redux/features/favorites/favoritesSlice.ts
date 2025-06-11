@@ -1,9 +1,10 @@
+import { Game } from "@/app/models/game";
 import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 
 interface FavoritesState {
-    favorites: number[];
+    favorites: Partial<Game>[];
     loading: boolean;
     error: string | null;
 }

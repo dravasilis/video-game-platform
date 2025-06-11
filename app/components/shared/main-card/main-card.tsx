@@ -11,6 +11,7 @@ import heartFilled from "../../../../public/svg/heartFilled.svg";
 import styles from "../../../games/[id]/page.module.scss";
 import Metacritic from "../metacritic/metacritic";
 import "./main-card.scss";
+import { Game } from "@/app/models/game";
 interface Props<
   T extends {
     id: number;
@@ -50,7 +51,7 @@ const MainCard = <
       dispatch(setLoginModalOpen(true));
       return;
     }
-    setFavorite(auth, data.id, type);
+    setFavorite(auth, data as unknown as Game, type);
   };
 
   return (

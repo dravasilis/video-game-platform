@@ -7,7 +7,7 @@ import NavigationMenus from "../navigation-menus/navigation-menus";
 const Navigation = () => {
   return (
     <>
-      <div className="flex w-full justify-between  z-20 h-10">
+      <div className="flex w-full justify-between  z-10 h-10">
         <Link href="/home" className="flex gap-1 items-center z-10">
           <Image
             src={logo}

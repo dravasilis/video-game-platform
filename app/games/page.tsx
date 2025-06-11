@@ -133,7 +133,9 @@ const Games = () => {
                   <Link href={`/games/${game.id}`} key={game.id}>
                     <MainCard
                       data={game}
-                      isFavorite={!!userFavorites.find((id) => id === game.id)}
+                      isFavorite={
+                        !!userFavorites.find((_game) => _game.id === game.id)
+                      }
                     />
                   </Link>
                 ))}

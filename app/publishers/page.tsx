@@ -36,7 +36,7 @@ const Publishers = () => {
                   key={publisher.id}
                   href={`/games?publishers=${publisher.slug}`}
                 >
-                  <MainCard data={publisher} />
+                  <MainCard data={publisher} isFavorite={false} />
                 </Link>
               ))}
             </div>
