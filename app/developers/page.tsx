@@ -35,7 +35,7 @@ const Developers = () => {
                   key={developer.id}
                   href={`/games?developers=${developer.slug}`}
                 >
-                  <MainCard data={developer} />
+                  <MainCard data={developer} isFavorite={false} />
                 </Link>
               ))}
             </div>

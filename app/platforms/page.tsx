@@ -37,7 +37,7 @@ const Platforms = () => {
                   key={platform.id}
                   href={`/games?platforms=${platform.id}`}
                 >
-                  <MainCard data={platform} />
+                  <MainCard data={platform} isFavorite={false} />
                 </Link>
               ))}
             </div>
