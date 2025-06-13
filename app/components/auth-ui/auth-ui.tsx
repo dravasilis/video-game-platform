@@ -18,7 +18,7 @@ const AuthUi = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async () => {
       await dispatch(fetchFirebaseUser()); // This will trigger on every auth change
     });
 

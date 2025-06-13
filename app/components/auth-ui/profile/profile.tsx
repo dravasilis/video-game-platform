@@ -18,6 +18,7 @@ const Profile = ({ currentUser }: Props) => {
     if (!confirmLogout) return;
     try {
       await auth.signOut();
+      // @typescript-eslint/no-unused-vars
     } catch (error) {
       alert("Logout failed. Please try again.");
     }
