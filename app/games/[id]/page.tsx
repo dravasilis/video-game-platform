@@ -10,7 +10,13 @@ import RedditPosts from "@/app/components/shared/reddit-posts/reddit-posts";
 import SkeletonGamePage from "@/app/components/shared/skeleton-game-page/skeleton-game-page";
 import StatCard from "@/app/components/shared/stat-card/stat";
 import { GamePageStats } from "@/app/constants/stats";
+import { setFavorite } from "@/app/helpers/favorites";
 import { StoreData } from "@/app/models/store";
+import { auth } from "@/lib/firebase";
+import {
+  listenToFavorites,
+  selectFavorites,
+} from "@/redux/features/favorites/favoritesSlice";
 import {
   clearSelectedGame,
   fetchGame,
@@ -24,24 +30,18 @@ import {
   selectGameScreenshots,
   selectGameTrailers,
 } from "@/redux/features/games/gamesSlice";
+import { setLoginModalOpen } from "@/redux/features/loginModal/loginModalSlice";
 import { setSearchPressed } from "@/redux/features/search/searchSlice";
+import { selectUser } from "@/redux/features/user/userSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./page.module.scss";
-import {
-  listenToFavorites,
-  selectFavorites,
-} from "@/redux/features/favorites/favoritesSlice";
-import { selectUser } from "@/redux/features/user/userSlice";
 import heartEmpty from "../../../public/svg/heartEmpty.svg";
 import heartFilled from "../../../public/svg/heartFilled.svg";
-import { auth } from "@/lib/firebase";
-import { setLoginModalOpen } from "@/redux/features/loginModal/loginModalSlice";
-import { setFavorite } from "@/app/helpers/favorites";
+import styles from "./page.module.scss";
 const GamePage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams(); //  Get id from the URL
