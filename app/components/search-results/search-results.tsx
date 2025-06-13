@@ -3,7 +3,7 @@ import {
   clearGames,
   fetchAllGames,
   fetchSearchedGames,
-  selectSearchedGames
+  selectSearchedGames,
 } from "@/redux/features/games/gamesSlice";
 import { AppDispatch } from "@/redux/store";
 import Image from "next/image";
@@ -61,7 +61,7 @@ const SearchResults = () => {
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full   ">
               {searchResults.searchedGames?.results.map((game) => (
                 <Link href={`/games/${game.id}`} key={game.id}>
-                  <MainCard key={game.id} data={game} />
+                  <MainCard key={game.id} data={game} isFavorite={false} />
                 </Link>
               ))}
             </div>
