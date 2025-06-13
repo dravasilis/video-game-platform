@@ -1,5 +1,5 @@
 import { firebaseConfig } from "@/env/environment";
-import { initializeApp, getApps } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 
 const app = initializeApp(firebaseConfig);
