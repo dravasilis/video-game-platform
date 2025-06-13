@@ -38,6 +38,7 @@ const LoginPopup = ({ onClose }: Props) => {
       // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
       authType === "signUp" && (await signUp());
       onClose();
+      // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     } catch (error: any) {
       alert(error.message);
     }
