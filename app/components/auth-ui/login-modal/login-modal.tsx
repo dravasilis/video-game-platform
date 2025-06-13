@@ -31,11 +31,11 @@ const LoginPopup = ({ onClose }: Props) => {
 
   const handleLogin = async (authType: "signIn" | "signUp") => {
     try {
-      // @typescript-eslint/no-unused-expressions
+      // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
       setTriggerCheck(true);
-      // @typescript-eslint/no-unused-expressions
+      // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
       authType === "signIn" && (await signIn());
-      // @typescript-eslint/no-unused-expressions
+      // eslint-disable-next-line  @typescript-eslint/no-unused-expressions
       authType === "signUp" && (await signUp());
       onClose();
     } catch (error: any) {

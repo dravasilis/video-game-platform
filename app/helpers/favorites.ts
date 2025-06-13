@@ -37,7 +37,7 @@ export const setFavorite = async (auth: Auth, game: Game, type: 'remove' | 'add'
 
         }
 
-        // @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error('Error adding game to favorites:', error.message);
         throw error;
@@ -63,7 +63,7 @@ export const getFavorites = async (user: AppUser) => {
             console.log(`No document found for user '${user.uid}'.`);
             return null;
         }
-        // @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.log('Error reading favorites:', error.message);
         throw error; // Re-throw to allow calling code to handle it
