@@ -4,14 +4,13 @@ import {
   selectFavorites,
 } from "@/redux/features/favorites/favoritesSlice";
 import { selectUser } from "@/redux/features/user/userSlice";
-import { AppDispatch, RootState } from "@/redux/store";
+import { AppDispatch } from "@/redux/store";
+import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MainNav from "../components/main-nav/main-nav";
 import FavoriteCard from "../components/shared/favorite-card/favorite-card";
-import MainCard from "../components/shared/main-card/main-card";
 import Loader from "../components/shared/loader/loader";
-import Link from "next/link";
 
 const Favorites = () => {
   const favoritesState = useSelector(selectFavorites);
