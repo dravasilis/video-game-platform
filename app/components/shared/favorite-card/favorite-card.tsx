@@ -46,7 +46,13 @@ const FavoriteCard = <
   isFavorite,
 }: Props<T>) => {
   const dispatch = useDispatch<AppDispatch>();
+
   const handleSetFavorite = (type: "remove" | "add") => {
+    const confirmRemoval = confirm(
+      `Are you sure you want to remove ${data.name} from favorites?`
+    );
+    if (!confirmRemoval) return;
+
     if (!auth.currentUser) {
       dispatch(setLoginModalOpen(true));
       return;
@@ -98,7 +104,7 @@ const FavoriteCard = <
                   </span>
                 )}
               </div>
-              <div className="flex w-full max-sm:px-4 justify-between">
+              <div className="flex w-full max-sm:px-4 max-sm:justify-between  justify-center">
                 {data.genres && (
                   <div className="flex items-center gap-2">
                     {data.genres.map(

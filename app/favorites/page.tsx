@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import MainNav from "../components/main-nav/main-nav";
 import FavoriteCard from "../components/shared/favorite-card/favorite-card";
 import Loader from "../components/shared/loader/loader";
+import Banner from "../components/landing-page/banner/banner";
 
 const Favorites = () => {
   const favoritesState = useSelector(selectFavorites);
@@ -23,26 +24,35 @@ const Favorites = () => {
     dispatch(listenToFavorites(currentUser?.uid ?? ""));
   }, [currentUser]);
 
+  useEffect(() => {
+    console.log(favoritesState);
+  }, [favoritesState]);
+
   return (
     <>
       <MainNav
         header="My Favorite Games List"
-        results={favoritesState.favorites.length ?? 0}
+        results={favoritesState.favorites.length}
       >
+        <Banner banner="favoritesBg.jpg" customBrightness={true} />
         {favoritesState.loading ? (
           <Loader />
         ) : favoritesState.error ? (
           <div>{favoritesState.error}</div>
         ) : favoritesState.favorites.length > 0 ? (
           <div className="flex flex-wrap gap-8 px-20 max-lg:px-8 max-sm:px-0 py-4">
-            <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
+            <div className="w-full z-10 h-1 rounded-lg bg-red-300 box-shadow"></div>
 
             {favoritesState.favorites.map((game) => (
               <div
                 key={game.id}
                 className="w-full flex justify-center items-center"
               >
-                <Link href={`/games/${game.id}`} key={game.id}>
+                <Link
+                  className="w-full"
+                  href={`/games/${game.id}`}
+                  key={game.id}
+                >
                   <FavoriteCard data={game} isFavorite={true}></FavoriteCard>
                 </Link>
               </div>
