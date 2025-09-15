@@ -38,7 +38,10 @@ const Favorites = () => {
             <div className="w-full h-1 rounded-lg bg-primary-100 box-shadow"></div>
 
             {favoritesState.favorites.map((game) => (
-              <div key={game.id} className="w-full">
+              <div
+                key={game.id}
+                className="w-full flex justify-center items-center"
+              >
                 <Link href={`/games/${game.id}`} key={game.id}>
                   <FavoriteCard data={game} isFavorite={true}></FavoriteCard>
                 </Link>
