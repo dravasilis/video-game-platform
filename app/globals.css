@@ -212,3 +212,8 @@ button {
     color: var(--color-primary-100);
     font-weight: bold;
 }
+
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px rgb(223, 223, 223) inset;
+}

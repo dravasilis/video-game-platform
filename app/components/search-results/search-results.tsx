@@ -43,7 +43,7 @@ const SearchResults = () => {
         results={searchResults.searchedGames?.count}
       >
         <Banner banner="gamesbg6.jpg" customBrightness={true} />
-        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
+        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  ">
           <div className="flex items-center gap-2">
             <span className="text-primary-150"> Search for:</span>
             <b className="text-primary-300 text-lg"> {searchTerm}</b>

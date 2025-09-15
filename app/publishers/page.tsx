@@ -28,7 +28,7 @@ const Publishers = () => {
     <>
       <MainNav header="Publishers" results={publishersState.publishers?.count}>
         <Banner banner="gamesbg.jpg" customBrightness={true} />
-        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
+        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  ">
           {!publishersState.loading ? (
             <div className="grid grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2  gap-y-8 w-full justify-center ">
               {publishersState.publishers?.results.map((publisher) => (

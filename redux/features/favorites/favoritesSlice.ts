@@ -3,14 +3,14 @@ import { RootState } from "@/redux/store";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 
-interface FavoritesState {
-    favorites: Partial<Game>[];
+export interface FavoritesState {
+    favorites: Game[];
     loading: boolean;
     error: string | null;
 }
 const initialState: FavoritesState = {
     favorites: [],
-    loading: false,
+    loading: true,
     error: null,
 };
 
@@ -49,10 +49,25 @@ const favoritesSlice = createSlice({
     reducers: {
         favoritesUpdated: (state, action) => {
             state.favorites = action.payload;
+            state.loading = false; // data arrived → stop loading
+            state.error = null;
         },
 
     },
     extraReducers: (builder) => {
+        builder
+            .addCase(listenToFavorites.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(listenToFavorites.fulfilled, (state) => {
+                // You don't need to set favorites here, because your `onSnapshot` dispatches `favoritesUpdated`
+                state.loading = false;
+            })
+            .addCase(listenToFavorites.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message ?? "Failed to load favorites";
+            });
     },
 });
 

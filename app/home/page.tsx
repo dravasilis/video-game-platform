@@ -9,7 +9,7 @@ const home = () => {
     <div className="animate-fade-in">
       <MainNav>
         <Banner banner={"bg10.jpg"} />
-        <div className="flex flex-col gap-16 py-8 px-24   max-sm:px-8 z-10">
+        <div className="flex flex-col gap-16 py-8 px-24   max-sm:px-8">
           <div className="flex flex-col gap-3 ">
             <h1 className="text-5xl max-sm:text-3xl text-primary-100 font-bold">
               Start your journey

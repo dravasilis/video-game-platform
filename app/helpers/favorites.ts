@@ -13,7 +13,8 @@ export const setFavorite = async (auth: Auth, game: Game, type: 'remove' | 'add'
         name: game.name,
         background_image: game.background_image,
         metacritic: game.metacritic,
-        genres: game.genres.map(genre => genre.name)
+        released: game.released,
+        genres: game.genres,
     };
     try {
         if (type === 'add') {

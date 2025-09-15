@@ -26,8 +26,8 @@ const TopRated = () => {
   useEffect(() => {
     if (!topRatedGames) {
       dispatch(fetchTopRatedGames());
-      dispatch(listenToFavorites(currentUser?.uid ?? ""));
     }
+    dispatch(listenToFavorites(currentUser?.uid ?? ""));
   }, [currentUser]);
   return (
     <div>

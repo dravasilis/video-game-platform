@@ -26,8 +26,8 @@ const UpcomingGames = () => {
   useEffect(() => {
     if (!upcomingGames) {
       dispatch(fetchUpcomingGames());
-      dispatch(listenToFavorites(currentUser?.uid ?? ""));
     }
+    dispatch(listenToFavorites(currentUser?.uid ?? ""));
   }, [currentUser]);
   return (
     <div>

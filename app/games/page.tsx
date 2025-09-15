@@ -73,7 +73,7 @@ const Games = () => {
     <>
       <MainNav header="Games" results={popularGames.popularGames?.count ?? 0}>
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
-        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-10">
+        <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  ">
           <Filters />
           <div className="flex gap-4 items-center">
             {(genreParam?.split(",").length ?? 0) > 0 &&

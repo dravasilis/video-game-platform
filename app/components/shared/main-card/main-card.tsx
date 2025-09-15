@@ -45,6 +45,7 @@ const MainCard = <
   isFavorite,
 }: Props<T>) => {
   const dispatch = useDispatch<AppDispatch>();
+  console.log(data);
 
   const handleSetFavorite = (type: "remove" | "add") => {
     if (!auth.currentUser) {
