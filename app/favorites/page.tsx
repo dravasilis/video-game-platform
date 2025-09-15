@@ -49,7 +49,7 @@ const Favorites = () => {
                 className="w-full flex justify-center items-center"
               >
                 <Link
-                  className="w-full"
+                  className="w-full flex justify-center items-center"
                   href={`/games/${game.id}`}
                   key={game.id}
                 >
