@@ -20,24 +20,27 @@ import { selectUser } from "@/redux/features/user/userSlice";
 
 const TopRated = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const topRatedGames = useSelector(selectTopRatedGames);
+  const topRatedGamesState = useSelector(selectTopRatedGames);
   const userFavorites = useSelector(selectFavorites).favorites;
   const currentUser = useSelector(selectUser).user;
   useEffect(() => {
-    if (!topRatedGames) {
+    if (!topRatedGamesState) {
       dispatch(fetchTopRatedGames());
     }
     dispatch(listenToFavorites(currentUser?.uid ?? ""));
   }, [currentUser]);
   return (
     <div>
-      <MainNav header="Top Rated" results={topRatedGames?.count ?? 0}>
+      <MainNav
+        header="Top Rated"
+        results={topRatedGamesState.topRatedGames?.count ?? 0}
+      >
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
         <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-[9]">
-          {topRatedGames ? (
+          {!topRatedGamesState.loading ? (
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full ">
-              {(topRatedGames.count ?? 0) > 0 ? (
-                topRatedGames.results.map((game) => (
+              {(topRatedGamesState.topRatedGames?.count ?? 0) > 0 ? (
+                topRatedGamesState.topRatedGames?.results.map((game) => (
                   <Link href={`/games/${game.id}`} key={game.id}>
                     <MainCard
                       data={game}
@@ -55,8 +58,8 @@ const TopRated = () => {
             <Loader />
           )}
           <Pagination
-            count={topRatedGames?.count ?? 0}
-            length={topRatedGames?.results?.length ?? 0}
+            count={topRatedGamesState.topRatedGames?.count ?? 0}
+            length={topRatedGamesState.topRatedGames?.results?.length ?? 0}
             dispatch={dispatch} // Pass dispatch
             fetchAction={fetchTopRatedGames} // Pass fetch action for games
           />

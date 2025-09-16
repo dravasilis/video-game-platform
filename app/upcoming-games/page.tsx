@@ -20,24 +20,27 @@ import { selectUser } from "@/redux/features/user/userSlice";
 
 const UpcomingGames = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const upcomingGames = useSelector(selectUpcomingGames);
+  const upcomingGamesState = useSelector(selectUpcomingGames);
   const userFavorites = useSelector(selectFavorites).favorites;
   const currentUser = useSelector(selectUser).user;
   useEffect(() => {
-    if (!upcomingGames) {
+    if (!upcomingGamesState) {
       dispatch(fetchUpcomingGames());
     }
     dispatch(listenToFavorites(currentUser?.uid ?? ""));
   }, [currentUser]);
   return (
     <div>
-      <MainNav header="Upcoming Games" results={upcomingGames?.count ?? 0}>
+      <MainNav
+        header="Upcoming Games"
+        results={upcomingGamesState.upcomingGames?.count ?? 0}
+      >
         <Banner banner="gamesbg2.jpg" customBrightness={true} />
         <div className="flex flex-col gap-8  px-20 max-lg:px-8 max-sm:px-0  z-[9]">
-          {upcomingGames ? (
+          {!upcomingGamesState.loading ? (
             <div className="grid justify-items-center  grid-cols-5 max-[1700px]:grid-cols-5 max-2xl:grid-cols-4 max-lg:grid-cols-3  max-md:!grid-cols-2 min-[1700px]:gap-x-12  gap-y-8 w-full ">
-              {(upcomingGames.count ?? 0) > 0 ? (
-                upcomingGames.results.map((game) => (
+              {(upcomingGamesState.upcomingGames?.count ?? 0) > 0 ? (
+                upcomingGamesState.upcomingGames?.results.map((game) => (
                   <Link href={`/games/${game.id}`} key={game.id}>
                     <MainCard
                       data={game}
@@ -55,8 +58,8 @@ const UpcomingGames = () => {
             <Loader />
           )}
           <Pagination
-            count={upcomingGames?.count ?? 0}
-            length={upcomingGames?.results?.length ?? 0}
+            count={upcomingGamesState.upcomingGames?.count ?? 0}
+            length={upcomingGamesState.upcomingGames?.results?.length ?? 0}
             dispatch={dispatch} // Pass dispatch
             fetchAction={fetchUpcomingGames} // Pass fetch action for games
           />

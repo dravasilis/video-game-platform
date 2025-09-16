@@ -301,9 +301,9 @@ const gamesSlice = createSlice({
 });
 
 // Selectors
-export const selectUpcomingGames = (state: RootState) => state.games.upcomingGames;
-export const selectVintageGames = (state: RootState) => state.games.vintageGames;
-export const selectTopRatedGames = (state: RootState) => state.games.topRatedGames;
+export const selectUpcomingGames = (state: RootState) => state.games;
+export const selectVintageGames = (state: RootState) => state.games;
+export const selectTopRatedGames = (state: RootState) => state.games;
 export const selectAllGames = (state: RootState) => state.games;
 export const selectSearchedGames = (state: RootState) => state.games;
 export const selectGameById = (state: RootState) => state.games;
