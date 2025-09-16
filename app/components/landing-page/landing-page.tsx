@@ -23,19 +23,18 @@ import "./landing-page.css";
 import Title from "./title/title";
 const LandingPage = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [upcoming, vintage, topRated] = [
+  const [upcomingState, vintageState, topRatedState] = [
     useSelector(selectUpcomingGames),
     useSelector(selectVintageGames),
     useSelector(selectTopRatedGames),
   ];
   // Dispatch the actions only once on component mount
   useEffect(() => {
-    if (!upcoming && !vintage && !topRated) {
+    if (!upcomingState && !vintageState && !topRatedState) {
       dispatch(fetchUpcomingGames());
       dispatch(fetchVintageGames());
       dispatch(fetchTopRatedGames());
     }
-    
   }, [dispatch]); // Empty dependency array means this will only run once when the component mounts
 
   return (
@@ -71,10 +70,10 @@ const LandingPage = () => {
             description={feature.description}
             games={
               index === 0
-                ? upcoming?.results ?? []
+                ? upcomingState.upcomingGames?.results ?? []
                 : index === 1
-                ? vintage?.results ?? []
-                : topRated?.results ?? []
+                ? vintageState.vintageGames?.results ?? []
+                : topRatedState.topRatedGames?.results ?? []
             }
             title={feature.title}
           />
