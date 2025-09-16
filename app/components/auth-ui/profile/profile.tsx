@@ -7,17 +7,23 @@ import profile from "../../../../public/svg/profile.svg";
 import Image from "next/image";
 import logoutSvg from "../../../../public/svg/logout.svg";
 import { auth } from "@/lib/firebase";
+import { Router } from "next/router";
+import { redirect, usePathname, useRouter } from "next/navigation";
 
 interface Props {
   currentUser: AppUser;
 }
 const Profile = ({ currentUser }: Props) => {
   const [openDropdown, setOpenDropdown] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
+
   const handleLogout = async () => {
     const confirmLogout = confirm("Are you sure you want to log out?");
     if (!confirmLogout) return;
     try {
       await auth.signOut();
+      if (pathname === "/favorites") router.push("/");
       // eslint-disable-next-line  @typescript-eslint/no-unused-vars
     } catch (error) {
       alert("Logout failed. Please try again.");
