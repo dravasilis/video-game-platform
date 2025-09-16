@@ -1,14 +1,13 @@
 "use client";
 import { AppUser } from "@/app/models/user";
-import Link from "next/link";
-import React, { useState } from "react";
-import heartEmpty from "../../../../public/svg/heartEmpty.svg";
-import profile from "../../../../public/svg/profile.svg";
-import Image from "next/image";
-import logoutSvg from "../../../../public/svg/logout.svg";
 import { auth } from "@/lib/firebase";
-import { Router } from "next/router";
-import { redirect, usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
+import heartEmpty from "../../../../public/svg/heartEmpty.svg";
+import logoutSvg from "../../../../public/svg/logout.svg";
+import profile from "../../../../public/svg/profile.svg";
 
 interface Props {
   currentUser: AppUser;
